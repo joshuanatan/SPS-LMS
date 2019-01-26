@@ -1,0 +1,20 @@
+tujuan: memperkenalkan komunitas tiroid
+
+
+bkin login
+titik beratnya di blognya
+social feed bkin 2 level (saling komen) bisa like bisa jumlah like, bisa share (ganti urlnya)
+diblog bkin ada yang buat, blognya bisa d like
+color palate (minta)
+script yang komentar 
+
+aktor
+-superadmin
+-it
+-user (penderita)
+
+controllernya : per aktor
+model: M_namatable
+view: namamenu
+
+validator login sama signup pake js pake type juga+++
