@@ -2,7 +2,7 @@
 defined("BASEPATH") OR exit("No Direct Script");
 
 class format_model extends CI_Controller{
-    public function __contruct(){
+    public function __construct(){
         parent::__construct();
         $this->load->model(array(""));
     }

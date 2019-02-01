@@ -170,12 +170,6 @@
         }
     } );
 
-
-
-
-
-
-
     //line chart
     var ctx = document.getElementById( "lineChart" );
     ctx.height = 150;
@@ -215,10 +209,9 @@
         }
     } );
 
-
     //bar chart
     var ctx = document.getElementById( "barChart" );
-    //    ctx.height = 200;
+    ctx.height = 200;
     var myChart = new Chart( ctx, {
         type: 'bar',
         data: {
