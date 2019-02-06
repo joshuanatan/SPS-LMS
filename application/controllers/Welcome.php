@@ -4,13 +4,20 @@ defined("BASEPATH") OR exit("No Direct Script");
 class Welcome extends CI_Controller{
     public function __construct(){
         parent::__construct();
+        $this->load->model(array("Mdmenu"));
         $this->req();
-        //$this->load->model(array(""));
     }
     public function req(){
+        $this->session->page = 0;
+        $where = array(
+            "status" => 0
+        );
+        $data = array(
+            "menu" => $this->Mdmenu->select($where)->result()
+        );
         $this->load->view("req/html-open");
         $this->load->view("req/head");
-        $this->load->view("req/menu");
+        $this->load->view("req/menu",$data);
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
         $this->load->view("req/logo");
