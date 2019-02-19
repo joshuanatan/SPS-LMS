@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
     
+    
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/lib/chosen/chosen.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/charts/chartist.min.css" >
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/lib/vector-map/jqvmap.min.css" >

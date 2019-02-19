@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h4 class="box-title">Tugas </h4>
             </div>
-            <div class="card-body--">
+            <div class="card-body">
                 <div class="table-stats">
                     <table class="table table-stripped" id = "bootstrap-data-table-export">
                         <thead>

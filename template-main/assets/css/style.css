@@ -2017,11 +2017,11 @@ header .form-inline {
 ---------------------------*/
 .stat-widget-four {
   position: relative; }
-  .stat-widget-four .stat-icon {
+  .stat-widget-four .stat-icon { /*posisi icon */
     display: inline-block;
     position: absolute;
     top: 5px; }
-  .stat-widget-four i {
+  .stat-widget-four i { /*font icon */
     display: block;
     font-size: 36px; }
   .stat-widget-four .stat-content {

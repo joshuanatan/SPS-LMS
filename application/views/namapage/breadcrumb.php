@@ -5,6 +5,7 @@
                 <div class="page-header float-left">
                     <div class="page-title">
                         <h1>Dashboard</h1>
+                        <p>Welcome Joshua, Have a nice day </p>
                     </div>
                 </div>
             </div>
