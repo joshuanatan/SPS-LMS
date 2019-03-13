@@ -18,11 +18,12 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
     
-    
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/lib/chosen/chosen.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/charts/chartist.min.css" >
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/lib/vector-map/jqvmap.min.css" >
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/weather/css/weather-icons.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/calendar/fullcalendar.css" />
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' type='text/css'>
 </head>
 <body>
