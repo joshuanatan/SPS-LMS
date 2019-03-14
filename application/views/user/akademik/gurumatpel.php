@@ -1,11 +1,4 @@
-<?php
-$statuse = array();
-foreach($status as $a){
-    if($a->id_kelas == NULL)
-        $statuse[$a->id_kelas] = 0;
-    else $statuse[$a->id_kelas] = 1;
-}
-?>
+
 <div class="row">
     <div class="col-xl-12"> 
         <div class="card">
@@ -16,7 +9,7 @@ foreach($status as $a){
                 <form class = "form-inline" action = "<?php echo base_url();?>master/gurumatpel/ubahguru" method="post">
                     <select class = "form-control col-lg-8" name = "guru">
                         <?php foreach($guru as $a){ ?> 
-                        <option value = "<?php echo $a->id_guru?>"><?php echo $a->nama_depan." ".$a->nama_belakang;?></option>
+                        <option value = "<?php echo $a->id_guru?>" <?php if($a->id_guru == $this->session->idgurupilihkelas) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang;?></option>
                         <?php } ?>
                     </select>
                     <input type = "submit" class = "form-control col-lg-3" style ="margin-left:30px">
@@ -44,14 +37,24 @@ foreach($status as $a){
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($kelasangkatan as $b){ ?> 
+                            <?php foreach($assigned as $b){ ?> 
                             <tr>
                                 <td><?php echo $b->kelas;?></td>
                                 <td><?php echo $b->jurusan;?></td>
                                 <td><?php echo $b->urutan;?></td>
-                                <td><?php if($statuse[$b->id_kelas] == 0) echo "NOT ASSIGNED"; else echo "ASSIGNED";?></td>
+                                <td>ASSIGNED</td>
                                 
-                                <td><button class = "btn btn-danger col-lg-12">REMOVE</button></td>
+                                <td><a href = "<?php echo base_url();?>master/gurumatpel/remove/<?php echo $b->id_penugasan;?>" class = "btn btn-danger col-lg-12">HAPUS</a></td>
+                            </tr>
+                            <?php } ?>
+                            <?php foreach($notassigned as $b){ ?> 
+                            <tr>
+                                <td><?php echo $b->kelas;?></td>
+                                <td><?php echo $b->jurusan;?></td>
+                                <td><?php echo $b->urutan;?></td>
+                                <td>NOT ASSIGNED</td>
+                                
+                                <td><a href = "<?php echo base_url();?>master/gurumatpel/assign/<?php echo $b->id_kelas;?>" class = "btn btn-success col-lg-12">AKTIFKAN</a></td>
                             </tr>
                             <?php } ?>
                         </tbody>

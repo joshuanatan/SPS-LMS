@@ -7,8 +7,9 @@
             <div class="card-body">
                 <form class = "form-inline">
                     <select class = "form-control col-lg-12">
-                        <option value = "#">10 IPA 1</option>
-                        <option value = "#">10 IPA 2</option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
+                        <?php foreach($kelas as $a){ ?>
+                        <option value = "<?php echo $a->id_kelas;?>"><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
+                        <?php } ?>
                     </select>
                 </form>
             </div>

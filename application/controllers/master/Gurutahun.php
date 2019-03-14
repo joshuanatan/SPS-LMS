@@ -37,7 +37,8 @@ class Gurutahun extends CI_Controller{
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $where = array(
-            "id_tahun_ajaran" => $this->session->tahunajaran
+            "id_tahun_ajaran" => $this->session->tahunajaran,
+            "status_gurutahunan" =>0
         );
         $where2 = array(
             "status_guru" => 0
@@ -63,6 +64,14 @@ class Gurutahun extends CI_Controller{
             "tgl_submit_gurutahunan" => date('Y-m-d')
         );
         $this->Mdgurutahunan->insert($data);
+        redirect("master/gurutahun");
+    }
+    public function remove($i){
+        $this->load->model("Mdgurutahunan");
+        $where = array(
+            "id_gurutahunan" => $i
+        );
+        $this->Mdgurutahunan->remove($where);
         redirect("master/gurutahun");
     }
 }

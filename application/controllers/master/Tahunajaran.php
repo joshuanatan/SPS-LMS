@@ -33,7 +33,7 @@ class Tahunajaran extends CI_Controller{
     }
     public function setTahunAjaran(){
         $this->session->tahunajaran = $this->input->post("id_tahun_ajaran");
-        redirect("user/akademik/index");
+        redirect("user/".$this->session->role."/index");
     }
 }
 ?>

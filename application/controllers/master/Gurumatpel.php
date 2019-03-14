@@ -32,23 +32,33 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-main");
     }
     public function index(){
-        //$this->load->view("namapage/breadcrumb");
+        if($this->session->pilihjurusan != ""){
+            redirect("master/gurumatpel/jurusanterpilih/".$this->session->pilihjurusan);
+        }
+        $where = array(
+            "id_tahun_ajaran" => $this->session->tahunajaran,
+            //"id_guru" => $this->session->idgurupilihkelas
+        );  
+        $where2 = array(
+            "penugasan_guru.id_gurutahunan" => $this->session->idgurupilihkelas,
+            "kelas.id_tahun_ajaran" => $this->session->tahunajaran
+        );
+        $where3 = array(
+            "id_tahun_ajaran" => $this->session->tahunajaran
+        );
+        
         $this->load->model("Mdgurutahunan");
         $this->load->model("Mdkelas");
         $this->load->model("Mdgurumatapelajaran");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array(
-            "id_tahun_ajaran" => $this->session->tahunajaran
-        );
-        $where2 = array(
-            "id_guru" => 1
-        );
+        
+        
         $data = array(
-            "guru" => $this->Mdgurutahunan->select($where)->result(),
-            "kelasangkatan" => $this->Mdkelas->select($where)->result(),
-            "status" => $this->Mdgurumatapelajaran->select($where2)->result()
-        );  
+            "guru" => $this->Mdgurutahunan->select($where3)->result(),
+            "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
+            "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
+        );
         $this->load->view("user/akademik/gurumatpel",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
@@ -74,25 +84,34 @@ class Gurumatpel extends CI_Controller{
         
         switch($jenisjurusan){
             case "IPA":
+                $this->session->pilihjurusan = "IPA";
                 $where = array(
-                    "jurusan" => "IPA",
-                    "id_tahun_ajaran" => $this->session->tahunajaran
+                    "kelas.jurusan" => "IPA",
+                    "id_tahun_ajaran" => $this->session->tahunajaran,
+                    //"id_guru" => $this->session->idgurupilihkelas
                 );  
                 break;
             case "IPS":
+                
+                $this->session->pilihjurusan = "IPS";
                 $where = array(
-                    "jurusan" => "IPS",
-                    "id_tahun_ajaran" => $this->session->tahunajaran
+                    "kelas.jurusan" => "IPS",
+                    "id_tahun_ajaran" => $this->session->tahunajaran,
+                    //"id_guru" => $this->session->idgurupilihkelas
                 );  
                 break;
             case "UMUM":
+                
+                $this->session->pilihjurusan = "UMUM";
                 $where = array(
-                    "id_tahun_ajaran" => $this->session->tahunajaran
+                    "id_tahun_ajaran" => $this->session->tahunajaran,
+                    //"id_guru" => $this->session->idgurupilihkelas
                 );  
                 break;
         }
         $where2 = array(
-            "id_guru" => $this->session->idgurupilihkelas
+            "penugasan_guru.id_gurutahunan" => $this->session->idgurupilihkelas,
+            "kelas.id_tahun_ajaran" => $this->session->tahunajaran
         );
         $where3 = array(
             "id_tahun_ajaran" => $this->session->tahunajaran
@@ -107,8 +126,8 @@ class Gurumatpel extends CI_Controller{
         
         $data = array(
             "guru" => $this->Mdgurutahunan->select($where3)->result(),
-            "kelasangkatan" => $this->Mdkelas->select($where)->result(),
-            "status" => $this->Mdgurumatapelajaran->select($where2)->result()
+            "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
+            "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
         );
         $this->load->view("user/akademik/gurumatpel",$data);
         /* endnya disini */
@@ -117,6 +136,26 @@ class Gurumatpel extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+    }
+    public function remove($i){
+        
+        $where = array(
+            "id_penugasan" => $i
+        );
+        $this->load->model("Mdgurumatapelajaran");
+        $this->Mdgurumatapelajaran->remove($where);
+        redirect("master/gurumatpel");
+    }
+    public function assign($i){
+        $data = array(
+            "id_gurutahunan" => $this->session->idgurupilihkelas,
+            "id_kelas" => $i,
+            "status_penugasan" => 0,
+            "tgl_submit_penugasan" => date('Y-m-d')
+        );
+        $this->load->model("Mdgurumatapelajaran");
+        $this->Mdgurumatapelajaran->insert($data);
+        redirect("master/gurumatpel");
     }
 }
 ?>

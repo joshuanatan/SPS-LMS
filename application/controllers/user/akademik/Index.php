@@ -34,7 +34,8 @@ class Index extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array();
+        $where = array(
+        );
         $data = array(
             "tahunajaran" => $this->Mdtahunajaran->select($where)->result(),
             "matapelajaran" => $this->Mdmatapelajaran->select($where)->result(),

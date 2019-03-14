@@ -17,4 +17,7 @@ class Mdgurutahunan extends CI_Model{
     public function nonwalikelas(){
         return $this->db->query("select * from gurutahunan where id_guru not in select id_gurutahunan from kelas where id_tahun_ajaran = ".$this->session->tahunajaran);
     }
+    public function remove($where){
+        $this->db->delete("guru_tahunan",$where);
+    }
 }

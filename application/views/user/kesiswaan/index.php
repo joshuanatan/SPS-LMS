@@ -1,3 +1,4 @@
+
 <div class = "row">
     <div class="col-lg-3 col-md-6"> <!-- ganti ukuran sesuai yang diinginkan -->
         <div class="card">
@@ -18,6 +19,26 @@
     </div>
     
     <!-- kalau mau nambah widget lainnya -->
+</div>
+<div class="row">
+    <div class="col-xl-12"> 
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">TAHUN AJARAN</h4>
+            </div>
+            <div class="card-body">
+                <form class = "form-inline" action = "<?php echo base_url();?>master/tahunajaran/setTahunAjaran" method="post">
+                    <select class = "form-control col-lg-7" name = "id_tahun_ajaran">
+                        <?php foreach($tahunajaran as $a){ ?> 
+                        <option value = "<?php echo $a->id_tahun_ajaran?>" <?php if($a->id_tahun_ajaran == $this->session->tahunajaran) echo "selected";?>><?php echo $a->tahun_awal;?>/<?php echo $a->tahun_akhir;?></option>
+                        <?php } ?>
+                    </select>
+                    <input type ="submit" class = "form-control col-lg-2" style = "margin-left:10px;">
+                    <button type="button" class="btn btn-success col-lg-2" style = "margin-left:10px;" data-toggle="modal" data-target="#mediumModal2">TAMBAH</button>
+                </form>
+            </div>
+        </div> <!-- /.card -->
+    </div>
 </div>
 <div class="row">
     <div class="col-xl-12"> 

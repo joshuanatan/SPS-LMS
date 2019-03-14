@@ -23,7 +23,7 @@
                                 <td><?php echo $a->id_gurutahunan;?></td>
                                 <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                                 <td><?php echo $a->nama_matpel;?></td>
-                                <td><button class = "btn btn-danger col-lg-12">REMOVE</button></td>
+                                <td><a href = "<?php echo base_url();?>master/gurutahun/remove/<?php echo $a->id_gurutahunan;?>" class = "btn btn-danger col-lg-12">REMOVE</a></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -38,7 +38,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediumModalLabel">PENAMBAHAN KELAS</h5>
+                <h5 class="modal-title" id="mediumModalLabel">PENAMBAHAN GURU TAHUNAN</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

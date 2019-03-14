@@ -1,7 +1,7 @@
 <?php
 defined("BASEPATH") OR exit("No Direct Script");
 
-class Kelas extends CI_Controller{
+class Kelassiswa extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->req();
@@ -31,11 +31,18 @@ class Kelas extends CI_Controller{
     }
     
     public function index(){
+        $this->load->model("Mdkelas");
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-       
-        $this->load->view("user/kesiswaan/kelas-siswa");
+        $where = array(
+            "status_kelas" =>0,
+            "id_tahun_ajaran" => $this->session->tahunajaran
+        );  
+        $data = array(
+            "kelas" => $this->Mdkelas->select($where)->result()  
+        );
+        $this->load->view("user/kesiswaan/kelas-siswa",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
