@@ -53,12 +53,21 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         
+        if($this->session->idgurupilihkelas == "") {
+            $data = array(
+                "guru" => $this->Mdgurutahunan->select($where3)->result(),
+                "assigned" => $this->Mdgurumatapelajaran->assigned2($where2)->result(),
+                "notassigned" => $this->Mdgurumatapelajaran->status2($where)->result()
+            );
+        }
         
-        $data = array(
-            "guru" => $this->Mdgurutahunan->select($where3)->result(),
-            "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
-            "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
-        );
+        else { 
+            $data = array(
+                "guru" => $this->Mdgurutahunan->select($where3)->result(),
+                "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
+                "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
+            );
+        }
         $this->load->view("user/akademik/gurumatpel",$data);
         /* endnya disini */
         $this->load->view("req/close-content");

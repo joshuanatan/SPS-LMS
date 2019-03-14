@@ -49,6 +49,7 @@ class Siswa extends CI_Controller{
     }
     public function tambahSiswa(){
         $this->load->model(array("Mduser","Mdsiswa"));
+        //insert ke user
         $data = array(
             "nama_depan" => $this->input->post("namadepan"),
             "nama_belakang" =>  $this->input->post("namabelakang"),
@@ -63,6 +64,8 @@ class Siswa extends CI_Controller{
             "id_role"=> 1,
         );
         $this->Mduser->insert($data);
+        //end insert ke user
+        //cari id user terakhir
         $where = array(
             "nama_depan" => $this->input->post("namadepan"),
             "nama_belakang" =>  $this->input->post("namabelakang"),
@@ -76,6 +79,8 @@ class Siswa extends CI_Controller{
         );
         $last = $this->Mduser->select($where)->result();
         $flag = 0;
+        //end cari user terakhir
+        //ngeload user terakhir & input ke siswa
         foreach($last as $a){
             $flag = 1;
             $datas = array(
@@ -85,7 +90,29 @@ class Siswa extends CI_Controller{
                 "status_siswa" => 0,
                 "tgl_submit_siswa" => date('Y-m-d'),
             );
-        $this->Mdsiswa->insert($datas);
+            $this->Mdsiswa->insert($datas);
+            $iduser = $a->id_user;
+        }
+        //end insert ke siswa
+        //cari siswa yang terakhir
+        $where = array(
+            "siswa.id_user" => $iduser
+        );
+        $last = $this->Mdsiswa->select($where)->result();
+        $flag = 0;
+        //end cari siswa
+        //insert ke siswa tahunan
+        $this->load->model("Mdsiswaangkatan");
+        foreach($last as $a){
+            $flag = 1;
+            $datas = array(
+                "id_tahun_ajaran" => $this->session->tahunajaran,
+                "id_siswa" =>  $a->id_siswa,
+                "kelas" => 10,
+                "status_siswa_angkatan" => 0,
+                "tgl_submit_siswa_angkatan" => date('Y-m-d')
+            );
+            $this->Mdsiswaangkatan->insert($datas);
         }
         redirect("master/siswa");
     }

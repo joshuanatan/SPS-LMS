@@ -34,10 +34,12 @@ class Index extends CI_Controller{
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $this->load->model("Mdtahunajaran");
+        $this->load->model("Mdsiswa");
         $where = array(
         );
         $data = array(
             "tahunajaran" => $this->Mdtahunajaran->select($where)->result(),
+            "siswa" => $this->Mdsiswa->select($where)->result()
         );
         $this->load->view("user/kesiswaan/index",$data);
         /* endnya disini */

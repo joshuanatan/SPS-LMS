@@ -11,4 +11,7 @@ class Mdkelassiswa extends CI_Model{
     public function update($data,$where){
         $this->db->update("kelas_siswa",$data,$where);
     }
+    public function remove($where){
+        $this->db->delete("kelas_siswa",$where);
+    }
 }
