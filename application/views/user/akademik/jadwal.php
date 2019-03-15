@@ -5,11 +5,13 @@
                 <h4 class="box-title">List Kelas</h4>
             </div>
             <div class="card-body">
-                <form class = "form-inline">
-                    <select class = "form-control col-lg-12">
-                        <option value = "#">10 IPA 1</option>
-                        <option value = "#">10 IPA 2</option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
+                <form class = "form-inline" action = "<?php echo base_url();?>master/jadwal/kelas" method="post">
+                    <select class = "form-control col-lg-8" name = "kelas">
+                        <?php foreach($kelas as $a){ ?> 
+                        <option value = "<?php echo $a->id_kelas;?>" <?php if($this->session->pilihkelas != null) if($this->session->pilihkelas == $a->id_kelas) echo "selected";?>><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option>
+                        <?php } ?>
                     </select>
+                    <input type = "submit" class = "form-control col-lg-3" style = "margin-left:20px">
                 </form>
             </div>
         </div> <!-- /.card -->
@@ -32,34 +34,26 @@
                             <th>JUMAT</th>
                         </tr>
                     </thead>
+                    <?php $hari = ["SENIN","SELASA","RABU","KAMIS","JUMAT"]; ?>
                     <tbody>
+                        <?php for($c = 0; $c<9; $c++){ ?> 
                         <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
+                            <?php for($b = 0; $b<count($hari); $b++){ ?> 
+                            <td>
+                                <select class = "form-control" name = "<?php $hari[$b];?>[]">
+                                    <?php foreach($guru as $a){ ?> 
+                                    
+                                    <option value = "<?php echo $a->id_guru?>"><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
+                                    <?php } ?>
+                                    <?php foreach($guruumum as $a){ ?> 
+                                    
+                                    <option value = "<?php echo $a->id_guru?>"><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <?php } ?>
                         </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
-                        <tr>
-                            <td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel--><td><select class = "form-control"><option>GURU - MATPEL</option></select></td><!--kode guru kode matpel-->
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
                 <input type = "submit" class = "btn btn-success">

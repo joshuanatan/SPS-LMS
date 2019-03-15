@@ -8,7 +8,7 @@
                 <form class = "form-inline" method = "post" action = "<?php echo base_url();?>master/kelassiswa/ubahkelas">
                     <select class = "form-control col-lg-8" style = "margin-right:20px" name = "kelas">
                         <?php foreach($kelas as $a){ ?>
-                        <option value = "<?php echo $a->kelas.$a->jurusan.$a->urutan;?>" <?php if($this->session->pilihkelas == $a->id_kelas) echo "SELECTED";?>><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
+                        <option value = "<?php echo $a->kelas.$a->jurusan.$a->urutan;?>" <?php if($this->session->idkelas == $a->id_kelas) echo "SELECTED";?>><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
                         <?php } ?>
                     </select>
                     <input type = "submit" class = "form-control col-lg-3">

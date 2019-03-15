@@ -61,12 +61,15 @@ class Kelassiswa extends CI_Controller{
     public function ubahkelas(){
         $kelas = $this->input->post("kelas");
         $this->session->pilihjurusan = substr($kelas,2,3);
-        $data = array(
-            "nama_kelas" => substr($kelas,0,2)." ".substr($kelas,2,3)." ".substr($kelas,5)
+        $where = array(
+            "kelas" => substr($kelas,0,2),
+            "jurusan" => substr($kelas,2,3),
+            "urutan" => substr($kelas,5)
         );
         $this->load->model("Mdkelas");
         $result = $this->Mdkelas->select($where)->result();
         foreach($result as $a){
+            echo "hai";
             $this->session->idkelas = $a->id_kelas;
         }
         $this->session->pilihkelas = substr($kelas,0,2);
@@ -85,10 +88,12 @@ class Kelassiswa extends CI_Controller{
         $where2 = array(
             "jurusan" => $this->session->pilihjurusan
         );
+        $where3 = array(
+            "kelas_siswa.id_kelas" => $this->session->idkelas
+        );  
         $data = array(
             "kelas" => $this->Mdkelas->select($where)->result() ,
-            "siswa" => $this->Mdsiswa->select($where2)->result(),
-            "assigned" => $this->Mdsiswa->assigned($where2)->result(),
+            "assigned" => $this->Mdsiswa->assigned($where3)->result(),
             "status" => $this->Mdsiswa->status($where2)->result()
         );
         $this->load->view("user/kesiswaan/kelas-siswa",$data);
