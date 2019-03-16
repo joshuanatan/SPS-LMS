@@ -33,7 +33,7 @@ class Jadwal extends CI_Controller{
     public function index(){
         $this->load->model("Mdjadwal");
         $this->load->model("Mdkelas");
-        $this->load->model("Mdgurumatapelajaran");
+        $this->load->model("Mdgurutahunan");
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
@@ -41,21 +41,23 @@ class Jadwal extends CI_Controller{
             
             "user.status" => 0,
             "guru.status_guru" => 0,
-            "penugasan_guru.status_penugasan" =>0,
         );
         $where2 = array(
             "status_kelas" => 0,
             "id_tahun_ajaran" => $this->session->tahunajaran
         );  
         
+        $where3 = array(
+            "id_kelas"=>$this->session->pilihkelas
+        );
         $data = array(
             "kelas" => $this->Mdkelas->select($where2)->result(),
-            "guru" => $this->Mdgurumatapelajaran->select($where)->result(),
-            "senin" => $this->Mdjadwal->selectsenin()->result(),
-            "selasa" => $this->Mdjadwal->selectselasa()->result(),
-            "rabu" => $this->Mdjadwal->selectrabu()->result(),
-            "kamis" => $this->Mdjadwal->selectkamis()->result(),
-            "jumat" => $this->Mdjadwal->selectjumat()->result(),
+            "guru" => $this->Mdgurutahunan->select($where)->result(),
+            "senin" => $this->Mdjadwal->selectsenin($where3)->result(),
+            "selasa" => $this->Mdjadwal->selectselasa($where3)->result(),
+            "rabu" => $this->Mdjadwal->selectrabu($where3)->result(),
+            "kamis" => $this->Mdjadwal->selectkamis($where3)->result(),
+            "jumat" => $this->Mdjadwal->selectjumat($where3)->result(),
         );
         $this->load->view("user/akademik/jadwal",$data);
         /* endnya disini */
@@ -67,7 +69,7 @@ class Jadwal extends CI_Controller{
     }
     public function kelas(){
         $this->load->model("Mdkelas");
-        $this->load->model("Mdgurumatapelajaran");
+        $this->load->model("Mdgurutahunan");
         $this->load->model("Mdjadwal");
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
@@ -78,21 +80,23 @@ class Jadwal extends CI_Controller{
             
             "user.status" => 0,
             "guru.status_guru" => 0,
-            "penugasan_guru.status_penugasan" =>0,
-            "penugasan_guru.id_kelas" => $this->session->pilihkelas
+            "id_kelas" => $this->session->pilihkelas
         );
         $where2 = array(
             "status_kelas" => 0,
             "id_tahun_ajaran" => $this->session->tahunajaran
         ); 
+        $where3 = array(
+            "id_kelas"=>$this->session->pilihkelas
+        );
         $data = array(
             "kelas" => $this->Mdkelas->select($where2)->result(),
-            "guru" => $this->Mdgurumatapelajaran->select($where)->result(),
-            "senin" => $this->Mdjadwal->selectsenin()->result(),
-            "selasa" => $this->Mdjadwal->selectselasa()->result(),
-            "rabu" => $this->Mdjadwal->selectrabu()->result(),
-            "kamis" => $this->Mdjadwal->selectkamis()->result(),
-            "jumat" => $this->Mdjadwal->selectjumat()->result(),
+            "guru" => $this->Mdgurutahunan->select($where)->result(),
+            "senin" => $this->Mdjadwal->selectsenin($where3)->result(),
+            "selasa" => $this->Mdjadwal->selectselasa($where3)->result(),
+            "rabu" => $this->Mdjadwal->selectrabu($where3)->result(),
+            "kamis" => $this->Mdjadwal->selectkamis($where3)->result(),
+            "jumat" => $this->Mdjadwal->selectjumat($where3)->result(),
             
         );
         $this->load->view("user/akademik/jadwal",$data);
@@ -102,6 +106,7 @@ class Jadwal extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/akademik/script/js-ajax-guru");
     }
     public function assignjadwal(){
         $this->load->model("Mdjadwal");
@@ -115,38 +120,38 @@ class Jadwal extends CI_Controller{
         
         $i = 0;
         foreach($senin as $a){
-            $jadwal[1][$i] = $a;
+            $jadwal[0][$i] = $a;
             $i++;
         }
         $i = 0;
         foreach($selasa as $a){
-            $jadwal[2][$i] = $a;
+            $jadwal[1][$i] = $a;
             $i++;
         }
         $i = 0;
         foreach($rabu as $a){
-            $jadwal[3][$i] = $a;
+            $jadwal[2][$i] = $a;
             $i++;
         }
         $i = 0;
         foreach($kamis as $a){
-            $jadwal[4][$i] = $a;
+            $jadwal[3][$i] = $a;
             $i++;
         }
         $i = 0;
         foreach($jumat as $a){
-            $jadwal[5][$i] = $a;
+            $jadwal[4][$i] = $a;
             $i++;
         }
         for($d = 0; $d<5;$d++){
             for($b=0; $b<9; $b++){
                 $where = array(
+                    "id_kelas" => $this->session->pilihkelas,
                     "hari" => $hari[$d],
                     "jam_pelajaran" => ($b+1),
                 );
                 $data = array(
-                    "id_penugasan" => $jadwal[$d+1] [$b],
-                    
+                    "id_gurutahunan" => $jadwal[$d][$b],
                     "tgl_submit_jadwal" => date('Y-m-d')
                 );
                 $this->Mdjadwal->update($data,$where);

@@ -2,27 +2,27 @@
 $idmatpel = array();
 $i = 0;
 foreach($senin as $a){
-    $idmatpel[0][$i] = $a->id_penugasan;
+    $idmatpel[0][$i] = $a->id_gurutahunan;
     $i++;
 }
 $i = 0;
 foreach($selasa as $a){
-    $idmatpel[1][$i] = $a->id_penugasan;
+    $idmatpel[1][$i] = $a->id_gurutahunan;
     $i++;
 }
 $i = 0;
 foreach($rabu as $a){
-    $idmatpel[2][$i] = $a->id_penugasan;
+    $idmatpel[2][$i] = $a->id_gurutahunan;
     $i++;
 }
 $i = 0;
 foreach($kamis as $a){
-    $idmatpel[3][$i] = $a->id_penugasan;
+    $idmatpel[3][$i] = $a->id_gurutahunan;
     $i++;
 }
 $i = 0;
 foreach($jumat as $a){
-    $idmatpel[4][$i] = $a->id_penugasan;
+    $idmatpel[4][$i] = $a->id_gurutahunan;
     $i++;
 }
 ?>
@@ -70,10 +70,11 @@ foreach($jumat as $a){
                             <tr>
                                 <?php for($b = 0; $b<count($hari); $b++){ ?> 
                                 <td>
-                                    <select class = "form-control" name = "<?php echo $hari[$b];?>[]">
+                                    <select class = "form-control" name = "<?php echo $hari[$b];?>[]" onmouseover = "abc('<?php echo $hari[$b]; ?>','<?php echo ($c+1);?>','<?php echo $hari[$b].$c;?>')" id = "<?php echo $hari[$b].$c;?>">
+                                        <option value = "0">-</option>
                                         <?php foreach($guru as $a){ ?> 
 
-                                        <option value = "<?php echo $a->id_penugasan?>" <?php if($idmatpel[$b][$c] == $a->id_penugasan) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
+                                        <option value = "<?php echo $a->id_gurutahunan?>" <?php if($idmatpel[$b][$c] == $a->id_gurutahunan) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
                                         <?php } ?>
                                     </select>
                                 </td>

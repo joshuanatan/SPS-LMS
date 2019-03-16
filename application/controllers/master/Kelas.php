@@ -72,12 +72,22 @@ class Kelas extends CI_Controller{
             "status_kelas" =>  0,
         );
         $this->Mdkelas->insert($data);
+        $where = array(
+            "kelas" => $this->input->post("kelas"),
+            "jurusan" => $this->input->post("jurusan"),
+            "urutan" => $jumlah+1,
+        );
+        $result = $this->Mdkelas->select($where)->result();
+        foreach($result as $a){
+            $idkelas = $a->id_kelas;
+        }
         $this->load->model("Mdjadwal");
         $hari = ["SENIN","SELASA","RABU","KAMIS","JUMAT"];
         for($d = 0; $d<5;$d++){
             for($b=0; $b<9; $b++){
                 $data = array(
-                    "id_penugasan" => "0",
+                    "id_gurutahunan" => "0",
+                    "id_kelas" => $idkelas,
                     "hari" => $hari[$d],
                     "jam_pelajaran" => ($b+1),
                     "status_jadwal" => 0,
@@ -89,13 +99,16 @@ class Kelas extends CI_Controller{
         redirect("master/kelas");
     }
     public function remove($i){
-        $data = array(
-            "status_kelas" => 1
-        );
+        $this->load->model(array("Mdkelas","Mdjadwal"));
         $where = array(
             "id_kelas" => $i
         );
-        $this->Mdkelas->update($data,$where);
+        $this->Mdkelas->remove($where);
+        $this->load->model("Mdjadwal");
+        $where = array(
+            "id_kelas" => $i
+        );  
+        $this->Mdjadwal->remove($where);
         redirect("master/kelas");
     }
     
