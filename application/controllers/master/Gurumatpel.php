@@ -77,13 +77,13 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function ubahguru(){
-        $this->load->model("Mdguru");
+        $this->load->model("Mdgurutahunan");
         $this->load->model("Mdkelas");
         $this->session->idgurupilihkelas = $this->input->post("guru");
         $where = array(
-            "id_guru" => $this->input->post("guru")
+            "guru_tahunan.id_gurutahunan" => $this->input->post("guru")
         );
-        $data = $this->Mdguru->select($where)->result();
+        $data = $this->Mdgurutahunan->select($where)->result();
         foreach($data as $a){
             $jenisjurusan = $a->jenis_matpel;
         }

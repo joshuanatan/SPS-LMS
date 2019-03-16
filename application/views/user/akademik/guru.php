@@ -111,7 +111,7 @@
                         <input type = "password" class = "form-control col-lg-12" name = "password">
                     </div>
                     <div class = "form-group col-lg-12">
-                        <label>Jurusan</label>
+                        <label>Bidang Mengajar</label>
                         <select class = "form-control col-lg-12" name = "jurusan">
                             <?php foreach($matpel as $b){ ?> 
                             <option value = "<?php echo $b->id_matpel;?>"><?php echo $b->nama_matpel;?></option>

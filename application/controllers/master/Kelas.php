@@ -72,7 +72,20 @@ class Kelas extends CI_Controller{
             "status_kelas" =>  0,
         );
         $this->Mdkelas->insert($data);
-        
+        $this->load->model("Mdjadwal");
+        $hari = ["SENIN","SELASA","RABU","KAMIS","JUMAT"];
+        for($d = 0; $d<5;$d++){
+            for($b=0; $b<9; $b++){
+                $data = array(
+                    "id_penugasan" => "0",
+                    "hari" => $hari[$d],
+                    "jam_pelajaran" => ($b+1),
+                    "status_jadwal" => 0,
+                    "tgl_submit_jadwal" => date('Y-m-d')
+                );
+                $this->Mdjadwal->insert($data);
+            }
+        }
         redirect("master/kelas");
     }
     public function remove($i){

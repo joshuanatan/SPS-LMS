@@ -1,3 +1,32 @@
+<?php
+$idmatpel = array();
+$i = 0;
+foreach($senin as $a){
+    $idmatpel[0][$i] = $a->id_penugasan;
+    $i++;
+}
+$i = 0;
+foreach($selasa as $a){
+    $idmatpel[1][$i] = $a->id_penugasan;
+    $i++;
+}
+$i = 0;
+foreach($rabu as $a){
+    $idmatpel[2][$i] = $a->id_penugasan;
+    $i++;
+}
+$i = 0;
+foreach($kamis as $a){
+    $idmatpel[3][$i] = $a->id_penugasan;
+    $i++;
+}
+$i = 0;
+foreach($jumat as $a){
+    $idmatpel[4][$i] = $a->id_penugasan;
+    $i++;
+}
+?>
+
 <div class="row">
     <div class="col-xl-12"> 
         <div class="card">
@@ -24,39 +53,37 @@
                 <h4 class="box-title">Jadwal</h4>
             </div>
             <div class="card-body">
-                <table class = "table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>SENIN</th>
-                            <th>SELASA</th>
-                            <th>RABU</th>
-                            <th>KAMIS</th>
-                            <th>JUMAT</th>
-                        </tr>
-                    </thead>
-                    <?php $hari = ["SENIN","SELASA","RABU","KAMIS","JUMAT"]; ?>
-                    <tbody>
-                        <?php for($c = 0; $c<9; $c++){ ?> 
-                        <tr>
-                            <?php for($b = 0; $b<count($hari); $b++){ ?> 
-                            <td>
-                                <select class = "form-control" name = "<?php $hari[$b];?>[]">
-                                    <?php foreach($guru as $a){ ?> 
-                                    
-                                    <option value = "<?php echo $a->id_guru?>"><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
-                                    <?php } ?>
-                                    <?php foreach($guruumum as $a){ ?> 
-                                    
-                                    <option value = "<?php echo $a->id_guru?>"><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
+                <form action = "<?php echo base_url();?>master/jadwal/assignjadwal" method="post">
+                    <table class = "table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>SENIN</th>
+                                <th>SELASA</th>
+                                <th>RABU</th>
+                                <th>KAMIS</th>
+                                <th>JUMAT</th>
+                            </tr>
+                        </thead>
+                        <?php $hari = ["senin","selasa","rabu","kamis","jumat"]; ?>
+                        <tbody>
+                            <?php for($c = 0; $c<9; $c++){ ?> 
+                            <tr>
+                                <?php for($b = 0; $b<count($hari); $b++){ ?> 
+                                <td>
+                                    <select class = "form-control" name = "<?php echo $hari[$b];?>[]">
+                                        <?php foreach($guru as $a){ ?> 
+
+                                        <option value = "<?php echo $a->id_penugasan?>" <?php if($idmatpel[$b][$c] == $a->id_penugasan) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <?php } ?>
+                            </tr>
                             <?php } ?>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-                <input type = "submit" class = "btn btn-success">
+                        </tbody>
+                    </table>
+                    <input type = "submit" class = "btn btn-success">
+                </form>
             </div>
         </div> <!-- /.card -->
     </div>

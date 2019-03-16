@@ -11,10 +11,10 @@
                     <a href="<?php echo base_url();?>master/guru"> <i class="menu-icon fa fa-book"></i>Guru</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>master/kelas"> <i class="menu-icon fa fa-book"></i>Kelas</a>
+                    <a href="<?php echo base_url();?>master/gurutahun"> <i class="menu-icon fa fa-book"></i>Guru - Tahun Ajaran</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>master/gurutahun"> <i class="menu-icon fa fa-book"></i>Guru - Tahun Ajaran</a>
+                    <a href="<?php echo base_url();?>master/kelas"> <i class="menu-icon fa fa-book"></i>Kelas</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url();?>master/gurumatpel"> <i class="menu-icon fa fa-book"></i>Guru - Mata Pelajaran</a>

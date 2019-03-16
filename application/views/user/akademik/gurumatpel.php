@@ -9,7 +9,7 @@
                 <form class = "form-inline" action = "<?php echo base_url();?>master/gurumatpel/ubahguru" method="post">
                     <select class = "form-control col-lg-8" name = "guru">
                         <?php foreach($guru as $a){ ?> 
-                        <option value = "<?php echo $a->id_guru?>" <?php if($a->id_guru == $this->session->idgurupilihkelas) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang;?></option>
+                        <option value = "<?php echo $a->id_gurutahunan?>" <?php if($a->id_gurutahunan == $this->session->idgurupilihkelas) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang;?></option>
                         <?php } ?>
                     </select>
                     <input type = "submit" class = "form-control col-lg-3" style ="margin-left:30px">
@@ -47,6 +47,7 @@
                                 <td><a href = "<?php echo base_url();?>master/gurumatpel/remove/<?php echo $b->id_penugasan;?>" class = "btn btn-danger col-lg-12">HAPUS</a></td>
                             </tr>
                             <?php } ?>
+                            
                             <?php foreach($notassigned as $b){ ?> 
                             <tr>
                                 <td><?php echo $b->kelas;?></td>

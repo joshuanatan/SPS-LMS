@@ -12,6 +12,9 @@ class Login extends CI_Controller{
         $this->load->view("login/req/content-open");
     }
     public function index(){
+        $abc = array(
+            "def" => 0
+        );
         $this->load->view("login/main/logo");
         $this->load->view("login/main/form");
     }
@@ -21,6 +24,7 @@ class Login extends CI_Controller{
         $this->load->view("login/req/script");
     }
     public function signin(){
+        
         $username = $this->input->post("id");
         $password = md5($this->input->post("pass"));
         $where = array(

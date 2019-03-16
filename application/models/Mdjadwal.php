@@ -5,6 +5,31 @@ class Mdjadwal extends CI_Model{
     public function select($where){
         return $this->db->get_where("jadwal",$where);
     }
+    public function selectsenin(){
+        $this->db->where("hari","senin");
+        return $this->db->get("jadwal");
+        
+    }
+    public function selectselasa(){
+        $this->db->where("hari","selasa");
+        return $this->db->get("jadwal");
+        
+    }
+    public function selectrabu(){
+        $this->db->where("hari","rabu");
+        return $this->db->get("jadwal");
+        
+    }
+    public function selectkamis(){
+        $this->db->where("hari","kamis");
+        return $this->db->get("jadwal");
+        
+    }
+    public function selectjumat(){
+        $this->db->where("hari","jumat");
+        return $this->db->get("jadwal");
+        
+    }
     public function insert($data){
         $this->db->insert("jadwal",$data);
     }
