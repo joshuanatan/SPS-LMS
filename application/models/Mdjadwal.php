@@ -60,6 +60,19 @@ class Mdjadwal extends CI_Model{
         foreach($result as $a){
             $output .= "<option value = '".$a->id_gurutahunan."'>".$a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel."</option>";
         }
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
+        $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
+        $this->db->join("user","user.id_user = guru.id_user","inner");
+        $this->db->join("penugasan_guru","penugasan_guru.id_gurutahunan = guru_tahunan.id_gurutahunan","inner");
+        $this->db->group_by("guru_tahunan.id_gurutahunan");
+        $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
+        $this->db->where("jadwal.hari",$this->session->ajaxhari);
+        $this->db->where("jadwal.jam_pelajaran",$this->session->ajaxjam);
+        $this->db->where("jadwal.id_kelas",$this->session->pilihkelas);
+        $result = $this->db->get("jadwal")->result();
+        foreach($result as $a){
+            $output .= "<option value = '".$a->id_gurutahunan."' selected>".$a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel."</option>";
+        }
         return $output;
     }
     /*query cek 
