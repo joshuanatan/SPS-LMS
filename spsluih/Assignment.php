@@ -1,13 +1,12 @@
 <?php
-//jadwal
-//pengumuman
-?>
-<?php
+//load tugas yang belum selesai
+//pilih mata pelajaran
 defined("BASEPATH") OR exit("No Direct Script");
 
-class Index extends CI_Controller{
+class Assignment extends CI_Controller{
     public function __construct(){
         parent::__construct();
+        $this->load->model(array('Mdsiswa','Mduser','Mdmatapelajaran'));
         $this->req();
     }
     public function req(){
@@ -33,25 +32,15 @@ class Index extends CI_Controller{
         $this->load->view("script/js-main");
     }
     
-    public function index(){ //buat nampilin dashboard siswa (kalau siswa login)
-        $this->load->model("Mdkelassiswa");
-        $this->load->model("Mdjadwal");
+    /*akses menu*/
+    public function index(){
+        //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array(
-            "user.id_user" => $this->session->id_user //cari id kelas dulu
-        );
-        $result = $this->Mdkelassiswa->carikelas($where)->result();
-        foreach($result as $a){
-            $this->session->id_kelas = $a->id_kelas;
-        }
-        $where3 = array(
-            "kelas.id_kelas" => $this->session->id_kelas
-        );
-        $data = array(
-            "jadwal" => $this->Mdjadwal->selectjadwalsiswa($where3)->result()
-        );
-        $this->load->view("user/siswa/index",$data);
+        
+        $data['matpel'] = $this->Mdmatapelajaran->matpel()->result();
+        
+        $this->load->view("user/siswa/index2",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -60,5 +49,6 @@ class Index extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     
+    /*end akses menu*/
     
-}
+}?>

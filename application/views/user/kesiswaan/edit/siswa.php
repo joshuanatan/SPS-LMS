@@ -7,37 +7,37 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action = "<?php echo base_url();?>master/siswa/editSiswa/<?php echo $id_user;?>" method="post">
+            <form action = "<?php echo base_url();?>master/siswa/editSiswa/<?php echo $id_user;?>" method="post">
+                <div class="modal-body">
                     <div class = "form-group col-lg-12">
                         <label>Nama Depan</label>
-                        <input type = "text" class = "form-control col-lg-12" value = "<?php echo $nama_depan;?>">
+                        <input type = "text" name = "namadepan" class = "form-control col-lg-12" value = "<?php echo $nama_depan;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Nama Belakang</label>
-                        <input type = "text" class = "form-control col-lg-12" value = "<?php echo $nama_belakang;?>">
+                        <input type = "text" name = "namabelakang" class = "form-control col-lg-12" value = "<?php echo $nama_belakang;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Tanggal Lahir</label>
-                        <input type = "date" class = "form-control col-lg-12" value = "<?php echo $tanggal_lahir;?>">
+                        <input type = "date" name = "tgllahir" class = "form-control col-lg-12" value = "<?php echo $tanggal_lahir;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Nomor Telpon</label>
-                        <input type = "number" class = "form-control col-lg-12" value = "<?php echo $nomor_telpon;?>">
+                        <input type = "number" name = "nohp" class = "form-control col-lg-12" value = "<?php echo $nomor_telpon;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Email</label>
-                        <input type = "email" class = "form-control col-lg-12" value = "<?php echo $email;?>">
+                        <input type = "email" name = "email" class = "form-control col-lg-12" value = "<?php echo $email;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Alamat</label>
-                        <textarea class = "form-control col-lg-12"><?php echo $alamat;?></textarea>
+                        <textarea class = "form-control col-lg-12" name = "alamat"><?php echo $alamat;?></textarea>
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Jurusan</label>
-                        <select class = "form-control col-lg-12">
-                            <option value = "#">IPA</option>
-                            <option value = "#" <?php if($jurusan == "IPS") echo "selected"; ?>>IPS</option>
+                        <select class = "form-control col-lg-12" name = "jurusan">
+                            <option value = "IPA">IPA</option>
+                            <option value = "IPS" <?php if($jurusan == "IPS") echo "selected"; ?>>IPS</option>
                         </select>
                     </div>
                     <hr>
@@ -61,12 +61,12 @@
                         <label>Password</label>
                         <input type = "password" class = "form-control col-lg-12" value = "1234">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

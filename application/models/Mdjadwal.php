@@ -47,6 +47,32 @@ class Mdjadwal extends CI_Model{
         $this->db->where($where);
         $this->db->delete("jadwal");
     }
+    public function selectjadwalguru($where){
+        $this->db->where($where);
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
+        $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
+        $this->db->join("user","guru.id_user = user.id_user","inner");
+        $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        return $this->db->get("jadwal");
+    }
+    public function selectjadwalgurudistinct($where){
+        $this->db->where($where);
+        $this->db->group_by("kelas.id_kelas");
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
+        $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
+        $this->db->join("user","guru.id_user = user.id_user","inner");
+        $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        return $this->db->get("jadwal");
+    }
+    public function selectjadwalsiswa($where){
+        $this->db->where($where);
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
+        $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
+        $this->db->join("user","guru.id_user = user.id_user","inner");
+        $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
+        $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        return $this->db->get("jadwal");
+    }
     public function selection($where){
         $this->db->where($where);
         $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
@@ -71,7 +97,7 @@ class Mdjadwal extends CI_Model{
         $this->db->where("jadwal.id_kelas",$this->session->pilihkelas);
         $result = $this->db->get("jadwal")->result();
         foreach($result as $a){
-            $output .= "<option value = '".$a->id_gurutahunan."' selected>".$a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel."</option>";
+            $output .= "<option value = '".$a->id_gurutahunan."' selected>".$a->nama_matpel." - ".$a->nama_depan." ".$a->nama_belakang."</option>";
         }
         return $output;
     }

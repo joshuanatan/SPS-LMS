@@ -1,26 +1,66 @@
-
+<?php
+$assignment = array();//ini buat hari
+$tanggal = array();//ini buat hari
+$idkelas = array();
+$namakelas = array();
+$idmingguan = array();
+$kelascounter = 0;
+$kelas = 0;
+$counter = 0;
+    //echo $this->session->id_user;
+foreach($assignments as $a){ //gamasuk sini
+    if($kelas != $a->id_kelas){
+        $idkelas[$kelascounter] = $a->id_kelas; //nyatet kelas biar ngefornya ga usah sampe 13
+        $namakelas[$kelascounter] = $a->kelas." ".$a->jurusan." ".$a->urutan; //nyatet kelas biar ngefornya ga usah sampe 13
+        $jadwal[$kelascounter] = $a->id_jadwal;
+        $kelas = $a->id_kelas;
+        $counter =0;
+        $kelascounter++;
+    }
+    $idmingguan[$a->id_kelas][$counter] = $a->id_mingguan;
+    $assignment[$a->id_kelas][$counter] = $a->materi_mingguan;
+    $tanggal[$a->id_kelas][$counter] = $a->tgl_kelas;
+    $counter++;
+    
+}
+?>
 <button type="button" class="form-control" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal2">TAMBAH MATERI MINGGUAN</button>
 <br/>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title mb-3">Week n</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <h5 class="text-sm-center mt-2 mb-1">Tanggal</h5>
-                    <div class="location text-sm-center">Materi</div>
+<?php for($b = 0; $b<count($idkelas); $b++){  ?>
+<div class = "row">
+    <div class = "col-lg-12">
+        <div class = "card">
+            <div class = "card-header">
+                <div class = "mx-auto d-block">
+                    <h5 class ="text-sm-center mt-2 mb-1"><?php echo $namakelas[$b];?></h5>
                 </div>
-
-                <hr>
-                <a href ="<?php echo base_url();?>user/guru/mingguan/quiz"><button class = "form-control">Tambah Quiz</button></a>
-                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal">Dokumen</button>
-                <button type="button" class="btn btn-secondary btn-success col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal2">Edit</button>
             </div>
         </div>
     </div>
 </div>
+<div class="row">
+   
+    <?php for($a = 0; $a<count($assignment[$idkelas[$b]]); $a++){ ?> 
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title mb-3"><?php echo $tanggal[$idkelas[$b]][$a]?></strong>
+            </div>
+            <div class="card-body">
+                <div class="mx-auto d-block">
+                    <h5 class="text-sm-center mt-2 mb-1"></h5>
+                    <div class="location text-sm-center"><?php echo $assignment[$idkelas[$b]][$a]?></div>
+                </div>
+                <hr>
+                <a href ="<?php echo base_url();?>user/guru/mingguan/quiz"><button class = "form-control">Tambah Quiz</button></a>
+                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal">Dokumen</button>
+                <a href = "<?php echo base_url();?>user/guru/assignment/remove/<?php echo $idmingguan[$idkelas[$b]][$a];?>" class="btn btn-secondary btn-danger col-lg-12" style = "margin-top:10px;">Delete</a>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+ <?php } ?>
 <script type="text/javascript">
     $(document).ready(function() {
       $('#bootstrap-data-table').DataTable();
@@ -98,27 +138,35 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mediumModalLabel">PERUBAHAN DATA MINGGUAN</h5>
+                <h5 class="modal-title" id="mediumModalLabel">DATA MINGGUAN</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form action = "<?php echo base_url();?>user/guru/assignment/mingguan" method="post">
+                <div class="modal-body">
                     <div class = "form-group col-lg-12">
                         <label>Tanggal</label>
-                        <input type = "date" class = "form-control">
+                        <input type = "date" class = "form-control" name = "tglkelas">
+                    </div>
+                    <div class = "form-group col-lg-12">
+                        <label>Kelas</label>
+                        <select class = "form-control" name = "kelas">
+                        <?php foreach($jadwal as $b){ ?> 
+                            <option value = "<?php echo $b->id_jadwal;?>"><?php echo $b->kelas." ".$b->jurusan." ".$b->urutan;?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Materi</label><br/>
-                        <input type = "text" class = "form-control">
+                        <input type = "text" class = "form-control" name = "materi">
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -32,10 +32,17 @@ class Index extends CI_Controller{
         $this->load->view("script/js-main");
     }
     public function index(){
+        $this->load->model("Mdjadwal");
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/index");
+        $where3 = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "jadwal" => $this->Mdjadwal->selectjadwalguru($where3)->result()
+        );
+        $this->load->view("user/guru/index",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

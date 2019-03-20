@@ -35,7 +35,9 @@ class Siswa extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array();
+        $where = array(
+            "user.status" => 0
+        );
         $data = array(
             "siswa" => $this->Mdsiswa->select($where)->result()
         );

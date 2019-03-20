@@ -1,4 +1,29 @@
+<?php
+$i = 0;
+$hari = 0;
 
+for($hari = 0; $hari < 5; $hari++){
+    for($jampel = 0; $jampel < 9; $jampel++){
+        $data[$hari][$jampel] = "-";
+    }
+}
+foreach($jadwal as $a){
+    switch($a->hari){
+        case "SENIN" : $hari = 0;
+            break;
+        case "SELASA":$hari = 1;
+            break;
+        case "RABU" :$hari = 2;
+            break;
+        case "KAMIS":$hari = 3;
+            break;
+        case "JUMAT":$hari = 4;
+            break;
+    }
+    $data[$hari][($a->jam_pelajaran-1)] = $a->kelas." ".$a->jurusan." ".$a->urutan;
+    $i++;
+}
+?>
 <div class="row">
     <div class="col-xl-12"> 
         <div class="card">
@@ -18,78 +43,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        for($jampel = 0; $jampel < 9; $jampel++){ ?>
                         <tr>
-                            <td>10 IPA 1</td>
-                            <td></td>
-                            <td></td>
-                            <td>10 IPA 1</td>
-                            <td></td>
-                            
+                        <?php
+                            for($hari = 0; $hari < 5; $hari++){ ?>
+                            <td><?php echo $data[$hari][$jampel];?></td>
+                            <?php } ?>
                         </tr>
-                        <tr>
-                            <td>10 IPA 1</td>
-                            <td></td>
-                            <td></td>
-                            <td>10 IPA 1</td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10 IPA 2</td>
-                            <td>10 IPA 2</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10 IPA 2</td>
-                            <td>10 IPA 4</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10 IPA 5</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10 IPA 5</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td>10 IPA 6</td>
-                            <td>10 IPA 6</td>
-                            <td>10 IPA 5</td>
-                            <td>10 IPA 5</td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>10 IPA 4</td>
-                            <td></td>
-                            
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

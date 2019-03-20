@@ -37,13 +37,42 @@ class Assignment extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/assignmentguru");
+        $this->load->model("Mdjadwal");
+        $this->load->model("Mdaktivitasmingguan");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "jadwal" => $this->Mdjadwal->selectjadwalgurudistinct($where)->result(),
+            "assignments" => $this->Mdaktivitasmingguan->selectaktivitasmingguanguru()->result()
+        );
+        $this->load->view("user/guru/assignmentguru",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+    }
+    public function mingguan(){
+        $data = array(
+            "id_jadwal" => $this->input->post("kelas"),
+            "tgl_kelas" => $this->input->post("tglkelas"),
+            "materi_mingguan" => $this->input->post("materi"),
+            "deskripsi_materi" => "-",
+            "status_aktivitas" => 0
+        );
+        $this->load->model("Mdaktivitasmingguan");
+        $this->Mdaktivitasmingguan->insert($data);
+        redirect("user/guru/assignment");
+    }
+    public function remove($i){
+        $this->load->model("Mdaktivitasmingguan");
+        $where = array(
+            "id_mingguan" => $i
+        );
+        $this->Mdaktivitasmingguan->delete($where);
+        redirect("user/guru/assignment");
     }
 }
 ?>

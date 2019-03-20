@@ -1,3 +1,4 @@
+<!--
 <div class="dropdown for-message">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-envelope"></i>
@@ -39,3 +40,4 @@
         </a>
     </div>
 </div>
+-->

@@ -8,6 +8,7 @@ defined("BASEPATH") OR exit("No Direct Script");
 class Index extends CI_Controller{
     public function __construct(){
         parent::__construct();
+        $this->load->model(array('Mdsiswa','Mduser','Mdkelas'));
         $this->req();
     }
     public function req(){
@@ -34,24 +35,14 @@ class Index extends CI_Controller{
     }
     
     public function index(){ //buat nampilin dashboard siswa (kalau siswa login)
-        $this->load->model("Mdkelassiswa");
-        $this->load->model("Mdjadwal");
+        $result = $this->Mdkelas->siswa()->result();
+        foreach ($result as $list){
+            $this->session->idkelas = $list->id_kelas;
+        }
+        
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array(
-            "user.id_user" => $this->session->id_user //cari id kelas dulu
-        );
-        $result = $this->Mdkelassiswa->carikelas($where)->result();
-        foreach($result as $a){
-            $this->session->id_kelas = $a->id_kelas;
-        }
-        $where3 = array(
-            "kelas.id_kelas" => $this->session->id_kelas
-        );
-        $data = array(
-            "jadwal" => $this->Mdjadwal->selectjadwalsiswa($where3)->result()
-        );
-        $this->load->view("user/siswa/index",$data);
+        $this->load->view("user/siswa/index");
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

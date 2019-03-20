@@ -74,7 +74,7 @@ foreach($jumat as $a){
                                         <option value = "0">-</option>
                                         <?php foreach($guru as $a){ ?> 
 
-                                        <option value = "<?php echo $a->id_gurutahunan?>" <?php if($idmatpel[$b][$c] == $a->id_gurutahunan) echo "selected";?>><?php echo $a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel;?></option>
+                                        <option value = "<?php echo $a->id_gurutahunan?>" <?php if($idmatpel[$b][$c] == $a->id_gurutahunan) echo "selected";?>><?php echo $a->nama_matpel." - ".$a->nama_depan." ".$a->nama_belakang;?></option>
                                         <?php } ?>
                                     </select>
                                 </td>

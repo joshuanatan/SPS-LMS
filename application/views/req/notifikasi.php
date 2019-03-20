@@ -1,4 +1,4 @@
-
+<!--
 <div class="dropdown for-notification">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-bell"></i>
@@ -20,3 +20,4 @@
         </a>
     </div>
 </div>
+-->

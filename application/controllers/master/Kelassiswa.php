@@ -31,7 +31,7 @@ class Kelassiswa extends CI_Controller{
     }
     
     public function index(){
-        if($this->session->pilihjurusan != "" && $this->session->tahunajaran != "" && $this->session->idkelas != ""){redirect("master/kelassiswa/siswajurusan");}
+        if($this->session->pilihjurusan != "" && $this->session->tahunajaran != "" && $this->session->idkelas != ""){redirect("master/kelassiswa/siswajurusan/".$this->session->kelas);}
         $this->load->model("Mdkelas");
         $this->load->model("Mdsiswa");
         //$this->load->view("namapage/breadcrumb");
@@ -67,15 +67,16 @@ class Kelassiswa extends CI_Controller{
             "urutan" => substr($kelas,5)
         );
         $this->load->model("Mdkelas");
+        $this->session->kelas = substr($kelas,0,2);
         $result = $this->Mdkelas->select($where)->result();
         foreach($result as $a){
             echo "hai";
             $this->session->idkelas = $a->id_kelas;
         }
         $this->session->pilihkelas = substr($kelas,0,2);
-        redirect("master/kelassiswa/siswajurusan/");
+        redirect("master/kelassiswa/siswajurusan/".substr($kelas,0,2));
     }
-    public function siswajurusan(){
+    public function siswajurusan($kelas){
         $this->load->model("Mdkelas");
         $this->load->model("Mdsiswa");
         //$this->load->view("namapage/breadcrumb");
@@ -86,7 +87,8 @@ class Kelassiswa extends CI_Controller{
             "id_tahun_ajaran" => $this->session->tahunajaran
         );  
         $where2 = array(
-            "jurusan" => $this->session->pilihjurusan
+            "jurusan" => $this->session->pilihjurusan,
+            "kelas" => $kelas
         );
         $where3 = array(
             "kelas_siswa.id_kelas" => $this->session->idkelas

@@ -43,7 +43,7 @@ class Guru extends CI_Controller{
         );
         $data = array(
             "guru" => $this->Mdguru->select($where)->result(),
-            "matpel" => $this->Mdmatapelajaran->select($where2)->result()
+            "matpel" => $this->Mdmatapelajaran->select($where2)->result(),
         );
         $this->load->view("user/akademik/guru",$data);
         /* endnya disini */
@@ -66,7 +66,7 @@ class Guru extends CI_Controller{
             "tgl_submit" =>  date('Y-m-d'),
             "id_admin" =>  $this->session->id_user,
             "status" =>  0,
-            "id_role"=> 1,
+            "id_role"=> 2,
         );
         $this->Mduser->insert($data);
         $where = array(

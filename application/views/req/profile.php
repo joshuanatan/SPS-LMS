@@ -3,8 +3,8 @@
         <img class="user-avatar rounded-circle" src="<?php echo base_url();?>assets/img/admin.jpg" alt="User Avatar">
     </a>
 
-    <div class="user-menu dropdown-menu">
-        <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+    <div class="user-menu dropdown-menu" style = "width: auto">
+        <a class="nav-link" href="#"><i class="fa fa-user"></i><?php echo $this->session->username;?></a>
 
         <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
 
