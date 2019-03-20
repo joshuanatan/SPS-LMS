@@ -53,8 +53,76 @@ foreach($assignments as $a){ //gamasuk sini
                 </div>
                 <hr>
                 <a href ="<?php echo base_url();?>user/guru/mingguan/quiz"><button class = "form-control">Tambah Quiz</button></a>
-                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal">Dokumen</button>
+                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal<?php echo $idmingguan[$idkelas[$b]][$a];?>">Dokumen</button>
                 <a href = "<?php echo base_url();?>user/guru/assignment/remove/<?php echo $idmingguan[$idkelas[$b]][$a];?>" class="btn btn-secondary btn-danger col-lg-12" style = "margin-top:10px;">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="mediumModal<?php echo $idmingguan[$idkelas[$b]][$a];?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediumModalLabel">PENAMBAHAN DOKUMEN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action = "<?php echo base_url();?>user/guru/assignment/dokumen/<?php echo $idmingguan[$idkelas[$b]][$a];?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-xl-12"> 
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="box-title">DOKUMEN</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-stats">
+                                            <table class="table table-stripped">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="serial">#</th>
+                                                        <th>Nama File</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>KURNIA.docx</td>
+                                                        <td>28/02/2019</td>
+                                                        <td><button class = "col-lg-12">HAPUS</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- /.table-stats -->
+                                    </div>
+                                </div> <!-- /.card -->
+                            </div>  <!-- /.col-lg-8 -->
+
+                        </div> 
+                        <div class = "form-group col-lg-12">
+                            <label>Judul Dokumen</label>
+                            <input type = "text" class = "form-control" name = "judul">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>Tipe Dokumen</label>
+                            <select class = "form-control" name = "id_jenis_dokumen">
+                                <option value = "TUGAS">TUGAS</option>
+                                <option value = "MATERI">MATERI</option>
+                            </select>
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>File Dokumen</label><br/>
+                            <input type = "file" name = "file_assignment">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -66,74 +134,7 @@ foreach($assignments as $a){ //gamasuk sini
       $('#bootstrap-data-table').DataTable();
   } );
 </script>
-<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mediumModalLabel">PENAMBAHAN DOKUMEN</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-                <div class="row">
-                    <div class="col-xl-12"> 
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="box-title">DOKUMEN</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-stats">
-                                    <table class="table table-stripped">
-                                        <thead>
-                                            <tr>
-                                                <th class="serial">#</th>
-                                                <th>Nama File</th>
-                                                <th>Tanggal</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>KURNIA.docx</td>
-                                                <td>28/02/2019</td>
-                                                <td><button class = "col-lg-12">HAPUS</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> <!-- /.table-stats -->
-                            </div>
-                        </div> <!-- /.card -->
-                    </div>  <!-- /.col-lg-8 -->
 
-                </div> 
-                <form>
-                    <div class = "form-group col-lg-12">
-                        <label>Judul Dokumen</label>
-                        <input type = "text" class = "form-control">
-                    </div>
-                    <div class = "form-group col-lg-12">
-                        <label>Tipe Dokumen</label>
-                        <select class = "form-control">
-                            <option>TUGAS</option>
-                            <option>MATERI</option>
-                        </select>
-                    </div>
-                    <div class = "form-group col-lg-12">
-                        <label>File Dokumen</label><br/>
-                        <input type = "file">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="mediumModal2" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -152,8 +153,8 @@ foreach($assignments as $a){ //gamasuk sini
                     <div class = "form-group col-lg-12">
                         <label>Kelas</label>
                         <select class = "form-control" name = "kelas">
-                        <?php foreach($jadwal as $b){ ?> 
-                            <option value = "<?php echo $b->id_jadwal;?>"><?php echo $b->kelas." ".$b->jurusan." ".$b->urutan;?></option>
+                        <?php foreach($jadwale as $asdf){ ?> 
+                            <option value = "<?php echo $asdf->id_jadwal;?>"><?php echo $asdf->kelas." ".$asdf->jurusan." ".$asdf->urutan;?></option>
                             <?php } ?>
                         </select>
                     </div>

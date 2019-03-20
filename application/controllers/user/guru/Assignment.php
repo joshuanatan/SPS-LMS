@@ -43,7 +43,7 @@ class Assignment extends CI_Controller{
             "user.id_user" => $this->session->id_user
         );
         $data = array(
-            "jadwal" => $this->Mdjadwal->selectjadwalgurudistinct($where)->result(),
+            "jadwale" => $this->Mdjadwal->selectjadwalgurudistinct($where)->result(),
             "assignments" => $this->Mdaktivitasmingguan->selectaktivitasmingguanguru()->result()
         );
         $this->load->view("user/guru/assignmentguru",$data);
@@ -73,6 +73,48 @@ class Assignment extends CI_Controller{
         );
         $this->Mdaktivitasmingguan->delete($where);
         redirect("user/guru/assignment");
+    }   
+    
+    public function dokumen($i){
+        $this->load->model("Mddokumen");
+        $config['upload_path']          = './document/';
+		$config['allowed_types']        = '*';
+		$config['max_size']             = 20000;
+ 
+		$this->load->library('upload', $config);
+ 
+		if ( !$this->upload->do_upload('file_assignment')){
+			$error = array('error' => $this->upload->display_errors());
+            foreach($error as $a){
+                echo $a;
+            }
+			//$this->load->view('view', $error);
+		}else{
+			$upload_data = $this->upload->data();
+            
+            $file_name = $upload_data['file_name'];
+        
+        $tangkapid_mingguan = $i;
+        $tangkapstatus_dokumen = 0;
+        $tangkaptgl_submit_dokumen = date("Y-m-d");
+        $tangkapfile_assignment = $file_name;
+        $tangkapid_jenis_dokumen = $this->input->post('id_jenis_dokumen');
+         
+        $data = array(
+            'id_mingguan'=>$tangkapid_mingguan,
+            'status_dokumen'=>$tangkapstatus_dokumen,
+            'tgl_submit_dokumen' => date('Y-m-d'),
+            'file_assignment'=>$tangkapfile_assignment,
+            'jenis'=>$tangkapid_jenis_dokumen,
+            'judul_dokumen'=>$this->input->post("judul"),
+            "id_user_upload"=> $this->session->id_user
+            
+        );
+        $this->Mddokumen->insert($data,'dokumen');
+        redirect('user/guru/assignment');
+        }
+
     }
+
 }
 ?>
