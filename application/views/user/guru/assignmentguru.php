@@ -53,7 +53,7 @@ foreach($assignments as $a){ //gamasuk sini
                 </div>
                 <hr>
                 <a href ="<?php echo base_url();?>user/guru/mingguan/quiz"><button class = "form-control">Tambah Quiz</button></a>
-                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal<?php echo $idmingguan[$idkelas[$b]][$a];?>">Dokumen</button>
+                <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal<?php echo $idmingguan[$idkelas[$b]][$a];?>" onclick = "abc('<?php echo $idmingguan[$idkelas[$b]][$a]?>','<?php echo "tabel".$idmingguan[$idkelas[$b]][$a];?>')">Dokumen</button>
                 <a href = "<?php echo base_url();?>user/guru/assignment/remove/<?php echo $idmingguan[$idkelas[$b]][$a];?>" class="btn btn-secondary btn-danger col-lg-12" style = "margin-top:10px;">Delete</a>
             </div>
         </div>
@@ -87,7 +87,7 @@ foreach($assignments as $a){ //gamasuk sini
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id = "tabel<?php echo $idmingguan[$idkelas[$b]][$a]; ?>">
                                                     <tr>
                                                         <td>1</td>
                                                         <td>KURNIA.docx</td>

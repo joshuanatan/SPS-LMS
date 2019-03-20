@@ -53,6 +53,7 @@ class Assignment extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-dokumen");
     }
     public function mingguan(){
         $data = array(

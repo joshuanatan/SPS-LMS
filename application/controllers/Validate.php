@@ -17,4 +17,14 @@ class Validate extends CI_Controller{
         $result = $this->Mdjadwal->selection($where);
         echo json_encode($result);
     }
+    public function dokumen($id){
+        $this->load->model("Mddokumen");
+        //echo $this->input->post("hari");
+        //echo $this->input->post("jam");
+        $where = array(
+            "id_mingguan" => $id,
+        );
+        $result = $this->Mddokumen->select($where);
+        echo json_encode($result);
+    }
 }
