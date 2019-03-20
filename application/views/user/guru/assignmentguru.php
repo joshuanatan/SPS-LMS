@@ -52,7 +52,7 @@ foreach($assignments as $a){ //gamasuk sini
                     <div class="location text-sm-center"><?php echo $assignment[$idkelas[$b]][$a]?></div>
                 </div>
                 <hr>
-                <a href ="<?php echo base_url();?>user/guru/mingguan/quiz"><button class = "form-control">Tambah Quiz</button></a>
+                <a href ="<?php echo base_url();?>user/guru/mingguan/quiz/minggu/<?php echo $idmingguan[$idkelas[$b]][$a];?>"><button class = "form-control">Tambah Quiz</button></a>
                 <button type="button" class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal<?php echo $idmingguan[$idkelas[$b]][$a];?>" onclick = "abc('<?php echo $idmingguan[$idkelas[$b]][$a]?>','<?php echo "tabel".$idmingguan[$idkelas[$b]][$a];?>')">Dokumen</button>
                 <a href = "<?php echo base_url();?>user/guru/assignment/remove/<?php echo $idmingguan[$idkelas[$b]][$a];?>" class="btn btn-secondary btn-danger col-lg-12" style = "margin-top:10px;">Delete</a>
             </div>
@@ -74,7 +74,7 @@ foreach($assignments as $a){ //gamasuk sini
                             <div class="col-xl-12"> 
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="box-title">DOKUMEN</h4>
+                                        <h4 class="box-title"><?php echo $this->session->role;?></h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-stats">
@@ -84,7 +84,7 @@ foreach($assignments as $a){ //gamasuk sini
                                                         <th class="serial">#</th>
                                                         <th>Nama File</th>
                                                         <th>Tanggal</th>
-                                                        <th>Aksi</th>
+                                                        <?php if($this->session->role == "guru"){ ?><th>Aksi</th><?php } ?>
                                                     </tr>
                                                 </thead>
                                                 <tbody id = "tabel<?php echo $idmingguan[$idkelas[$b]][$a]; ?>">

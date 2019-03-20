@@ -23,6 +23,7 @@ class Validate extends CI_Controller{
         //echo $this->input->post("jam");
         $where = array(
             "id_mingguan" => $id,
+            "dokumen.status_dokumen" => 0
         );
         $result = $this->Mddokumen->select($where);
         echo json_encode($result);

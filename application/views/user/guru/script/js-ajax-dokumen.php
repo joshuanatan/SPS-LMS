@@ -1,7 +1,7 @@
 <script>
     function abc(minggu,id){
-        alert(minggu);
-        alert(id);
+        //alert(minggu);
+        //alert(id);
         $(document).ready(function(){
             $.ajax({
                 type:'POST',
@@ -9,7 +9,7 @@
                 dataType: "JSON",
                 //data : {jam:jam2},
                 success: function(respond){
-                    alert("hai");
+                //    alert("hai");
                     $('#'+id).html(respond); //supaya bisa masuk ke respond ini, harus bersih gaboleh ada coding html lainnya yang ikut. harus pure jsonnya aja
                 }
 

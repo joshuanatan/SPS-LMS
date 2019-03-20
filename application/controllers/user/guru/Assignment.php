@@ -116,6 +116,17 @@ class Assignment extends CI_Controller{
         }
 
     }
+    public function removedokumen($i){
+        $where = array(
+            "id_dokumen" => $i
+        );
+        $data = array(
+            "status_dokumen" => 1
+        );
+        $this->load->model("Mddokumen");
+        $this->Mddokumen->update($data,$where);
+        redirect('user/guru/assignment');
+    }
 
 }
 ?>

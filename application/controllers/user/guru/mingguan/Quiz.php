@@ -42,7 +42,23 @@ class Quiz extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-jumlahsoal");
     }
-    
+    public function minggu($i){
+        $this->session->minggu = $i;
+        $this->load->view("req/open-content");
+        /* disini custom contentnya pake apapun yang dibutuhkan */
+        $this->load->view("user/guru/tambahquiz");
+        /* endnya disini */
+        $this->load->view("req/close-content");
+        $this->load->view("req/space");
+        $this->close();
+        $this->load->view("script/js-calender");
+        $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-jumlahsoal");
+    }
+    public function tambah(){
+        
+    }
 }
 ?>
