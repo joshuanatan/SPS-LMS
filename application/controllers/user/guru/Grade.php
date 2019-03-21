@@ -39,7 +39,14 @@ class Grade extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/gradeguru");
+        $this->load->model("Mdgurumatapelajaran");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "kelas" => $this->Mdgurumatapelajaran->selectgurukelas($where)->result()
+        );
+        $this->load->view("user/guru/gradeguru",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -65,7 +72,14 @@ class Grade extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/inputnilaiharian");
+        $where = array(
+            "kelas_siswa.id_kelas" => $this->session->idkelas
+        );
+        $this->load->model("Mdkelassiswa");
+        $data = array(
+            "siswa" => $this->Mdkelassiswa->select($where)->result()
+        );
+        $this->load->view("user/guru/inputnilaiharian",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -85,6 +99,11 @@ class Grade extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+    }
+    public function kelas(){
+        $kelas = $this->input->post("kelas");
+        $this->session->idkelas = $kelas;
+        redirect("user/guru/grade");
     }
     public function detailnilaisiswa(){
          //$this->load->view("namapage/breadcrumb");

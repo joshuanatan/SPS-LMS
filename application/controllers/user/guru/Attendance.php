@@ -40,7 +40,14 @@ class Attendance extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/attendanceguru");
+        $this->load->model("Mdgurumatapelajaran");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "kelas" => $this->Mdgurumatapelajaran->selectgurukelas($where)->result()
+        );
+        $this->load->view("user/guru/attendanceguru",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

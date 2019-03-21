@@ -8,8 +8,9 @@
             <div class="card-body">
                 <select class="form-control" tabindex="1">
                     <option value="" label="default">Pilih Kelas</option>
-                    <option value="" label="default">10 IPA 1</option>
-                    <option value="" label="default">10 IPA 2</option>
+                    <?php foreach($kelas as $a){ ?> 
+                    <option value = "<?php echo $a->id_kelas ?>" <?php if($this->session->idkelas != "") if($this->session->idkelas == $a->id_kelas) echo "Selected"; ?>><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option>
+                    <?php } ?>
                 </select>
             </div>
         </div>

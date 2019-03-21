@@ -3,6 +3,10 @@ defined("BASEPATH") OR exit("No Direct Script");
 
 class Mdkelassiswa extends CI_Model{
     public function select($where){
+        $this->db->join("kelas","kelas.id_kelas = kelas_siswa.id_kelas","inner");
+        $this->db->join("siswa_angkatan","siswa_angkatan.id_siswa_angkatan = kelas_siswa.id_siswa_angkatan","inner");
+        $this->db->join("siswa","siswa.id_siswa = siswa_angkatan.id_siswa");
+        $this->db->join("user","user.id_user= siswa.id_user","inner");
         return $this->db->get_where("kelas_siswa",$where);
     }
     public function insert($data){

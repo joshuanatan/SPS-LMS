@@ -33,8 +33,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Nama Siswa</td>
+                            <?php foreach($siswa as $a){ ?> 
+                            <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                             <td><input type = "number" class = "Form-control" required></td>
+                            <?php } ?>
                         </tr>
                     </tbody>
                 </table>

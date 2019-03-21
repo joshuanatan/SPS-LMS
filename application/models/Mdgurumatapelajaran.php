@@ -10,6 +10,16 @@ class Mdgurumatapelajaran extends CI_Model{
         //$this->db->where("penugasan_guru.id_penugasan not in (select id_penugasan from jadwal)")
         return $this->db->get("penugasan_guru");
     }
+    public function selectgurukelas($where){
+        $this->db->where($where);
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = penugasan_guru.id_gurutahunan","inner");
+        $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
+        $this->db->join("kelas","kelas.id_kelas = penugasan_guru.id_kelas","inner");
+        $this->db->join("user","guru.id_user = user.id_user","inner");
+        $this->db->join("matapelajaran","guru.id_matpel = matapelajaran.id_matpel","inner");
+        //$this->db->where("penugasan_guru.id_penugasan not in (select id_penugasan from jadwal)")
+        return $this->db->get("penugasan_guru");
+    }
     public function assigned($where){
         $this->db->where($where); // id guru yang dipilih
         $this->db->select("penugasan_guru.id_penugasan,kelas.kelas,kelas.jurusan,kelas.jurusan,kelas.urutan");
