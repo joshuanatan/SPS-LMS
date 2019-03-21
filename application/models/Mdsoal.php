@@ -11,4 +11,7 @@ class Mdsoal extends CI_Model{
     public function update($data,$where){
         $this->db->update("soal",$data,$where);
     }
+    public function remove($where){
+        $this->db->delete("soal",$where);
+    }
 }
