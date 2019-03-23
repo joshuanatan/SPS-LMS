@@ -15,14 +15,10 @@ class Mdpenilaian extends CI_Model{
         $this->db->insert("ulangan_harian",$data);
     }
    
+    
     public function selectnilaiminggu($where){
-        $this->db->where($where);
-        $this->db->join("aktivitas_mingguan","aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas","inner");
-        $this->db->join("siswa_angkatan","siswa_angkatan.id_siswa_angkatan = ulangan_harian.id_siswa","inner");
-        $this->db->join("siswa","siswa.id_siswa = siswa_angkatan.id_siswa","inner");
-        $this->db->join("user","user.id_user = siswa.id_user","inner");
-        $this->db->from("ulangan_harian");
-        $result = $this->db->get()->result();
+        $query = "select * from kelas_siswa inner join siswa_angkatan on siswa_angkatan.id_siswa_angkatan = kelas_siswa.id_siswa_angkatan inner join siswa on siswa.id_siswa = siswa_angkatan.id_siswa inner join user on user.id_user = siswa.id_user inner join ulangan_harian on ulangan_harian.id_siswa = siswa_angkatan.id_siswa_angkatan where kelas_siswa.id_kelas in (select id_kelas from jadwal where jadwal.id_jadwal in (select aktivitas_mingguan.id_jadwal from aktivitas_mingguan where aktivitas_mingguan.id_mingguan = ".$this->session->idmingguan.")) and kelas_siswa.id_kelas = ".$this->session->idkelas;
+        $result = $this->db->query($query)->result();   
         $i = "";
         foreach($result as $a){
             $i .= "<tr><td><input class = 'form-control col-lg-12' type = 'text' name = 'id[]' value = '".$a->id_siswa_angkatan."' readonly></td><td><input class = 'form-control col-lg-12' type = 'text' value = '".$a->nama_depan." ".$a->nama_belakang."' readonly></td><td><input type = 'number' class = 'Form-control' name='nilai[]' value = '".$a->nilai."' required></td></tr>";

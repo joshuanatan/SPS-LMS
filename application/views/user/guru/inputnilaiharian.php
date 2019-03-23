@@ -9,14 +9,15 @@
             <div class="card-body">
                 <div class = "form-group">
                     <label>Materi Ujian</label>
-                    <Select class = "form-control col-lg-12" name = "aktivitas" onchange = "nilaimurid()">
+                    <Select class = "form-control col-lg-12" name = "aktivitas" id = "minggu" onchange = "nilaimurid()">
                         <option>Pilih Aktivitas</option>
                         <?php foreach($mingguan as $a){ ?> 
                         <option value = "<?php echo $a->id_mingguan?>"><?php echo $a->materi_mingguan;?></option>
                         <?php } ?>
                     </Select>
                 </div>  
-                    
+                <div class = "form-group" id = "buka">         
+                </div>
             </div>
         </div>
     </div>
@@ -36,7 +37,7 @@
                             <th>Nilai</th>
                         </tr>
                     </thead>
-                    <tbody id = '#nilaikelas'>
+                    <tbody id = 'nilaikelas'>
                         <?php foreach($siswa as $a){ ?> 
                         <tr>
                             <td><input class = "form-control col-lg-12" type = "text" name = "id[]" value = "<?php echo $a->id_siswa_angkatan;?>" readonly></td>
@@ -53,10 +54,4 @@
     </div>
 </div>
 </form>
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#bootstrap-data-table').DataTable();
-  } );
-</script>
-
                 

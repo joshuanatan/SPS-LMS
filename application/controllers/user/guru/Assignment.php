@@ -61,7 +61,8 @@ class Assignment extends CI_Controller{
             "tgl_kelas" => $this->input->post("tglkelas"),
             "materi_mingguan" => $this->input->post("materi"),
             "deskripsi_materi" => "-",
-            "status_aktivitas" => 0
+            "status_aktivitas" => 0,
+            "status_ujian" => 1,
         );
         $this->load->model("Mdaktivitasmingguan");
         $this->Mdaktivitasmingguan->insert($data);
