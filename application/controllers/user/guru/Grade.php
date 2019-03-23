@@ -59,7 +59,15 @@ class Grade extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/inputnilai");
+        $where = array(
+            "kelas_siswa.id_kelas" => $this->session->idkelas
+        );
+        $this->load->model("Mdkelassiswa");
+        $data = array(
+            "siswa" => $this->Mdkelassiswa->select($where)->result(),
+            //"ulangan" => $this->Mdulanganharian->select($where)->result()
+        );
+        $this->load->view("user/guru/inputnilai",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -70,6 +78,7 @@ class Grade extends CI_Controller{
     
     public function harian(){
         //$this->load->view("namapage/breadcrumb");
+        $this->load->model("Mdaktivitasmingguan");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $where = array(
@@ -77,7 +86,9 @@ class Grade extends CI_Controller{
         );
         $this->load->model("Mdkelassiswa");
         $data = array(
-            "siswa" => $this->Mdkelassiswa->select($where)->result()
+            "siswa" => $this->Mdkelassiswa->select($where)->result(),
+            "mingguan" => $this->Mdaktivitasmingguan->selectaktivitasmingguanguru2()->result()
+            //"ulangan" => $this->Mdulanganharian->select($where)->result()
         );
         $this->load->view("user/guru/inputnilaiharian",$data);
         /* endnya disini */
@@ -86,6 +97,7 @@ class Grade extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-mingguuh");
     }
     
     public function walikelas(){
@@ -104,6 +116,39 @@ class Grade extends CI_Controller{
         $kelas = $this->input->post("kelas");
         $this->session->idkelas = $kelas;
         redirect("user/guru/grade");
+    }
+    public function ulanganharian(){
+        $data = array(
+            "tgl_ujian" => $this->input->post("tglujian"),
+            "tema_ujian" => $this->input->post("tema")
+        );
+        $this->load->model("Mdulanganharian");
+        $this->Mdulanganharian->insert($data);
+        redirect("user/guru/grade");
+    }
+    public function inputharian(){
+        $mingguan = $this->input->post("aktivitas");
+        $nilai = $this->input->post("nilai");
+        $idsiswa = $this->input->post("id");
+        $nilai = array();
+        $id = array();
+        $i = 0;
+        foreach($nilai as $a){
+            $nilai[$i] = $a;
+        }
+        $i = 0;
+        foreach($idsiswa as $a){
+            $id[$i] = $a;
+        }
+        $this->load->model("Mdpenilaian");
+        for($i = 0; $i<count($id);$i++){
+            $data = array(
+                "id_siswa" => $id[$i],
+                "id_aktivitas" => $mingguan,
+                "nilai" => $nilai[$i]
+            );
+            $this->Mdpenilaian->insertharian($data);
+        }
     }
     public function detailnilaisiswa(){
          //$this->load->view("namapage/breadcrumb");

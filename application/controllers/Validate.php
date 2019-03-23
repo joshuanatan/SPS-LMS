@@ -28,4 +28,30 @@ class Validate extends CI_Controller{
         $result = $this->Mddokumen->select($where);
         echo json_encode($result);
     }
+    public function aktivitasmingguan($kelas){
+        $this->load->model("Mdaktivitasmingguan");
+        $where = array(
+            "id_kelas" => $kelas,
+            "user.id_user" => $this->session->id_user
+        );
+        $result = $this->Mdaktivitasmingguan->selectaktivitas($where);
+        echo json_encode($result);
+    }
+    public function kelassiswa($kelas){
+        $this->load->model("Mdkelassiswa");
+        $where = array(
+            "user.status" => 0,
+            "kelas.id_kelas" => $kelas
+        );  
+        $result = $this->Mdkelassiswa->selectkelassiswa($where);
+        echo json_encode($result);
+    }
+    public function nilaikelas(){
+        $where = array(
+            "id_aktivitas" => $this->input->post("id_aktivitas")
+        );
+        $this->load->model("Mdpenilaian");
+        $result = $this->Mdpenilaian->selectnilaiminggu($where);
+        echo json_encode($result);
+    }
 }

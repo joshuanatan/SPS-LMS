@@ -54,6 +54,61 @@ class Attendance extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-kelasminggu");
+    }
+    public function absen(){
+        $where = array(
+            "id_mingguan" => $this->session->idmingguan
+        );
+        $this->load->model("Mdabsen");
+        $this->Mdabsen->remove($where);
+        $siswa = $this->input->post("status");
+        $this->load->model("Mdabsen");
+        foreach($siswa as $a){
+            $data = array(
+                "id_mingguan" => $this->session->idmingguan,
+                "id_siswaangkatan" => $a,
+                "status_absen" => 0,
+                "tgl_submit_absen" => date("Y-m-d")
+            );
+            $this->Mdabsen->insert($data);
+        }
+        redirect("user/guru/attendance/");
+    }
+    public function ceksiswa(){
+        $this->load->model("Mdkelassiswa");
+        $this->load->model("Mdaktivitasmingguan");
+        $this->load->model("Mdabsen");
+        $this->session->idmingguan = $this->input->post("id_mingguan");
+        $kelas = $this->input->post("id_kelas");
+        $this->load->view("req/open-content");
+        /* disini custom contentnya pake apapun yang dibutuhkan */
+        $this->load->model("Mdgurumatapelajaran");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $where2 = array(
+            "kelas.id_kelas" => $kelas
+        );
+        $where3 = array(
+            "id_mingguan" => $this->session->idmingguan
+        );
+        $data = array(
+            "kelas" => $this->Mdgurumatapelajaran->selectgurukelas($where)->result(),
+            "siswa" => $this->Mdkelassiswa->select($where2)->result(),
+            "absen" => $this->Mdabsen->select($where3)->result(),
+            "agenda" => $this->Mdaktivitasmingguan->select($where3)->result()
+        );
+        $this->load->view("user/guru/attendanceguru2",$data);
+        /* endnya disini */
+        $this->load->view("req/close-content");
+        $this->load->view("req/space");
+        $this->close();
+        $this->load->view("script/js-calender");
+        $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-kelasminggu");
+        //untuk siswa di kelas itu butuh id kelas
+        //untuk siswa ang absen butuh id mingguan
     }
     
 }

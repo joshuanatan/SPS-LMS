@@ -32,7 +32,7 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-main");
     }
     public function index(){
-        if($this->session->pilihjurusan != ""){
+        if($this->session->idgurupilihkelas != ""){
             redirect("master/gurumatpel/jurusanterpilih/".$this->session->pilihjurusan);
         }
         $where = array(

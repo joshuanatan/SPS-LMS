@@ -127,6 +127,17 @@ class Assignment extends CI_Controller{
         $this->Mddokumen->update($data,$where);
         redirect('user/guru/assignment');
     }
+    public function agenda(){
+        $where = array(
+            "id_mingguan" => $this->session->idmingguan
+        );
+        $data = array(
+            "deskripsi_materi" => $this->input->post("agenda")
+        );
+        $this->load->model("Mdaktivitasmingguan");
+        $this->Mdaktivitasmingguan->update($data,$where);
+        redirect("user/guru/attendance/");
+    }
 
 }
 ?>

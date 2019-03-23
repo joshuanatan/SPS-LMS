@@ -10,6 +10,14 @@ class Mdgurutahunan extends CI_Model{
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
         return $this->db->get_where("guru_tahunan",$where);
     }
+    public function select2($where){
+        $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
+        $this->db->join("user","user.id_user = guru.id_user","inner");
+        //$this->db->join("penugasan_guru","penugasan_guru.id_gurutahunan = guru_tahunan.id_gurutahunan","inner");
+        $this->db->group_by("guru_tahunan.id_gurutahunan");
+        $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
+        return $this->db->get_where("guru_tahunan",$where);
+    }
     public function insert($data){
         $this->db->insert("guru_tahunan",$data);
     }

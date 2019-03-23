@@ -12,61 +12,23 @@
                             <th>Nama Siswa</th>
                             <th>Lab</th>
                             <th>Tugas</th>
+                            <th>ULANGAN HARIAN</th>
                             <th>UTS</th>
                             <th>UAS</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($siswa as $a){ ?> 
                         <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
+                            <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
+                            <td><input type = "number" class = "Form-control" required name = ""></td>
+                            <td><input type = "number" class = "Form-control" required name = ""></td>
+                            <td><input type = "number" class = "Form-control" required name = ""></td>
+                            <td><input type = "number" class = "Form-control" required name = ""></td>
+                            <td><input type = "number" class = "Form-control" required name = ""></td>
                             
                         </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Siswa</td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                            <td><input type = "number" class = "Form-control" required></td>
-                        </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
                 <input type = "submit" class = "form-control">
@@ -80,5 +42,6 @@
       $('#bootstrap-data-table').DataTable();
   } );
 </script>
+
 
                 
