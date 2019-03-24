@@ -54,7 +54,82 @@ class Grade extends CI_Controller{
         $this->load->view("script/js-linechart");
         $this->load->view("script/js-datatable");
     }
-    
+    public function insertnilai(){
+        $where = array(
+            "user.id_user" => $this->session->id_user,
+            "penugasan_guru.id_kelas" => $this->session->idkelas
+        );
+        $this->load->model("Mdgurumatapelajaran");
+        $result = $this->Mdgurumatapelajaran->select($where)->result();
+        $idgurutahun = "";
+        foreach($result as $a){
+            $idgurutahun = $a->id_penugasan;
+        }
+        $id = array();
+        $tugas = array();
+        $lab = array();
+        $uh = array();
+        $uts = array();
+        $uas = array();
+
+        $getid = $this->input->post("id");
+        $gettugas = $this->input->post("tugas");
+        $getlab = $this->input->post("lab");
+        $getuh = $this->input->post("uh");
+        $getuts = $this->input->post("uts");
+        $getuas = $this->input->post("uas");
+        $i = 0;
+        foreach($getid as $a){
+            $id[$i] = $a;
+            $i++;
+        }
+        $i = 0;
+        foreach($gettugas as $a){
+            $tugas[$i] = $a;
+            $i++;
+        }
+        $i = 0;
+        foreach($getlab as $a){
+            $lab[$i] = $a;
+            $i++;
+        
+        }
+        $i = 0;
+        foreach($getuh as $a){
+            $uh[$i] = $a;
+            $i++;
+        }
+        $i = 0;
+        foreach($getuts as $a){
+            $uts[$i] = $a;
+            $i++;
+        }
+        $i = 0;
+        foreach($getuas as $a){
+            $uas[$i] = $a;
+            $i++;
+        }
+        $this->load->model("Mdpenilaian");
+        for($i = 0; $i<count($uas);$i++){
+            $where = array(
+                "penilaian.id_siswa_angkatan" =>$id[$i],
+                "id_penugasan" => $idgurutahun
+            );
+            $this->Mdpenilaian->delete($where);
+            $data = array(
+                "id_siswa_angkatan" => $id[$i],
+                "id_penugasan" => $idgurutahun,
+                "nilai_tugas" => $tugas[$i],
+                "nilai_lab" => $lab[$i],
+                "nilai_uh" => $uh[$i],
+                "nilai_uts" => $uts[$i],
+                "nilai_uas" => $uas[$i],
+                "tgl_submit_penilaian" => date("Y-m-d")
+            );
+            $this->Mdpenilaian->insert($data);
+        }
+        redirect("user/guru/grade/ujian");
+    }
     public function ujian(){
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
@@ -75,7 +150,6 @@ class Grade extends CI_Controller{
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
     }
-    
     public function harian(){
         //$this->load->view("namapage/breadcrumb");
         $this->load->model("Mdaktivitasmingguan");

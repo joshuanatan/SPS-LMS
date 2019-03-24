@@ -33,13 +33,18 @@ class Mdpenilaian extends CI_Model{
         return $i;
     }
     public function harianuntukakhir($where){
-        $this->db->select("*,avg(nilai) as 'a'");
+        $this->db->select("*,avg(nilai) as 'a',siswa_angkatan.id_siswa_angkatan");
         $this->db->join("siswa_angkatan","siswa_angkatan.id_siswa_angkatan = kelas_siswa.id_siswa_angkatan","inner");
         $this->db->join("siswa","siswa.id_siswa = siswa_angkatan.id_siswa","inner");
         $this->db->join("user","user.id_user = siswa.id_user","inner");
-        $this->db->join("ulangan_harian","ulangan_harian.id_siswa = siswa_angkatan.id_siswa_angkatan");
+        $this->db->join("ulangan_harian","ulangan_harian.id_siswa = siswa_angkatan.id_siswa_angkatan","inner");
+        $this->db->join("penilaian","penilaian.id_siswa_angkatan = siswa_angkatan.id_siswa_angkatan","left outer");
+        //$this->db->join("")
         $this->db->where($where);
         $this->db->group_by("siswa_angkatan.id_siswa_angkatan");
         return $this->db->get("kelas_siswa");
+    }
+    public function delete($where){
+        $this->db->delete("penilaian",$where);
     }
 }
