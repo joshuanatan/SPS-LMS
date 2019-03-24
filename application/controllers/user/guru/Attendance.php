@@ -81,6 +81,7 @@ class Attendance extends CI_Controller{
         $this->load->model("Mdabsen");
         $this->session->idmingguan = $this->input->post("id_mingguan");
         $kelas = $this->input->post("id_kelas");
+        $this->session->idkelas = $kelas;
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $this->load->model("Mdgurumatapelajaran");
