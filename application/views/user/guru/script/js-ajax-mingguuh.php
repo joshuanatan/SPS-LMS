@@ -16,6 +16,7 @@
                         data:{id_aktivitas:idkelas},
                         dataType: "JSON",
                         success: function(respond){
+                            $("#nilaikelas").empty();
                             $("#nilaikelas").html(respond);
                         }
                         
@@ -38,14 +39,7 @@
                 data:{aktivitas:idkelas},
                 dataType: "JSON",
                 success: function(respond){
-                    <?php if($this->session->nobuka == 1){ ?>
-                        alert("hai"); 
-                        $("#buka").hide();
-                        <?php }
-                        else { ?> 
-                        alert("hei");
-                        $("#buka").show();
-                    <?php } $this->session->nobuka = 0; ?> 
+                    $("#buka").empty();
                     $("#nilaikelas").html(respond);
                 }
             });

@@ -46,14 +46,12 @@ class Validate extends CI_Controller{
         $result = $this->Mdkelassiswa->selectkelassiswa($where);
         echo json_encode($result);
     }
-    public function cekulangankelas(){
+    public function cekulangankelas(){ //buat nampilin button aja
 
         $this->session->idmingguan = $this->input->post("id_aktivitas");
         $this->load->model("Mdpenilaian");
         $where = array();
         $i = $this->cekulanganharian();
-        //$result = $this->Mdpenilaian->selectnilaiminggu($where);
-        //$this->session->unset_userdata('idmingguan');
         echo json_encode($i);
     }
     
@@ -81,12 +79,13 @@ class Validate extends CI_Controller{
         if($i != "A"){
             $i .= "<button type = 'button' class = 'btn btn-success col-lg-12' onclick = 'bukaulangan()'>BUKA ULANGAN</button>";
         }
+        else $i = "";
         return $i;
     }
     public function bukaulangan(){
         $id_aktivitas = $this->input->post("aktivitas");
         $this->session->idmingguan = $id_aktivitas;
-
+        
         $this->load->model("Mdaktivitasmingguan");
         $data = array(
             "status_ujian" => 1
@@ -106,7 +105,7 @@ class Validate extends CI_Controller{
         foreach($result as $a){
             $data = array(
                 "id_aktivitas" => $id_aktivitas,
-                "id_siswa" => $a->id_siswa,
+                "id_siswa" => $a->id_siswa_angkatan,
                 "nilai" => 0
             );
             $this->Mdpenilaian->insertharian($data);
@@ -114,7 +113,6 @@ class Validate extends CI_Controller{
         
         $where = array();
         $result = $this->Mdpenilaian->selectnilaiminggu($where);
-        $this->cekulanganharian();
         echo json_encode($result);
     }
 }

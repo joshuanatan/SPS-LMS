@@ -134,4 +134,74 @@ class Dummydata extends CI_Controller{
         );
         $this->Mdwakasek->insert($data);
     }
+    public function insertsiswa(){
+        for($i = 21; $i<40; $i++){
+            $this->load->model(array("Mduser","Mdsiswa"));
+            //insert ke user
+            $data = array(
+                "nama_depan" => "namadepan".$i,
+                "nama_belakang" =>  "namabelakang".$i,
+                "tanggal_lahir" =>  date('y-m-d'),
+                "nomor_telpon" =>  "098989898989",
+                "email" =>  "email".$i."@gmail.com",
+                "alamat" =>  "alamat".$i,
+                "password" =>  md5("123456"),
+                "tgl_submit" =>  date('Y-m-d'),
+                "id_admin" =>  $this->session->id_user,
+                "status" =>  0,
+                "id_role"=> 1,
+            );
+            $this->Mduser->insert($data);
+            //end insert ke user
+            //cari id user terakhir
+            $where = array(
+                "nama_depan" => "namadepan".$i,
+                "nama_belakang" =>  "namabelakang".$i,
+                "tanggal_lahir" =>  date('y-m-d'),
+                "nomor_telpon" =>  "098989898989",
+                "email" =>  "email".$i."@gmail.com",
+                "alamat" =>  "alamat".$i,
+                "id_admin" =>  $this->session->id_user,
+                "status" =>  0,
+                "id_role"=> 1,
+            );
+            $last = $this->Mduser->select($where)->result();
+            $flag = 0;
+            //end cari user terakhir
+            //ngeload user terakhir & input ke siswa
+            foreach($last as $a){
+                $flag = 1;
+                $datas = array(
+                    "id_user" => $a->id_user,
+                    "jurusan" => "IPS",
+                    "id_orangtua" => "papasaya",
+                    "status_siswa" => 0,
+                    "tgl_submit_siswa" => date('Y-m-d'),
+                );
+                $this->Mdsiswa->insert($datas);
+                $iduser = $a->id_user;
+            }
+            //end insert ke siswa
+            //cari siswa yang terakhir
+            $where = array(
+                "siswa.id_user" => $iduser
+            );
+            $last = $this->Mdsiswa->select($where)->result();
+            $flag = 0;
+            //end cari siswa
+            //insert ke siswa tahunan
+            $this->load->model("Mdsiswaangkatan");
+            foreach($last as $a){
+                $flag = 1;
+                $datas = array(
+                    "id_tahun_ajaran" => $this->session->tahunajaran,
+                    "id_siswa" =>  $a->id_siswa,
+                    "kelas" => 10,
+                    "status_siswa_angkatan" => 0,
+                    "tgl_submit_siswa_angkatan" => date('Y-m-d')
+                );
+                $this->Mdsiswaangkatan->insert($datas);
+            }
+        }
+    } 
 }

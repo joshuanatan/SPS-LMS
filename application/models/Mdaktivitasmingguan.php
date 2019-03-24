@@ -52,5 +52,5 @@ class Mdaktivitasmingguan extends CI_Model{
         }
         return $i;
     }
-    //public function 
+    
 }

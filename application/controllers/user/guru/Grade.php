@@ -128,7 +128,7 @@ class Grade extends CI_Controller{
     }
     public function inputharian(){
         $mingguan = $this->input->post("aktivitas");
-        $nilais = $this->input->post("nilai");
+        /*$nilais = $this->input->post("nilai");
         $idsiswa = $this->input->post("id");
         $nilai = array();
         $id = array();
@@ -136,20 +136,25 @@ class Grade extends CI_Controller{
         foreach($nilais as $a){
             $nilai[$i] = $a;
         }
+        echo "panjang nilai = ".count($nilai);
         $i = 0;
         foreach($idsiswa as $a){
             $id[$i] = $a;
         }
+        echo "panjang nilai = ".count($id);*/
         $this->load->model("Mdpenilaian");
-        for($i = 0; $i<count($id);$i++){
-            $data = array(
-                "id_siswa" => $id[$i],
-                "id_aktivitas" => $mingguan,
-                "nilai" => $nilai[$i]
+        for($i = 0; $i<$this->session->jumlahsiswa;$i++){
+            echo $mingguan;
+            $where = array(
+                "id_siswa" => $this->input->post("id".$i),
+                "id_aktivitas" => $mingguan
             );
-            $this->Mdpenilaian->insertharian($data);
+            $data = array(
+                "nilai" => $this->input->post("nilai".$i)
+            );
+            $this->Mdpenilaian->updateharian($data,$where);
         }
-        redirect("user/guru/grade");
+        redirect("user/guru/grade/harian");
     }
     public function detailnilaisiswa(){
          //$this->load->view("namapage/breadcrumb");
