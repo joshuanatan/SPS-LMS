@@ -23,7 +23,7 @@
                             <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                             <td><input type = "number" class = "Form-control" required name = ""></td>
                             <td><input type = "number" class = "Form-control" required name = ""></td>
-                            <td><input type = "number" class = "Form-control" required name = ""></td>
+                            <td><input type = "number" class = "Form-control" readonly value = "<?php echo $a->a;?>" name = ""></td>
                             <td><input type = "number" class = "Form-control" required name = ""></td>
                             <td><input type = "number" class = "Form-control" required name = ""></td>
                             

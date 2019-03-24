@@ -32,4 +32,14 @@ class Mdpenilaian extends CI_Model{
         $this->session->jumlahsiswa = $urut;
         return $i;
     }
+    public function harianuntukakhir($where){
+        $this->db->select("*,avg(nilai) as 'a'");
+        $this->db->join("siswa_angkatan","siswa_angkatan.id_siswa_angkatan = kelas_siswa.id_siswa_angkatan","inner");
+        $this->db->join("siswa","siswa.id_siswa = siswa_angkatan.id_siswa","inner");
+        $this->db->join("user","user.id_user = siswa.id_user","inner");
+        $this->db->join("ulangan_harian","ulangan_harian.id_siswa = siswa_angkatan.id_siswa_angkatan");
+        $this->db->where($where);
+        $this->db->group_by("siswa_angkatan.id_siswa_angkatan");
+        return $this->db->get("kelas_siswa");
+    }
 }

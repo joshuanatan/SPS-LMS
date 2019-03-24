@@ -16,6 +16,7 @@
                         data:{id_aktivitas:idkelas},
                         dataType: "JSON",
                         success: function(respond){
+                            //alert(respond);
                             $("#nilaikelas").empty();
                             $("#nilaikelas").html(respond);
                         }

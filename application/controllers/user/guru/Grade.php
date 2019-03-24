@@ -62,9 +62,9 @@ class Grade extends CI_Controller{
         $where = array(
             "kelas_siswa.id_kelas" => $this->session->idkelas
         );
-        $this->load->model("Mdkelassiswa");
+        $this->load->model("Mdpenilaian");
         $data = array(
-            "siswa" => $this->Mdkelassiswa->select($where)->result(),
+            "siswa" => $this->Mdpenilaian->harianuntukakhir($where)->result(),
             //"ulangan" => $this->Mdulanganharian->select($where)->result()
         );
         $this->load->view("user/guru/inputnilai",$data);
