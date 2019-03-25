@@ -50,6 +50,13 @@ class Matapelajaran extends CI_Controller{
         $data = array(
             "nama_matpel" => $this->input->post("nama"),
             "jenis_matpel" => $this->input->post("jenis"),
+            "kkm" => $this->input->post("kkm"),
+            "tugas" => $this->input->post("tugas"),
+            "lab" => $this->input->post("lab"),
+            "quiz" => $this->input->post("quiz"),
+            "uh" => $this->input->post("uh"),
+            "uts" => $this->input->post("uts"),
+            "uas" => $this->input->post("uas"),
             "status_matpel" => 0,
             "tgl_submit_matpel" => date('Y-m-d')
         );
@@ -63,6 +70,13 @@ class Matapelajaran extends CI_Controller{
         $data = array(
             "nama_matpel" => $this->input->post("nama"),
             "jenis_matpel" => $this->input->post("jenis"),
+            "kkm" => $this->input->post("kkm"),
+            "tugas" => $this->input->post("tugas"),
+            "lab" => $this->input->post("lab"),
+            "quiz" => $this->input->post("quiz"),
+            "uh" => $this->input->post("uh"),
+            "uts" => $this->input->post("uts"),
+            "uas" => $this->input->post("uas"),
             "status_matpel" => 0,
             "tgl_submit_matpel" => date('Y-m-d')
         );

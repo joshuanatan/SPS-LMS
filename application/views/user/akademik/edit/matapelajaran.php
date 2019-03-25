@@ -22,6 +22,34 @@
                                 <option value = "IPS" <?php if($jenis == "IPS") echo "selected";?>>IPS</option>
                             </select>
                         </div>
+                        <div class = "form-group col-lg-12">
+                            <label>KKM</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $kkm;?>" name = "kkm">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>TUGAS</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $tugas;?>" name = "tugas">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>LAB</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $lab;?>" name = "lab">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>QUIZ</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $quiz;?>" name = "quiz">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>ULANGAN HARIAN</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $uh;?>" name = "uh">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>UTS</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $uts;?>" name = "uts">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>UAS</label>
+                            <input type = "number" class = "form-control col-lg-12" value = "<?php echo $uas;?>" name = "uas">
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

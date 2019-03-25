@@ -25,13 +25,13 @@
             </div>
             <div class="card-body">
                 <div class="mx-auto d-block">
-                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi1;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi1;?>
+                    <input name = "soal<?php echo $i;?>" value = "1" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi1;?>
                     <br/>
-                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi2;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi2;?>
+                    <input name = "soal<?php echo $i;?>" value = "2" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi2;?>
                     <br/>
-                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi3;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi3;?>
+                    <input name = "soal<?php echo $i;?>" value = "3" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi3;?>
                     <br/>
-                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi4;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi4;?>
+                    <input name = "soal<?php echo $i;?>" value = "4" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi4;?>
                     <br/>
                 </div>
                 <hr>

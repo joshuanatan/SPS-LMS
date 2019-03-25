@@ -39,7 +39,14 @@
                                  $data = array(
                                      "id" => $a->id_matpel,
                                      "nama" => $a->nama_matpel,
-                                     "jenis" => $a->jenis_matpel
+                                     "jenis" => $a->jenis_matpel,
+                                     "kkm" => $a->kkm,
+                                     "tugas" => $a->tugas,
+                                     "lab" => $a->lab,
+                                     "quiz" => $a->quiz,
+                                     "uh" => $a->uh,
+                                     "uts" => $a->uts,
+                                     "uas" => $a->uas,
                                  );
                                  $this->load->view("user/akademik/edit/matapelajaran",$data);
                             
@@ -76,6 +83,34 @@
                                 <option value = "IPA">IPA</option>
                                 <option value = "IPS">IPS</option>
                             </select>
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>KKM</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "kkm">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>TUGAS</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "tugas">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>LAB</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "lab">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>QUIZ</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "quiz">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>ULANGAN HARIAN</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "uh">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>UTS</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "uts">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>UAS</label>
+                            <input type = "number" class = "form-control col-lg-12" name = "uas">
                         </div>
                 </div>
                 <div class="modal-footer">

@@ -110,12 +110,22 @@ class Index extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function submitquiz($i){
+        $this->load->model("Mdsiswaangkatan");
+        $this->load->model("Mdsoal");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $result = $this->Mdsiswaangkatan->select($where)->result();
+        foreach($result as $a){
+            $id_siswa_angkatan = $a->id_siswa_angkatan;
+        }
         $this->load->model("Mdquiz");
         $where = array(
             "soal.id_quiz" => $i
         );
         $soal = $this->Mdquiz->select($where)->result();
         $urutansoal = 0;
+        $nilai = 0;
         foreach($soal as $a){
             $ans = $this->input->post("soal".$urutansoal);
             $data = array(
@@ -126,8 +136,28 @@ class Index extends CI_Controller{
                 "tgl_submit_jawaban"=> date("Y-m-d")
             );
             $this->Mdquiz->masukjawab($data);
+            //langsung liat nomor 1 ada salah apa kaga
+            $where = array(
+                "id_soal" => $a->id_soal,
+                "jawaban" => $ans
+            );
+            $cek = $this->Mdsoal->select($where)->result();
+            foreach($cek as $a){
+                $nilai++;
+            }
             $urutansoal++;
         }
+        
+        //masukin hasilnya ke niai quiz
+        $this->load->model("Mdnilaiquiz");
+        $data = array(
+            "id_siswa" => $id_siswa_angkatan ,//id siswa tahun ajaran
+            "id_quiz" => $i,
+            "nilai_quiz" => $nilai,
+            "status_nilai" => 0,
+            "tgl_submit_nilai" => date("Y-m-d")
+        );
+        $this->Mdnilaiquiz->insert($data);
         redirect("user/siswa/assignment");
     }
     
