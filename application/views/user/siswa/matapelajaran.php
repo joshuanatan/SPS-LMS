@@ -46,7 +46,9 @@
                 <hr>
                 <div class = "form-group">
                     <button class = "form-control col-md-12" disabled>Download Materi</button> <!-- nanti pake ajax onclick aja -->
-                    <button class = "form-control col-md-12" disabled>Quiz</button>
+                </div>
+                <div class = "form-group">
+                    <a href = "<?php echo base_url();?>user/siswa/mingguan/index/quiz/<?php echo $a->id_mingguan;?>" class = "btn btn-success col-md-12">Quiz</a>
                 </div>
             </div>
         </div>

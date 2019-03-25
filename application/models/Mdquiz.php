@@ -27,4 +27,7 @@ class Mdquiz extends CI_Model{
     public function masuksoal($data){
         $this->db->insert("soal",$data);
     }
+    public function masukjawab($data){
+        $this->db->insert("jawaban_quiz",$data);
+    }
 }

@@ -14,119 +14,30 @@
         </div>
     </div>
 </div>
+<form action = "<?php echo base_url();?>user/siswa/mingguan/index/submitquiz/<?php echo $id_quiz;?>" method = "post">
+<?php $i = 0;foreach($quiz as $a){ ?> 
 <div class = "row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-            <strong class="card-title mb-3">Q 1</strong>
+            <strong class="card-title mb-3"><?php echo $a->pertanyaan;?></strong>
             </div>
             <div class="card-body">
                 <div class="mx-auto d-block">
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 1
+                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi1;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi1;?>
                     <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 2
+                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi2;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi2;?>
                     <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 3
+                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi3;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi3;?>
                     <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 4
+                    <input name = "soal<?php echo $i;?>" value = "<?php echo $a->opsi4;?>" type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $a->opsi4;?>
                     <br/>
                 </div>
                 <hr>
             </div>
         </div>
     </div>
-</div>
-<div class = "row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-            <strong class="card-title mb-3">Q 1</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 1
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 2
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 3
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 4
-                    <br/>
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</div>
-<div class = "row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-            <strong class="card-title mb-3">Q 1</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 1
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 2
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 3
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 4
-                    <br/>
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</div>
-<div class = "row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-            <strong class="card-title mb-3">Q 1</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 1
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 2
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 3
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 4
-                    <br/>
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</div>
-<div class = "row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-            <strong class="card-title mb-3">Q 1</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 1
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 2
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 3
-                    <br/>
-                    <input type = "radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Answer 4
-                    <br/>
-                </div>
-                <hr>
-            </div>
-        </div>
-    </div>
-</div>
-<div class = "row">
-    <div class="col-md-12">
-        
-        <button class = "form-control">SUBMIT</button>
-    </div>
-</div>
+</div> 
+<?php $i++;} ?>
+<input type = "submit" class = "btn btn-success col-lg-12">
+</form>

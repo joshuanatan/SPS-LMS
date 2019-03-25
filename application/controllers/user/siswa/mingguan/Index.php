@@ -86,8 +86,13 @@ class Index extends CI_Controller{
         $where = array(
             "id_mingguan" => $i
         );
+        $idquiz = $this->Mdquiz->select($where)->result();
+        foreach($idquiz as $b){
+            $id_quiz = $b->id_quiz;
+        }
         $data = array(
-            "quiz" => $this->Mdquiz->select($where)->result()
+            "quiz" => $this->Mdquiz->select($where)->result(),
+            "id_quiz" => $id_quiz
         );
         $this->load->view("user/siswa/quiz",$data);
         /* endnya disini */
@@ -96,6 +101,27 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+    }
+    public function submitquiz($i){
+        $this->load->model("Mdquiz");
+        $where = array(
+            "soal.id_quiz" => $i
+        );
+        $soal = $this->Mdquiz->select($where)->result();
+        $urutansoal = 0;
+        foreach($soal as $a){
+            $ans = $this->input->post("soal".$urutansoal);
+            $data = array(
+                "id_soal" => $a->id_soal,
+                "id_user" => $this->session->id_user,
+                "jawaban_quiz" => $ans,
+                "status_jawaban" => 0,
+                "tgl_submit_jawaban"=> date("Y-m-d")
+            );
+            $this->Mdquiz->masukjawab($data);
+            $urutansoal++;
+        }
+        redirect("user/siswa/assignment");
     }
     
 }
