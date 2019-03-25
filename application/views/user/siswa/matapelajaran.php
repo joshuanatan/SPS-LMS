@@ -45,13 +45,45 @@
                 </div>
                 <hr>
                 <div class = "form-group">
-                    <button class = "form-control col-md-12" disabled>Download Materi</button> <!-- nanti pake ajax onclick aja -->
+                    <button type="button" onclick = 'abc(<?php echo $a->id_mingguan;?>);' class="btn btn-secondary btn-warning col-lg-12" style = "margin-top:10px;" data-toggle="modal" data-target="#mediumModal2">Dokumen</button>
                 </div>
                 <div class = "form-group">
-                    <a href = "<?php echo base_url();?>user/siswa/mingguan/index/quiz/<?php echo $a->id_mingguan;?>" class = "btn btn-success col-md-12">Quiz</a>
+                    <button onclick = "cekadaquiz(<?php echo $a->id_mingguan;?>)" id ="quiz<?php echo $a->id_mingguan;?>" class = "btn btn-success col-md-12">Quiz</button>
                 </div>
             </div>
         </div>
     </div>
 <?php $i++; } ?>
+</div>
+<div class="modal fade" id="mediumModal2" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">DOKUMEN MINGGUAN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class = "form-group col-lg-12">
+                    <table class = "table table-stripped col-lg-12" id = "bootstrap-data-table-export">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>MATERI KELAS</td>
+                                <td>FILE</td>
+                            </tr>
+                        </thead>
+                        <tbody id ="dokumenminggu">
+                            <tr>
+                                <td>1</td>
+                                <td>ASDF</td>
+                                <td>ASDF</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

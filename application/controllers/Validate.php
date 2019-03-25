@@ -115,4 +115,13 @@ class Validate extends CI_Controller{
         $result = $this->Mdpenilaian->selectnilaiminggu($where);
         echo json_encode($result);
     }
+    public function cekujian(){
+        $id_mingguan = $this->input->post("id_mingguan");
+        $this->load->model("Mdquiz");
+        $where = array(
+            "quiz.id_mingguan" => $id_mingguan
+        );
+        $result = $this->Mdquiz->select($where)->num_rows();
+        echo json_encode($result);
+    }
 }

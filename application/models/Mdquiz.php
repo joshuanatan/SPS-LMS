@@ -24,6 +24,12 @@ class Mdquiz extends CI_Model{
             return $a->id_quiz;
         }
     }
+    public function cekpengambilanquiz($where){
+        $this->db->where($where);
+        $this->db->join("soal","jawaban_quiz.id_soal = soal.id_soal","inner");
+        $this->db->join("quiz","quiz.id_quiz = soal.id_quiz","inner");
+        return $this->db->get("jawaban_quiz");
+    }
     public function masuksoal($data){
         $this->db->insert("soal",$data);
     }

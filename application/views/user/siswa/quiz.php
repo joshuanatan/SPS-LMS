@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+<?php if($statusquiz == 0){ ?> 
 <form action = "<?php echo base_url();?>user/siswa/mingguan/index/submitquiz/<?php echo $id_quiz;?>" method = "post">
 <?php $i = 0;foreach($quiz as $a){ ?> 
 <div class = "row">
@@ -41,3 +42,4 @@
 <?php $i++;} ?>
 <input type = "submit" class = "btn btn-success col-lg-12">
 </form>
+<?php } else echo "<h5 align = 'center'>ANDA TELAH MENYELESAIKAN QUIZ PADA MINGGU INI</h5>";?>

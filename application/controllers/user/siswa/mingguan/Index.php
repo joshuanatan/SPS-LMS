@@ -75,6 +75,8 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/siswa/script/js-ajax-cekadaquiz");
+        $this->load->view("user/siswa/script/js-ajax-dokumen");
     }
     
     
@@ -90,9 +92,14 @@ class Index extends CI_Controller{
         foreach($idquiz as $b){
             $id_quiz = $b->id_quiz;
         }
+        $where2 = array(
+            "soal.id_quiz" => $id_quiz,
+            "jawaban_quiz.id_user" => $this->session->id_user
+        );
         $data = array(
             "quiz" => $this->Mdquiz->select($where)->result(),
-            "id_quiz" => $id_quiz
+            "id_quiz" => $id_quiz,
+            "statusquiz" =>$this->Mdquiz->cekpengambilanquiz($where2)->num_rows()
         );
         $this->load->view("user/siswa/quiz",$data);
         /* endnya disini */
