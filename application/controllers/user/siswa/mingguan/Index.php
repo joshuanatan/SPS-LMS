@@ -82,7 +82,14 @@ class Index extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/siswa/quiz");
+        $this->load->model("Mdquiz");
+        $where = array(
+            "id_mingguan" => $i
+        );
+        $data = array(
+            "quiz" => $this->Mdquiz->select($where)->result()
+        );
+        $this->load->view("user/siswa/quiz",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

@@ -3,6 +3,7 @@ defined("BASEPATH") OR exit("No Direct Script");
 
 class Mdquiz extends CI_Model{
     public function select($where){
+        $this->db->join("soal","soal.id_quiz = quiz.id_quiz","inner");
         return $this->db->get_where("quiz",$where);
         
     }
