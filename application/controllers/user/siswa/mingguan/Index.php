@@ -53,7 +53,22 @@ class Index extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/siswa/matapelajaran");
+        $this->load->model("Mdmatapelajaran");
+        $where = array(
+            "jadwal.id_gurutahunan" => $i
+        );
+        $aktivitase = $this->Mdmatapelajaran->matpel($where)->result();
+        foreach($aktivitase as $a){
+            $namamatpel = $a->nama_matpel;
+            $namaguru = $a->nama_depan." ".$a->nama_belakang;
+            break;
+        }
+        $data = array(
+            "aktivitas" => $this->Mdmatapelajaran->aktivitas($where)->result(),
+            "nama_matpel" => $namamatpel,
+            "nama_guru" => $namaguru,
+        );
+        $this->load->view("user/siswa/matapelajaran",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

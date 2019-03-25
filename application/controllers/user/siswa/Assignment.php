@@ -35,8 +35,10 @@ class Assignment extends CI_Controller{
     public function index(){
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
+        $this->load->model("Mdmatapelajaran");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/siswa/index2");
+        $data['matpel'] = $this->Mdmatapelajaran->matpel()->result();
+        $this->load->view("user/siswa/index2",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -44,7 +46,6 @@ class Assignment extends CI_Controller{
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
     }
-    
     /*end akses menu*/
     
 }?>

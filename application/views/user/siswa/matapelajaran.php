@@ -2,12 +2,11 @@
     <div class="col-lg-8 col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title mb-3">Nama Mata Pelajaran</strong>
+                <strong class="card-title mb-3"><?php echo $nama_matpel;?></strong>
             </div>
             <div class="card-body">
                 <div class="mx-auto d-block">
-                    <h5 class="text-sm-center mt-2 mb-1">Nama Guru</h5>
-                    <div class="location text-sm-center">Detail mata pelajaran pelajaran</div>
+                    <h5 class="text-sm-center mt-2 mb-1"><?php echo $nama_guru;?></h5>
                 </div>
                 <hr>
 
@@ -33,58 +32,24 @@
     </div>
 </div>
 <div class="row">
+<?php $i = 1;foreach($aktivitas as $a){?> 
     <div class="col-md-4">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title mb-3">Meeting x</strong>
+                <strong class="card-title mb-3">Meeting <?php echo $i;?></strong>
             </div>
             <div class="card-body">
                 <div class="mx-auto d-block">
-                    <h5 class="text-sm-center mt-2 mb-1">Tanggal</h5>
-                    <div class="location text-sm-center">Materi</div>
+                    <h5 class="text-sm-center mt-2 mb-1"><?php echo $a->tgl_kelas;?></h5>
+                    <div class="location text-sm-center"><?php echo $a->materi_mingguan;?><br/><?php echo $a->deskripsi_materi;?></div>
                 </div>
                 <hr>
                 <div class = "form-group">
-                    <button class = "form-control col-md-12" disabled>Download Materi</button> -
+                    <button class = "form-control col-md-12" disabled>Download Materi</button> <!-- nanti pake ajax onclick aja -->
                     <button class = "form-control col-md-12" disabled>Quiz</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title mb-3">Meeting x</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <h5 class="text-sm-center mt-2 mb-1">Tanggal</h5>
-                    <div class="location text-sm-center">Materi</div>
-                </div>
-                <hr>
-                <div class = "form-group">
-                    <button class = "form-control col-md-12" disabled>Download Materi</button> -
-                    <button class = "form-control col-md-12" disabled>Quiz</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title mb-3">Meeting x</strong>
-            </div>
-            <div class="card-body">
-                <div class="mx-auto d-block">
-                    <h5 class="text-sm-center mt-2 mb-1">Tanggal</h5>
-                    <div class="location text-sm-center">Materi</div>
-                </div>
-                <hr>
-                <div class = "form-group">
-                    <button class = "form-control col-md-12" disabled>Download Materi</button> -
-                    <a href = "<?php echo base_url();?>user/siswa/mingguan/index/quiz/1"><button class = "form-control col-md-12">Quiz</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
+<?php $i++; } ?>
 </div>
