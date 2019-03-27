@@ -23,6 +23,7 @@
                 </li>
                 <hr/>
                 <hr/>
+                
                 <li>
                     <!--<a href="<?php echo base_url();?>welcome/assignmentguru"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>-->
                     <a href="<?php echo base_url();?>user/walikelas/index"> <i class="menu-icon fa fa-cogs"></i>Wali Kelas</a>

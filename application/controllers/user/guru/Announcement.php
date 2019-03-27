@@ -11,6 +11,31 @@ class Announcement extends CI_Controller{
         $this->req();
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
+    
+    public function tambahpengumuman(){
+        $data = array(
+            "id_user" => $this->session->id_user,
+            "topik" => $this->input->post("topik"),
+            "konten" => $this->input->post("konten"),
+            "dateline" => $this->input->post("dateline"),
+            "status_pengumuman" => 0,
+            "tgl_submit_pengumuman" => date("Y-m-d")
+        );
+        $this->load->model("Mdpengumuman");
+        $this->Mdpengumuman->insert($data);
+        redirect("user/guru/announcement/");
+    }
+    public function delete($i){
+        $where = array(
+            "id_pengumuman" => $i
+        );
+        $data = array(
+            "status_pengumuman" => 1
+        );
+        $this->load->model("Mdpengumuman");
+        $this->Mdpengumuman->update($data,$where);
+        redirect("user/guru/announcement");
+    }
     public function req(){
         $this->load->view("req/html-open");
         $this->load->view("req/head");
@@ -37,7 +62,14 @@ class Announcement extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/announcementguru");
+        $this->load->model("Mdpengumuman");
+        $where = array(
+            "pengumuman.id_user" => $this->session->user_name
+        );
+        $data =array(
+            "announcement" => $this->Mdpengumuman->select($where)->result()
+        );
+        $this->load->view("user/guru/announcementguru",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
