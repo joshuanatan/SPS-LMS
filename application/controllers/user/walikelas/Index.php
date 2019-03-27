@@ -60,11 +60,13 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-nilai");
     }
     public function detailnilaisiswa($i){
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         $this->load->model("Mdmatapelajaran");
+        $this->session->id_siswa = $i;
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $where = array(
             "id_siswa_angkatan" => $i
@@ -79,13 +81,15 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-linechart");
-        $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-nilai");
     }
     public function detailabsensiswa($i){
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $this->load->model("Mdmatapelajaran");
+        $this->session->id_siswa = $i;
         $where = array(
             "id_siswa_angkatan" => $i
         );
@@ -99,7 +103,8 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-piechart");
-        $this->load->view("script/js-datatable");
+        $this->load->view("user/guru/script/js-datatable");
+        $this->load->view("user/guru/script/js-ajax-nilai");
     }
     
 }

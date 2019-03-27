@@ -124,4 +124,45 @@ class Validate extends CI_Controller{
         $result = $this->Mdquiz->select($where)->num_rows();
         echo json_encode($result);
     }
+    public function nilaiulangan(){
+        $id_matpel = $this->input->post("id_matpel");
+        $this->load->model("Mdpenilaian");
+        $result = $this->Mdpenilaian->laporannilai($id_matpel)->result();
+        $i = "";
+        foreach($result as $a){
+            $i .= "<tr><td>".$a->materi_mingguan."</td><td>".$a->tgl_kelas."</td><td>".$a->nilai."</td><td>ULANGAN HARIAN</td>";
+            
+        }
+        $this->load->model("Mdnilaiquiz");
+        $result = $this->Mdnilaiquiz->laporannilai($id_matpel)->result();
+        foreach($result as $a){
+            
+            $i .= "<tr><td>".$a->materi_mingguan."</td><td>".$a->tgl_kelas."</td><td>".(($a->nilai_quiz)*10)."</td><td>QUIZ</td>";
+            
+        }        
+        echo json_encode($i);
+    }
+    public function nilaiutama(){
+        $id_matpel = $this->input->post("id_matpel");
+        $this->load->model("Mdpenilaian");
+        $this->load->model("Mdnilaiquiz");
+        $result = $this->Mdnilaiquiz->laporannilai($id_matpel)->result();
+        $total = 0; $jumlah = 0;
+        foreach($result as $a){
+            $total += ($a->nilai_quiz)*10;
+            $jumlah++;
+        } 
+        $result = $this->Mdpenilaian->laporannilaiutama($id_matpel)->result();
+        $i = "";
+        foreach($result as $a){
+            $i .= "<tr><td>UAS</td><td>".$a->uas."%</td><td>".$a->nilai_uas."</td>";
+            $i .= "<tr><td>UTS</td><td>".$a->uts."%</td><td>".$a->nilai_uts."</td>";
+            $i .= "<tr><td>RATA-RATA UH</td><td>".$a->uh."%</td><td>".$a->nilai_uh."</td>";
+            $i .= "<tr><td>RATA-RATA QUIZ</td><td>".$a->quiz."%</td><td>".round($total/$jumlah,2)."</td>";
+            $i .= "<tr><td>LAB</td><td>".$a->lab."%</td><td>".$a->nilai_lab."</td>";
+            $i .= "<tr><td>TUGAS</td><td>".$a->tugas."%</td><td>".$a->nilai_tugas."</td>";
+            $i .= "<tr><td>NILAI AKHIR</td><td>".($a->tugas+$a->lab+$a->uh+$a->uts+$a->uas+$a->quiz)."%</td><td>".($a->nilai_tugas*($a->tugas/100)+$a->nilai_lab*($a->lab/100)+$a->nilai_uh*($a->uh/100)+$a->nilai_uts*($a->uts/100)+$a->nilai_uas*($a->uas/100)+round($total/$jumlah,2)*($a->quiz/100))."</td>";
+        }
+        echo json_encode($i);
+    }
 }
