@@ -43,7 +43,14 @@ class Index extends CI_Controller{
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/walikelas");
+        $this->load->model("Mdkelassiswa");
+        $where = array(
+            "guru.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "siswakelas" => $this->Mdkelassiswa->selectsiswawalikelas($where)
+        );
+        $this->load->view("user/guru/walikelas",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
