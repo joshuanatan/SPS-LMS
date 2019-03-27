@@ -50,6 +50,9 @@ class Index extends CI_Controller{
         $data = array(
             "siswakelas" => $this->Mdkelassiswa->selectsiswawalikelas($where)
         );
+        foreach($data["siswakelas"]->result() as $a){
+            $this->session->id_kelas = $a->id_kelas;
+        }
         $this->load->view("user/guru/walikelas",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
@@ -58,11 +61,18 @@ class Index extends CI_Controller{
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
     }
-    public function detailnilaisiswa(){
+    public function detailnilaisiswa($i){
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
+        $this->load->model("Mdmatapelajaran");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/detailnilaisiswa");
+        $where = array(
+            "id_siswa_angkatan" => $i
+        );
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matpel()
+        );
+        $this->load->view("user/guru/detailnilaisiswa",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -71,11 +81,18 @@ class Index extends CI_Controller{
         $this->load->view("script/js-linechart");
         $this->load->view("script/js-datatable");
     }
-    public function detailabsensiswa(){
+    public function detailabsensiswa($i){
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/guru/detailabsensiswa");
+        $this->load->model("Mdmatapelajaran");
+        $where = array(
+            "id_siswa_angkatan" => $i
+        );
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matpel()
+        );
+        $this->load->view("user/guru/detailabsensiswa",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

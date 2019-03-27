@@ -34,7 +34,7 @@ class Announcement extends CI_Controller{
         );
         $this->load->model("Mdpengumuman");
         $this->Mdpengumuman->update($data,$where);
-        redirect("user/guru/announcement");
+        redirect("user/guru/announcement"); 
     }
     public function req(){
         $this->load->view("req/html-open");

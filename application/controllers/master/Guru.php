@@ -108,7 +108,7 @@ class Guru extends CI_Controller{
         redirect("master/guru");
     }
     
-    public function editSiswa($i){
+    public function editGuru($i){
         $this->load->model(array("Mduser","Mdguru"));
         $where = array(
             "id_user" => $i
@@ -125,13 +125,7 @@ class Guru extends CI_Controller{
         );
         $this->Mduser->update($data,$where);
 
-        $datas = array(
-            "jurusan" => $this->input->post("jurusan"),
-            "id_orangtua" => "papasaya",
-            "tgl_submit_siswa" => date('Y-m-d'),
-        );
-        $this->Mdguru->update($datas,$where);
-        redirect("master/siswa");
+        redirect("master/guru");
     }
     public function updateMatpel($i){
         $this->load->model(array("Mdguru"));
