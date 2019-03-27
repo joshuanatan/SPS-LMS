@@ -1,4 +1,5 @@
 
+
 <div class = "row">
     <div class="col-lg-12">
         <div class="card">
@@ -8,17 +9,9 @@
             <div class="card-body">
                 <select class="form-control" tabindex="1">
                     <option value="" label="default">Pilih Mata Pelajaran</option>
-                    <option value="United States">United States</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Afghanistan">Afghanistan</option>
-                    <option value="Aland Islands">Aland Islands</option>
-                    <option value="Albania">Albania</option>
-                    <option value="Algeria">Algeria</option>
-                    <option value="American Samoa">American Samoa</option>
-                    <option value="Andorra">Andorra</option>
-                    <option value="Angola">Angola</option>
-                    <option value="Anguilla">Anguilla</option>
-                    <option value="Antarctica">Antarctica</option>
+                    <?php foreach($matpel->result() as $a){ ?>
+                    <option value = "<?php echo $a->id_matpel;?>"><?php echo $a->nama_matpel;?></option>
+                    <?php } ?>
                 </select>
             </div>
         </div>

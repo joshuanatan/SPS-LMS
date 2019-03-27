@@ -35,7 +35,12 @@ class Grade extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/siswa/index3");
+        $this->load->model("Mdmatapelajaran");
+        
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matpel()
+        );
+        $this->load->view("user/siswa/index3",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
