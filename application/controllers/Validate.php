@@ -165,4 +165,20 @@ class Validate extends CI_Controller{
         }
         echo json_encode($i);
     }
+    public function ambilabsen(){
+        $matapelajaran = $this->input->post("matapelajaran");
+        $bulan = $this->input->post("bulan");
+        $this->load->model("Mdabsen");
+        $result = $this->Mdabsen->absensiswabulanan($matapelajaran,$bulan);
+        $i = "";
+        foreach($result->result() as $a){
+            $i .= "<tr><td>".$a->tgl_kelas."</td><td>".$a->materi_mingguan."</td>";
+            if($a->id_absen  == null){
+                $i .= "<td>TIDAK MASUK</td>";
+            }
+            else $i .= "<td>MASUK</td>";
+            $i .= "</tr>";
+        }
+        echo json_encode($i);
+    }
 }
