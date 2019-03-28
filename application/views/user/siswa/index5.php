@@ -1,13 +1,11 @@
-
 <div class="row">
-    
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Pengumuman Mata Pelajaran</strong>
+                <strong class="card-title">Pengumuman</strong>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-bordered" id = "#bootstrap-data-table-export">
+                <table class="table table-striped table-bordered" id = "#bootstrap-data-table-export2">
                     <thead>
                         <tr>
                             <th>Judul Pengumuman</th>
@@ -17,58 +15,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title">Pengumuman Mata Pelajaran</strong>
-            </div>
-            <div class="card-body">
-                <table id = "#bootstrap-data-table-export2" class="table table-striped table-bordered">
-                    <thead>
+                        <?php foreach($pengumuman->result() as $a){ ?>
                         <tr>
-                            <th>Judul Pengumuman</th>
-                            <th>Isi Pengumuman</th>
-                            <th>Tanggal Pengumuman</th>
-                            <th>PIC</th>
+                            <td><?php echo $a->topik;?></td>
+                            <td><?php echo $a->konten;?></td>
+                            <td><?php echo $a->dateline ;?></td>
+                            <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <strong class="card-title">Pengumuman Lomba</strong>
-            </div>
-            <div class="card-body">
-                <table id = "#bootstrap-data-table-export3" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Judul Pengumuman</th>
-                            <th>Isi Pengumuman</th>
-                            <th>Tanggal Pengumuman</th>
-                            <th>PIC</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-
+                        <?php }
+                        ?>
                     </tbody>
                 </table>
             </div>

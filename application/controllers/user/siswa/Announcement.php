@@ -36,7 +36,11 @@ class Announcement extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $this->load->view("user/siswa/index5");
+        $this->load->model("Mdpengumuman");
+        $data = array(
+            "pengumuman" => $this->Mdpengumuman->pengumumansiswa()
+        );
+        $this->load->view("user/siswa/index5",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
