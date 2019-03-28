@@ -47,6 +47,7 @@ class Grade extends CI_Controller{
         $this->close();
         $this->load->view("script/js-linechart");
         $this->load->view("script/js-datatable");
+        $this->load->view("user/siswa/script/js-ajax-nilai");
     }
     
     /*end akses menu*/

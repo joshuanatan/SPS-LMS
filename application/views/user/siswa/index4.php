@@ -5,8 +5,8 @@
                 <strong class="card-title">Mata Pelajaran</strong>
             </div>
             <div class="card-body">
-                <select class="form-control" tabindex="1">
-                    <option value="" label="default">Pilih Mata Pelajaran</option>
+                <select class="form-control" tabindex="1" id = "matapelajaran" onchange ="active()" >
+                    <option value="0" label="default">Pilih Mata Pelajaran</option>
                     <?php foreach($matpel->result() as $a){ ?>
                     <option value = "<?php echo $a->id_matpel;?>"><?php echo $a->nama_matpel;?></option>
                     <?php } ?>
@@ -20,7 +20,7 @@
                 <strong class="card-title">Bulan</strong>
             </div>
             <div class="card-body">
-                <select class="form-control" tabindex="1">
+                <select class="form-control" tabindex="1" id = "bulan" onchange = "ambilabsen()">
                     <option value="" label="default">Pilih Bulan</option>
                     <option value="1" label="default">Januari</option>
                     <option value="2" label="default">Februari</option>
@@ -52,24 +52,11 @@
                     <thead>
                         <tr>
                             <th>Tanggal</th>
-                            <th>Jam Masuk Kelas</th>
                             <th>Bahan Pelajaran</th>
                             <th>Status Absen</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>28/02/2019</td>
-                            <td>15:15</td>
-                            <td>Gaya Gesek</td>
-                            <td>Masuk</td>
-                        </tr>
-                        <tr>
-                            <td>26/02/2019</td>
-                            <td>10:15</td>
-                            <td>Gaya Gerak</td>
-                            <td>Sakit</td>
-                        </tr>
+                    <tbody id = "laporanabsen">
                     </tbody>
                 </table>
             </div>
@@ -84,9 +71,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#bootstrap-data-table').DataTable();
-  } );
-</script>

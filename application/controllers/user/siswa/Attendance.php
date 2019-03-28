@@ -52,6 +52,7 @@ class Attendance extends CI_Controller{
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
         $this->load->view("script/js-piechart");
+        $this->load->view("user/siswa/script/js-ajax-absen");
     }
     
 }
