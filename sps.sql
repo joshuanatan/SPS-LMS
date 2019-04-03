@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2019 at 08:30 AM
+-- Generation Time: Apr 03, 2019 at 05:49 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -89,7 +89,9 @@ INSERT INTO `aktivitas_mingguan` (`id_mingguan`, `id_jadwal`, `tgl_kelas`, `mate
 (6, 541, '2019-03-20', 'awefawef', 'Pengelana abc', 0, 1),
 (9, 634, '2019-03-20', 'Pengenalan manfaat matematika dasar dalam kehidupan sehari-hari', 'asdf', 0, 0),
 (10, 541, '2019-03-21', 'Bryan Liming', 'mantap', 0, 1),
-(11, 541, '2019-03-30', ' Distribusi Normal', '-', 0, 1);
+(11, 541, '2019-03-30', ' Distribusi Normal', '-', 0, 1),
+(12, 542, '2019-04-27', 'test', '-', 0, 1),
+(13, 542, '2019-05-04', 'mantap', '-', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -710,10 +712,18 @@ CREATE TABLE `orangtua` (
   `id_orangtua` int(11) NOT NULL,
   `nama_orangtua` varchar(200) NOT NULL,
   `nomor_telpon` varchar(15) NOT NULL,
-  `pekerjaan` varchar(250) NOT NULL,
+  `email_orangtua` varchar(250) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `status_orangtua` tinyint(4) NOT NULL,
   `tgl_submit_orangtua` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orangtua`
+--
+
+INSERT INTO `orangtua` (`id_orangtua`, `nama_orangtua`, `nomor_telpon`, `email_orangtua`, `password`, `status_orangtua`, `tgl_submit_orangtua`) VALUES
+(1, 'testortu', '123123', 'testorut@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-03');
 
 -- --------------------------------------------------------
 
@@ -899,8 +909,8 @@ INSERT INTO `siswa` (`id_siswa`, `id_user`, `jurusan`, `id_orangtua`, `status_si
 (2, 43, 'IPA', 0, 0, '2019-03-18'),
 (3, 44, 'IPA', 0, 0, '2019-03-19'),
 (5, 46, 'IPA', 0, 0, '2019-03-21'),
-(6, 47, 'IPA', 0, 0, '2019-03-24'),
-(7, 48, 'IPA', 0, 0, '2019-03-24'),
+(6, 47, 'IPA', 1, 0, '2019-03-24'),
+(7, 48, 'IPA', 1, 0, '2019-03-24'),
 (8, 49, 'IPA', 0, 0, '2019-03-24'),
 (9, 50, 'IPA', 0, 0, '2019-03-24'),
 (10, 51, 'IPA', 0, 0, '2019-03-24'),
@@ -938,7 +948,17 @@ INSERT INTO `siswa` (`id_siswa`, `id_user`, `jurusan`, `id_orangtua`, `status_si
 (82, 103, 'IPS', 0, 0, '2019-03-24'),
 (83, 104, 'IPS', 0, 0, '2019-03-24'),
 (84, 105, 'IPS', 0, 0, '2019-03-24'),
-(85, 106, 'IPS', 0, 0, '2019-03-24');
+(85, 106, 'IPS', 0, 0, '2019-03-24'),
+(86, 107, 'IPA', 0, 0, '2019-04-03'),
+(87, 108, 'IPA', 0, 0, '2019-04-03'),
+(88, 108, 'IPA', 0, 0, '2019-04-03'),
+(89, 109, 'IPA', 0, 0, '2019-04-03'),
+(90, 108, 'IPA', 0, 0, '2019-04-03'),
+(91, 109, 'IPA', 0, 0, '2019-04-03'),
+(92, 110, 'IPA', 0, 0, '2019-04-03'),
+(93, 111, 'IPA', 0, 0, '2019-04-03'),
+(94, 111, 'IPA', 0, 0, '2019-04-03'),
+(95, 112, 'IPA', 0, 0, '2019-04-03');
 
 -- --------------------------------------------------------
 
@@ -1019,7 +1039,12 @@ INSERT INTO `siswa_angkatan` (`id_siswa_angkatan`, `id_tahun_ajaran`, `id_siswa`
 (61, 1, 82, 10, 0, '2019-03-24'),
 (62, 1, 83, 10, 0, '2019-03-24'),
 (63, 1, 84, 10, 0, '2019-03-24'),
-(64, 1, 85, 10, 0, '2019-03-24');
+(64, 1, 85, 10, 0, '2019-03-24'),
+(65, 1, 87, 10, 0, '2019-04-03'),
+(66, 1, 89, 10, 0, '2019-04-03'),
+(67, 1, 92, 10, 0, '2019-04-03'),
+(68, 1, 93, 10, 0, '2019-04-03'),
+(69, 1, 95, 10, 0, '2019-04-03');
 
 -- --------------------------------------------------------
 
@@ -1099,7 +1124,7 @@ INSERT INTO `tahun_ajaran` (`id_tahun_ajaran`, `tahun_awal`, `tahun_akhir`, `sta
 
 CREATE TABLE `ulangan_harian` (
   `id_aktivitas` int(11) NOT NULL,
-  `id_siswa` int(11) NOT NULL,
+  `id_siswa` int(11) NOT NULL COMMENT 'ini id siswa angkatan',
   `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1148,7 +1173,23 @@ INSERT INTO `ulangan_harian` (`id_aktivitas`, `id_siswa`, `nilai`) VALUES
 (11, 11, 100),
 (11, 12, 100),
 (11, 13, 100),
-(11, 20, 100);
+(11, 20, 100),
+(12, 5, 50),
+(12, 7, 0),
+(12, 8, 0),
+(12, 9, 0),
+(12, 11, 0),
+(12, 12, 0),
+(12, 13, 0),
+(12, 20, 0),
+(13, 5, 100),
+(13, 7, 0),
+(13, 8, 0),
+(13, 9, 0),
+(13, 11, 0),
+(13, 12, 0),
+(13, 13, 0),
+(13, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -1244,7 +1285,13 @@ INSERT INTO `user` (`id_user`, `nama_depan`, `nama_belakang`, `tanggal_lahir`, `
 (103, 'namadepan36', 'namabelakang36', '2019-03-24', '098989898989', 'email36@gmail.com', 'alamat36', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-24', 4, 0, 1),
 (104, 'namadepan37', 'namabelakang37', '2019-03-24', '098989898989', 'email37@gmail.com', 'alamat37', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-24', 4, 0, 1),
 (105, 'namadepan38', 'namabelakang38', '2019-03-24', '098989898989', 'email38@gmail.com', 'alamat38', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-24', 4, 0, 1),
-(106, 'namadepan39', 'namabelakang39', '2019-03-24', '098989898989', 'email39@gmail.com', 'alamat39', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-24', 4, 0, 1);
+(106, 'namadepan39', 'namabelakang39', '2019-03-24', '098989898989', 'email39@gmail.com', 'alamat39', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-24', 4, 0, 1),
+(107, 'aawe', 'awef', '2019-04-18', '324234', 'awef@gmail.com', 'aefawef', 'cd6a1a15421189de23d7309feebff8d7', '2019-04-03', 4, 0, 1),
+(108, 'awef', 'awef', '2019-04-25', '324234', '423awef@gmail.com', 'awef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-03', 4, 0, 1),
+(109, 'awef', 'awef', '2019-04-25', '324234', '423awef@gmail.com', 'awef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-03', 4, 0, 1),
+(110, 'awef', 'awef', '2019-04-25', '324234', '423awef@gmail.com', 'awef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-03', 4, 0, 1),
+(111, 'awefawef', 'awefawef', '2019-04-20', '324123413', '4aewf@gmial.com', 'awefklajweflkj', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-03', 4, 0, 1),
+(112, 'awefawef', 'awefawef', '2019-04-20', '324123413', '4aewf@gmial.com', 'awefklajweflkj', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-03', 4, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -1396,7 +1443,7 @@ ALTER TABLE `absen`
 -- AUTO_INCREMENT for table `aktivitas_mingguan`
 --
 ALTER TABLE `aktivitas_mingguan`
-  MODIFY `id_mingguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_mingguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `dokumen`
@@ -1456,7 +1503,7 @@ ALTER TABLE `nilai_quiz`
 -- AUTO_INCREMENT for table `orangtua`
 --
 ALTER TABLE `orangtua`
-  MODIFY `id_orangtua` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_orangtua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
@@ -1486,13 +1533,13 @@ ALTER TABLE `quiz`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `siswa_angkatan`
 --
 ALTER TABLE `siswa_angkatan`
-  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `soal`
@@ -1510,7 +1557,7 @@ ALTER TABLE `tahun_ajaran`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

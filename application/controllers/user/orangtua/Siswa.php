@@ -48,27 +48,37 @@ class Siswa extends CI_Controller{
         $this->load->view("user/orangtua/script/js-ajax-siswa");
     }
     public function absen($i){
+        $this->load->model("Mdmatapelajaran");
+        
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matapelajaransiswa()
+        );
+        $this->session->id_siswa = $i;
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
        
-        $this->load->view("user/orangtua/absen");
+        $this->load->view("user/orangtua/absen",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
-        $this->load->view("script/js-linechart");
-
-        $this->load->view("script/js-piechart");
+        $this->load->view("user/siswa/script/js-piechart-attendance");
+        $this->load->view("user/orangtua/script/js-ajax-absen");
     }
     public function nilai($i){
+        $this->load->model("Mdmatapelajaran");
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matapelajaransiswa()
+        );
+        $this->session->id_siswa = $i;
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
        
-        $this->load->view("user/orangtua/index");
+        $this->load->view("user/orangtua/index",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");
@@ -77,6 +87,7 @@ class Siswa extends CI_Controller{
         $this->load->view("script/js-datatable");
         $this->load->view("script/js-linechart");
 
+        $this->load->view("user/orangtua/script/js-ajax-nilai");
         $this->load->view("script/js-piechart");
     }
 }

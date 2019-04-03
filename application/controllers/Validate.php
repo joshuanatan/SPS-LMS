@@ -331,20 +331,35 @@ class Validate extends CI_Controller{
         }
         echo json_encode($i);
     }
-    
-    public function dataabsenchart(){
+    public function ambilabsensiswa2(){
         $this->load->model("Mdsiswaangkatan");
-        $where = array(
-            "user.id_user" => $this->session->id_user
-        );
-        $result = $this->Mdsiswaangkatan->select($where);
-        foreach($result->result() as $a){
-            $this->session->id_siswa = $a->id_siswa_angkatan;
-        }
+        
         $matapelajaran = $this->input->post("matapelajaran");
         $bulan = $this->input->post("bulan");
         $this->load->model("Mdabsen");
-        $result = $this->Mdabsen->absensiswabulanan($matapelajaran,$bulan);
+        $result = $this->Mdabsen->absensiswabulananuntukortu($matapelajaran,$bulan);
+        $this->session->attendancechartdata = array();
+        $i = "";
+        $hadir = 0;
+        $tidak = 0;
+        foreach($result->result() as $a){
+            $i .= "<tr><td>".$a->tgl_kelas."</td><td>".$a->materi_mingguan."</td>";
+            if($a->id_absen  == null){
+                $i .= "<td>TIDAK MASUK</td>";
+                $tidak++;
+            }
+            else{ $i .= "<td>MASUK</td>"; $hadir++;}
+            $i .= "</tr>";
+        }
+        echo json_encode($i);
+    }
+    
+    public function dataabsenchart(){
+        
+        $matapelajaran = $this->input->post("matapelajaran");
+        $bulan = $this->input->post("bulan");
+        $this->load->model("Mdabsen");
+        $result = $this->Mdabsen->absensiswabulananuntukortu($matapelajaran,$bulan);
         $this->session->attendancechartdata = array();
         $i = "";
         $hadir = 0;

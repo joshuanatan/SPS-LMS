@@ -53,7 +53,7 @@ class Index extends CI_Controller{
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
        
-        $this->load->view("user/orangtua/index");
+        //$this->load->view("user/orangtua/index");
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

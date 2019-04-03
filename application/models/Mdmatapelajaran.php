@@ -25,6 +25,9 @@ class Mdmatapelajaran extends CI_Model{
         query = select * from jadwal inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru.id_guru = guru_tahunan.id_guru inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel inner join user on user.id_user = guru.id_user where jadwal.id_kelas = 13 group by matapelajaran.id_matpel,guru.id_guru
         */
     }
+    public function matapelajaransiswa(){
+        return $this->db->query("select * from matapelajaran inner join guru on guru.id_matpel = matapelajaran.id_matpel inner join user on user.id_user = guru.id_user where matapelajaran.id_matpel in (select guru.id_matpel from guru where guru.id_guru in (select guru_tahunan.id_guru from guru_tahunan where guru_tahunan.id_gurutahunan in (select penugasan_guru.id_gurutahunan from penugasan_guru where penugasan_guru.id_kelas in ( select kelas_siswa.id_kelas from kelas_siswa where kelas_siswa.id_siswa_angkatan = ".$this->session->id_siswa." ))))");
+    }
     public function aktivitas($where){
         $this->db->join("jadwal","jadwal.id_jadwal = aktivitas_mingguan.id_jadwal");
         $this->db->where("jadwal.id_kelas ",$this->session->id_kelas);
