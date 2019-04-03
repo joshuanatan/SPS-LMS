@@ -29,7 +29,7 @@ foreach($jadwal as $a){
         <div class="card">
             <div class="card-body">
                 <h4 class="box-title">Jadwal</h4>
-                <button class = "btn btn-success">PRINT</button>
+                <a href = "<?php echo base_url();?>user/guru/index/jadwalpdf"><button class = "btn btn-success">PRINT</button></a>
             </div>
             <div class="card-body">
                 <table class = "table table-bordered">
