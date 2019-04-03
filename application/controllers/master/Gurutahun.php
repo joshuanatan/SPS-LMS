@@ -3,12 +3,26 @@
 defined("BASEPATH") OR exit("No Direct Script");
 
 class Gurutahun extends CI_Controller{
+    public function session_check(){
+        if($this->session->id_user == ""){
+            redirect("login");
+
+        }
+        if($this->session->tahunajaran == ""){
+            redirect("user/".$this->session->role."/index");
+        }
+        /*
+        $this->session_check();
+        */
+    }
     public function __construct(){
         parent::__construct();
         $this->req();
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->session_check();
+
         $this->load->view("req/html-open");
         $this->load->view("req/head");
         $this->load->view("user/akademik/menu");
@@ -24,6 +38,7 @@ class Gurutahun extends CI_Controller{
         $this->load->view("req/header-close");
     }
     public function close(){
+        $this->session_check();
         
         $this->load->view("req/footer");
         $this->load->view("req/content-container-close");
@@ -31,6 +46,8 @@ class Gurutahun extends CI_Controller{
         $this->load->view("script/js-main");
     }
     public function index(){
+        $this->session_check();
+
         $this->load->model("Mdgurutahunan");
         $this->load->model("Mdguru");
         //$this->load->view("namapage/breadcrumb");
@@ -56,6 +73,8 @@ class Gurutahun extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function tambah(){
+        $this->session_check();
+
         $this->load->model("Mdgurutahunan");
         $data = array(
             "id_tahun_ajaran" => $this->session->tahunajaran,
@@ -67,6 +86,8 @@ class Gurutahun extends CI_Controller{
         redirect("master/gurutahun");
     }
     public function remove($i){
+        $this->session_check();
+
         $this->load->model("Mdgurutahunan");
         $where = array(
             "id_gurutahunan" => $i

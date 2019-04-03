@@ -17,9 +17,18 @@ class Index extends CI_Controller{
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+
+        $this->load->model("Mdsiswaangkatan");
+        $where = array(
+            "siswa.id_orangtua" => $this->session->id_user,
+            "siswa_angkatan.status_siswa_angkatan" => 0
+        );
+        $data = array(
+            "siswa" => $this->Mdsiswaangkatan->select($where)->result()
+        );
         $this->load->view("req/html-open");
         $this->load->view("req/head");
-        $this->load->view("user/orangtua/menu");
+        $this->load->view("user/orangtua/menu",$data);
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
         $this->load->view("req/logo");
@@ -37,6 +46,7 @@ class Index extends CI_Controller{
         $this->load->view("req/content-container-close");
         $this->load->view("req/html-close");
         $this->load->view("script/js-main");
+        $this->load->view("user/orangtua/script/js-ajax-siswa");
     }
     public function index(){
         //$this->load->view("namapage/breadcrumb");
@@ -53,6 +63,17 @@ class Index extends CI_Controller{
         $this->load->view("script/js-linechart");
 
         $this->load->view("script/js-piechart");
+    }
+    public function tambahanak(){
+        $data = array(
+            "siswa.id_orangtua" => $this->session->id_user
+        );
+        $where = array(
+            "siswa.id_user" => $this->input->post("id")
+        );
+        $this->load->model("Mdsiswa");
+        $this->Mdsiswa->update($data,$where);
+        redirect("user/orangtua/index");
     }
 }
 ?>

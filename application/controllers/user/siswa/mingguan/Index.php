@@ -54,15 +54,19 @@ class Index extends CI_Controller{
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $this->load->model("Mdmatapelajaran");
+        $this->load->model("Mdgurutahunan");
         $where = array(
-            "jadwal.id_gurutahunan" => $i
+            "guru_tahunan.id_gurutahunan" => $i
         );
-        $aktivitase = $this->Mdmatapelajaran->matpel($where)->result();
+        $aktivitase = $this->Mdgurutahunan->select($where)->result();
         foreach($aktivitase as $a){
             $namamatpel = $a->nama_matpel;
             $namaguru = $a->nama_depan." ".$a->nama_belakang;
             break;
         }
+        $where = array(
+            "jadwal.id_gurutahunan" => $i
+        );
         $data = array(
             "aktivitas" => $this->Mdmatapelajaran->aktivitas($where)->result(),
             "nama_matpel" => $namamatpel,

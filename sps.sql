@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2019 at 07:09 AM
+-- Generation Time: Mar 28, 2019 at 08:30 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -47,7 +47,20 @@ INSERT INTO `absen` (`id_absen`, `id_mingguan`, `id_siswaangkatan`, `status_abse
 (12, 6, 12, 0, 2019),
 (13, 6, 13, 0, 2019),
 (14, 6, 9, 0, 2019),
-(15, 6, 20, 0, 2019);
+(15, 6, 20, 0, 2019),
+(16, 10, 5, 0, 2019),
+(17, 10, 8, 0, 2019),
+(18, 10, 11, 0, 2019),
+(19, 10, 12, 0, 2019),
+(20, 10, 13, 0, 2019),
+(21, 10, 7, 0, 2019),
+(22, 10, 9, 0, 2019),
+(23, 10, 20, 0, 2019),
+(24, 11, 8, 0, 2019),
+(25, 11, 11, 0, 2019),
+(26, 11, 13, 0, 2019),
+(27, 11, 7, 0, 2019),
+(28, 11, 20, 0, 2019);
 
 -- --------------------------------------------------------
 
@@ -139,7 +152,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `id_user`, `status_guru`, `tgl_submit_guru`, `id_matpel`) VALUES
-(1, 34, 0, '2019-03-16', 9),
+(1, 34, 0, '2019-03-16', 13),
 (8, 36, 0, '2019-03-16', 1),
 (9, 37, 0, '2019-03-16', 2),
 (10, 38, 0, '2019-03-16', 11),
@@ -195,51 +208,51 @@ CREATE TABLE `jadwal` (
 --
 
 INSERT INTO `jadwal` (`id_jadwal`, `id_gurutahunan`, `id_kelas`, `hari`, `jam_pelajaran`, `status_jadwal`, `tgl_submit_jadwal`) VALUES
-(541, 2, 13, 'SENIN', 1, 0, '2019-03-19'),
-(542, 0, 13, 'SENIN', 2, 0, '2019-03-19'),
-(543, 0, 13, 'SENIN', 3, 0, '2019-03-19'),
-(544, 0, 13, 'SENIN', 4, 0, '2019-03-19'),
-(545, 0, 13, 'SENIN', 5, 0, '2019-03-19'),
-(546, 0, 13, 'SENIN', 6, 0, '2019-03-19'),
-(547, 0, 13, 'SENIN', 7, 0, '2019-03-19'),
-(548, 0, 13, 'SENIN', 8, 0, '2019-03-19'),
-(549, 0, 13, 'SENIN', 9, 0, '2019-03-19'),
-(550, 0, 13, 'SELASA', 1, 0, '2019-03-19'),
-(551, 2, 13, 'SELASA', 2, 0, '2019-03-19'),
-(552, 0, 13, 'SELASA', 3, 0, '2019-03-19'),
-(553, 0, 13, 'SELASA', 4, 0, '2019-03-19'),
-(554, 0, 13, 'SELASA', 5, 0, '2019-03-19'),
-(555, 0, 13, 'SELASA', 6, 0, '2019-03-19'),
-(556, 0, 13, 'SELASA', 7, 0, '2019-03-19'),
-(557, 0, 13, 'SELASA', 8, 0, '2019-03-19'),
-(558, 0, 13, 'SELASA', 9, 0, '2019-03-19'),
-(559, 0, 13, 'RABU', 1, 0, '2019-03-19'),
-(560, 0, 13, 'RABU', 2, 0, '2019-03-19'),
-(561, 0, 13, 'RABU', 3, 0, '2019-03-19'),
-(562, 0, 13, 'RABU', 4, 0, '2019-03-19'),
-(563, 0, 13, 'RABU', 5, 0, '2019-03-19'),
-(564, 0, 13, 'RABU', 6, 0, '2019-03-19'),
-(565, 0, 13, 'RABU', 7, 0, '2019-03-19'),
-(566, 0, 13, 'RABU', 8, 0, '2019-03-19'),
-(567, 0, 13, 'RABU', 9, 0, '2019-03-19'),
-(568, 0, 13, 'KAMIS', 1, 0, '2019-03-19'),
-(569, 0, 13, 'KAMIS', 2, 0, '2019-03-19'),
-(570, 0, 13, 'KAMIS', 3, 0, '2019-03-19'),
-(571, 2, 13, 'KAMIS', 4, 0, '2019-03-19'),
-(572, 0, 13, 'KAMIS', 5, 0, '2019-03-19'),
-(573, 0, 13, 'KAMIS', 6, 0, '2019-03-19'),
-(574, 0, 13, 'KAMIS', 7, 0, '2019-03-19'),
-(575, 0, 13, 'KAMIS', 8, 0, '2019-03-19'),
-(576, 0, 13, 'KAMIS', 9, 0, '2019-03-19'),
-(577, 0, 13, 'JUMAT', 1, 0, '2019-03-19'),
-(578, 0, 13, 'JUMAT', 2, 0, '2019-03-19'),
-(579, 0, 13, 'JUMAT', 3, 0, '2019-03-19'),
-(580, 0, 13, 'JUMAT', 4, 0, '2019-03-19'),
-(581, 2, 13, 'JUMAT', 5, 0, '2019-03-19'),
-(582, 0, 13, 'JUMAT', 6, 0, '2019-03-19'),
-(583, 0, 13, 'JUMAT', 7, 0, '2019-03-19'),
-(584, 0, 13, 'JUMAT', 8, 0, '2019-03-19'),
-(585, 0, 13, 'JUMAT', 9, 0, '2019-03-19'),
+(541, 2, 13, 'SENIN', 1, 0, '2019-03-28'),
+(542, 3, 13, 'SENIN', 2, 0, '2019-03-28'),
+(543, 0, 13, 'SENIN', 3, 0, '2019-03-28'),
+(544, 0, 13, 'SENIN', 4, 0, '2019-03-28'),
+(545, 0, 13, 'SENIN', 5, 0, '2019-03-28'),
+(546, 0, 13, 'SENIN', 6, 0, '2019-03-28'),
+(547, 0, 13, 'SENIN', 7, 0, '2019-03-28'),
+(548, 0, 13, 'SENIN', 8, 0, '2019-03-28'),
+(549, 0, 13, 'SENIN', 9, 0, '2019-03-28'),
+(550, 0, 13, 'SELASA', 1, 0, '2019-03-28'),
+(551, 2, 13, 'SELASA', 2, 0, '2019-03-28'),
+(552, 3, 13, 'SELASA', 3, 0, '2019-03-28'),
+(553, 0, 13, 'SELASA', 4, 0, '2019-03-28'),
+(554, 0, 13, 'SELASA', 5, 0, '2019-03-28'),
+(555, 0, 13, 'SELASA', 6, 0, '2019-03-28'),
+(556, 0, 13, 'SELASA', 7, 0, '2019-03-28'),
+(557, 0, 13, 'SELASA', 8, 0, '2019-03-28'),
+(558, 0, 13, 'SELASA', 9, 0, '2019-03-28'),
+(559, 0, 13, 'RABU', 1, 0, '2019-03-28'),
+(560, 0, 13, 'RABU', 2, 0, '2019-03-28'),
+(561, 3, 13, 'RABU', 3, 0, '2019-03-28'),
+(562, 3, 13, 'RABU', 4, 0, '2019-03-28'),
+(563, 0, 13, 'RABU', 5, 0, '2019-03-28'),
+(564, 0, 13, 'RABU', 6, 0, '2019-03-28'),
+(565, 0, 13, 'RABU', 7, 0, '2019-03-28'),
+(566, 0, 13, 'RABU', 8, 0, '2019-03-28'),
+(567, 0, 13, 'RABU', 9, 0, '2019-03-28'),
+(568, 0, 13, 'KAMIS', 1, 0, '2019-03-28'),
+(569, 0, 13, 'KAMIS', 2, 0, '2019-03-28'),
+(570, 0, 13, 'KAMIS', 3, 0, '2019-03-28'),
+(571, 2, 13, 'KAMIS', 4, 0, '2019-03-28'),
+(572, 0, 13, 'KAMIS', 5, 0, '2019-03-28'),
+(573, 0, 13, 'KAMIS', 6, 0, '2019-03-28'),
+(574, 0, 13, 'KAMIS', 7, 0, '2019-03-28'),
+(575, 0, 13, 'KAMIS', 8, 0, '2019-03-28'),
+(576, 0, 13, 'KAMIS', 9, 0, '2019-03-28'),
+(577, 0, 13, 'JUMAT', 1, 0, '2019-03-28'),
+(578, 0, 13, 'JUMAT', 2, 0, '2019-03-28'),
+(579, 0, 13, 'JUMAT', 3, 0, '2019-03-28'),
+(580, 0, 13, 'JUMAT', 4, 0, '2019-03-28'),
+(581, 2, 13, 'JUMAT', 5, 0, '2019-03-28'),
+(582, 0, 13, 'JUMAT', 6, 0, '2019-03-28'),
+(583, 0, 13, 'JUMAT', 7, 0, '2019-03-28'),
+(584, 0, 13, 'JUMAT', 8, 0, '2019-03-28'),
+(585, 0, 13, 'JUMAT', 9, 0, '2019-03-28'),
 (586, 0, 14, 'SENIN', 1, 0, '2019-03-19'),
 (587, 2, 14, 'SENIN', 2, 0, '2019-03-19'),
 (588, 0, 14, 'SENIN', 3, 0, '2019-03-19'),
@@ -648,7 +661,7 @@ CREATE TABLE `matapelajaran` (
 --
 
 INSERT INTO `matapelajaran` (`id_matpel`, `nama_matpel`, `jenis_matpel`, `kkm`, `tugas`, `lab`, `quiz`, `uh`, `uts`, `uas`, `status_matpel`, `tgl_submit_matpel`) VALUES
-(1, 'Matematika', 'UMUM', 100, 111, 111, 111, 111, 111, 111, 0, '2019-03-25'),
+(1, 'Matematika', 'UMUM', 100, 10, 10, 5, 20, 20, 35, 0, '2019-03-25'),
 (2, 'Bahasa Indonesia', 'UMUM', 90, 111, 11, 111, 111, 111, 111, 0, '2019-03-25'),
 (3, 'Bahasa Inggris', 'UMUM', 0, 0, 0, 0, 0, 0, 0, 0, '2019-03-16'),
 (4, 'Pendidikan Jasmani', 'UMUM', 0, 0, 0, 0, 0, 0, 0, 0, '2019-03-16'),
@@ -724,7 +737,9 @@ CREATE TABLE `pengumuman` (
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `id_user`, `topik`, `konten`, `dateline`, `status_pengumuman`, `tgl_submit_pengumuman`) VALUES
 (1, 36, 'adsljkafd', 'alwekfjawelkf\r\n', '1998-03-13', 0, '2019-03-27'),
-(2, 36, 'ldsklajsdfadsf', 'lklkjfalsdkasdf', '2019-04-06', 1, '2019-03-27');
+(2, 36, 'ldsklajsdfadsf', 'lklkjfalsdkasdf', '2019-04-06', 1, '2019-03-27'),
+(3, 37, 'ujian temen', 'akan menguji teman sendiri', '2019-03-31', 0, '2019-03-28'),
+(4, 36, 'ujian dosen', 'menguji dosen', '2019-04-01', 0, '2019-03-28');
 
 -- --------------------------------------------------------
 
@@ -735,11 +750,11 @@ INSERT INTO `pengumuman` (`id_pengumuman`, `id_user`, `topik`, `konten`, `dateli
 CREATE TABLE `penilaian` (
   `id_siswa_angkatan` int(11) NOT NULL,
   `id_penugasan` int(11) NOT NULL,
-  `nilai_tugas` int(11) NOT NULL,
-  `nilai_lab` int(11) NOT NULL,
-  `nilai_uh` int(11) NOT NULL,
-  `nilai_uts` int(11) NOT NULL,
-  `nilai_uas` int(11) NOT NULL,
+  `nilai_tugas` float NOT NULL,
+  `nilai_lab` float NOT NULL,
+  `nilai_uh` float NOT NULL,
+  `nilai_uts` float NOT NULL,
+  `nilai_uas` float NOT NULL,
   `tgl_submit_penilaian` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1163,7 +1178,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_depan`, `nama_belakang`, `tanggal_lahir`, `nomor_telpon`, `email`, `alamat`, `password`, `tgl_submit`, `id_admin`, `status`, `id_role`) VALUES
 (4, 'joshua', 'natan', '2019-03-12', '089616961915', 'joshuanatan.jn3@gmail.com', 'abc', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-12', 0, 0, 4),
 (5, 'joshua', 'natan', '2019-03-12', '089616961915', 'joshuanatan.jn4@gmail.com', 'abc', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-12', 0, 0, 5),
-(34, 'Joshua', 'Luih', '1998-06-06', '082154435489', 'luih123.joshua@gmail.com', 'Avalon Residence', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-16', 5, 0, 2),
+(34, 'Joshua', 'Luih', '1998-06-06', '09832938293', 'luih123.joshua@gmail.com', 'avalon', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-27', 5, 0, 2),
 (36, 'Joshua Natan', 'Wijaya', '1998-03-13', '089616961915', 'joshuanatan.jn@gmail.com', 'Kembang Molek IX / 5', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-16', 5, 0, 2),
 (37, 'Bryan ', 'Liming', '1111-11-11', '12345', 'bryanliming@gmail.com', 'asdf', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-16', 5, 0, 2),
 (38, 'Eugenius Rudolf', 'Pranoto', '1998-11-15', '1234', 'eugenepranoto@gmail.com', 'Ures', 'e10adc3949ba59abbe56e057f20f883e', '2019-03-16', 5, 0, 2),
@@ -1375,7 +1390,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `aktivitas_mingguan`
@@ -1447,7 +1462,7 @@ ALTER TABLE `orangtua`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `penilaian`

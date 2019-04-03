@@ -4,12 +4,26 @@
 defined("BASEPATH") OR exit("No Direct Script");
 
 class Gurumatpel extends CI_Controller{
+    public function session_check(){
+        if($this->session->id_user == ""){
+            redirect("login");
+
+        }
+        if($this->session->tahunajaran == ""){
+            redirect("user/".$this->session->role."/index");
+        }
+        /*
+        $this->session_check();
+        */
+    }
     public function __construct(){
         parent::__construct();
         $this->req();
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->session_check();
+
         $this->load->view("req/html-open");
         $this->load->view("req/head");
         $this->load->view("user/akademik/menu");
@@ -25,6 +39,7 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("req/header-close");
     }
     public function close(){
+        $this->session_check();
         
         $this->load->view("req/footer");
         $this->load->view("req/content-container-close");
@@ -32,6 +47,8 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-main");
     }
     public function index(){
+        $this->session_check();
+
         if($this->session->idgurupilihkelas != ""){
             redirect("master/gurumatpel/jurusanterpilih/".$this->session->pilihjurusan);
         }
@@ -77,6 +94,8 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function ubahguru(){
+        $this->session_check();
+
         $this->load->model("Mdgurutahunan");
         $this->load->model("Mdkelas");
         $this->session->idgurupilihkelas = $this->input->post("guru");
@@ -90,6 +109,7 @@ class Gurumatpel extends CI_Controller{
         redirect("master/gurumatpel/jurusanterpilih/".$jenisjurusan);
     }
     public function jurusanterpilih($jenisjurusan){
+        $this->session_check();
         
         switch($jenisjurusan){
             case "IPA":
@@ -147,6 +167,7 @@ class Gurumatpel extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function remove($i){
+        $this->session_check();
         
         $where = array(
             "id_penugasan" => $i
@@ -156,6 +177,8 @@ class Gurumatpel extends CI_Controller{
         redirect("master/gurumatpel");
     }
     public function assign($i){
+        $this->session_check();
+
         $data = array(
             "id_gurutahunan" => $this->session->idgurupilihkelas,
             "id_kelas" => $i,

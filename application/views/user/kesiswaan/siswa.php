@@ -110,19 +110,19 @@
                     <hr>
                     <div class = "form-group col-lg-12">
                         <label>Nama Orang Tua</label>
-                        <input type = "text" class = "form-control col-lg-12">
+                        <input type = "text" class = "form-control col-lg-12" name = "namaortu">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Nomor Telpon</label>
-                        <input type = "number" class = "form-control col-lg-12">
+                        <input type = "number" class = "form-control col-lg-12" name = "nohportu">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Email</label>
-                        <input type = "email" class = "form-control col-lg-12">
+                        <input type = "email" class = "form-control col-lg-12" name = "emailortu">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Password</label>
-                        <input type = "password" class = "form-control col-lg-12">
+                        <input type = "password" class = "form-control col-lg-12" name = "passwordortu">
                     </div>
                 
                 </div>

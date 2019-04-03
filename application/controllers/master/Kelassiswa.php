@@ -2,12 +2,26 @@
 defined("BASEPATH") OR exit("No Direct Script");
 
 class Kelassiswa extends CI_Controller{
+    public function session_check(){
+        if($this->session->id_user == ""){
+            redirect("login");
+
+        }
+        if($this->session->tahunajaran == ""){
+            redirect("user/".$this->session->role."/index");
+        }
+        /*
+        $this->session_check();
+        */
+    }
     public function __construct(){
         parent::__construct();
         $this->req();
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->session_check();
+
         $this->load->view("req/html-open");
         $this->load->view("req/head");
         $this->load->view("user/kesiswaan/menu");
@@ -23,6 +37,7 @@ class Kelassiswa extends CI_Controller{
         $this->load->view("req/header-close");
     }
     public function close(){
+        $this->session_check();
         
         $this->load->view("req/footer");
         $this->load->view("req/content-container-close");
@@ -31,6 +46,8 @@ class Kelassiswa extends CI_Controller{
     }
     
     public function index(){
+        $this->session_check();
+
         if($this->session->pilihjurusan != "" && $this->session->tahunajaran != "" && $this->session->idkelas != ""){redirect("master/kelassiswa/siswajurusan/".$this->session->kelas);}
         $this->load->model("Mdkelas");
         $this->load->model("Mdsiswa");
@@ -59,6 +76,8 @@ class Kelassiswa extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function ubahkelas(){
+        $this->session_check();
+
         $kelas = $this->input->post("kelas");
         $this->session->pilihjurusan = substr($kelas,2,3);
         $where = array(
@@ -77,6 +96,8 @@ class Kelassiswa extends CI_Controller{
         redirect("master/kelassiswa/siswajurusan/".substr($kelas,0,2));
     }
     public function siswajurusan($kelas){
+        $this->session_check();
+
         $this->load->model("Mdkelas");
         $this->load->model("Mdsiswa");
         //$this->load->view("namapage/breadcrumb");
@@ -107,6 +128,8 @@ class Kelassiswa extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function remove($i){
+        $this->session_check();
+
         $this->load->model("Mdkelassiswa");
         $where = array(
             "id_kelas_siswa" => $i
@@ -115,6 +138,8 @@ class Kelassiswa extends CI_Controller{
         redirect("master/kelassiswa");
     }
     public function submit(){
+        $this->session_check();
+
         $this->load->model("Mdkelassiswa");
         $kelas = $this->input->post("assign");
         foreach($kelas as $a){

@@ -40,6 +40,7 @@
         </div> <!-- /.card -->
     </div>
 </div>
+<?php if($this->session->tahunajaran != ""){ ?> 
 <div class="row">
     <div class="col-xl-12"> 
         <div class="card">
@@ -93,6 +94,7 @@
                 </div> <!-- /.table-stats -->
             </div>
         </div> <!-- /.card -->
+        
     </div>  <!-- /.col-lg-8 -->
-
+        <?php } ?> 
 </div>

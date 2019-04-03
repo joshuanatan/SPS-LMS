@@ -61,9 +61,35 @@ class Login extends CI_Controller{
             }
         }
         
+        redirect("login");
+        
+    }
+    public function orangtua(){
+        
+        $this->load->view("login/main/logo");
+        $this->load->view("login/main/orangtua");
+    }
+    public function logorangtua(){
+        $this->load->model("Mdorangtua");
+        $username = $this->input->post("email");
+        $password = md5($this->input->post("pass"));
+        $where = array(
+            "email_orangtua" => $username,
+            "password" => $password
+        );
+        $result = $this->Mdorangtua->select($where)->result();
+        foreach($result as $a){
+            $this->session->id_user = $a->id_orangtua;
+            $this->session->username = ucwords($a->nama_orangtua);
+            $this->session->email = $a->email_orangtua;
+            
+            $this->session->role = "orangtua";
+            redirect("user/orangtua/index");
+        }
+        redirect("login/orangtua");
     }
     public function signout(){
         $this->session->sess_destroy();
-        redirect("login");
+        redirect("login/orangtua");
     }
 }

@@ -251,15 +251,71 @@ class Validate extends CI_Controller{
         $bulan = $this->input->post("bulan");
         $this->load->model("Mdabsen");
         $result = $this->Mdabsen->absensiswabulanan($matapelajaran,$bulan);
+        $this->session->attendancechartdata = array();
         $i = "";
+        $hadir = 0;
+        $tidak = 0;
         foreach($result->result() as $a){
             $i .= "<tr><td>".$a->tgl_kelas."</td><td>".$a->materi_mingguan."</td>";
             if($a->id_absen  == null){
                 $i .= "<td>TIDAK MASUK</td>";
+                $tidak++;
             }
-            else $i .= "<td>MASUK</td>";
+            else{ $i .= "<td>MASUK</td>"; $hadir++;}
             $i .= "</tr>";
         }
+        echo json_encode($i);
+    }
+    
+    public function dataabsenchart(){
+        $this->load->model("Mdsiswaangkatan");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $result = $this->Mdsiswaangkatan->select($where);
+        foreach($result->result() as $a){
+            $this->session->id_siswa = $a->id_siswa_angkatan;
+        }
+        $matapelajaran = $this->input->post("matapelajaran");
+        $bulan = $this->input->post("bulan");
+        $this->load->model("Mdabsen");
+        $result = $this->Mdabsen->absensiswabulanan($matapelajaran,$bulan);
+        $this->session->attendancechartdata = array();
+        $i = "";
+        $hadir = 0;
+        $tidak = 0;
+        foreach($result->result() as $a){
+            if($a->id_absen  == null){
+                $tidak++;
+            }
+            else{ 
+                $hadir++;
+            }
+        }
+        $i = $hadir.",".$tidak;
+        echo json_encode($i);
+    }
+    public function detailidsiswa(){
+        $id_user = $this->input->post("id_user");
+        $this->load->model("Mdsiswa");
+        $where = array(
+            "user.id_user" => $id_user,
+            "md5(user.id_user)" => $this->input->post("password")
+        );
+        $result = $this->Mdsiswa->select($where);
+        $i = "<table class = 'table table-stripped table-bordered'>";
+        foreach($result->result() as $a){
+            
+            $i.= "<tr><td style = 'width:30%'>ID User: </td><td style = 'width:70%'>".$a->id_user."</td></tr>";
+            $i.= "<tr><td>ID Siswa: </td><td>".$a->id_siswa."</td></tr>";
+            $i.= "<tr><td>Nama Siswa: </td><td>".ucwords($a->nama_depan)." ".ucwords($a->nama_belakang)."</td></tr>";
+            $i.= "<tr><td>Tanggal Lahir Siswa: </td><td>".$a->tanggal_lahir."</td></tr>";
+            $i.= "<tr><td>Alamat Siswa: </td><td>".$a->alamat."</td></tr>";
+            $i.= "<tr><td>Nomor Telpon Siswa: </td><td>".$a->nomor_telpon."</td></tr>";
+            $i.= "<tr><td>Jurusan Siswa: </td><td>".$a->jurusan."</td></tr>";
+
+        }
+        $i .= "</table>";
         echo json_encode($i);
     }
 }

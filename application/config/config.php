@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://localhost/project/admin-ci';
-$config['base_url'] = 'http://localhost/project/sps';
+$config['base_url'] = 'http://localhost:8888/project/sps';
 
 /*
 |--------------------------------------------------------------------------

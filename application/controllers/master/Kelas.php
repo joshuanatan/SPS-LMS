@@ -4,12 +4,27 @@
 defined("BASEPATH") OR exit("No Direct Script");
 
 class Kelas extends CI_Controller{
+    public function session_check(){
+        if($this->session->id_user == ""){
+            redirect("login");
+
+        }
+        if($this->session->tahunajaran == ""){
+            redirect("user/".$this->session->role."/index");
+        }
+        /*
+        $this->session_check();
+        */
+    }
     public function __construct(){
+        
         parent::__construct();
         $this->req();
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->session_check();
+
         $this->load->view("req/html-open");
         $this->load->view("req/head");
         $this->load->view("user/akademik/menu");
@@ -25,6 +40,7 @@ class Kelas extends CI_Controller{
         $this->load->view("req/header-close");
     }
     public function close(){
+        $this->session_check();
         
         $this->load->view("req/footer");
         $this->load->view("req/content-container-close");
@@ -33,6 +49,8 @@ class Kelas extends CI_Controller{
     }
     
     public function index(){
+        $this->session_check();
+
         $this->load->model("Mdkelas");
         $this->load->model("Mdgurutahunan");
         //$this->load->view("namapage/breadcrumb");
@@ -56,6 +74,8 @@ class Kelas extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     public function tambahKelas(){
+        $this->session_check();
+
         $this->load->model(array("Mduser","Mdkelas"));
         $where2 = array(
             "kelas" => $this->input->post("kelas"),
@@ -99,6 +119,8 @@ class Kelas extends CI_Controller{
         redirect("master/kelas");
     }
     public function remove($i){
+        $this->session_check();
+
         $this->load->model(array("Mdkelas","Mdjadwal"));
         $where = array(
             "id_kelas" => $i
@@ -113,6 +135,8 @@ class Kelas extends CI_Controller{
     }
     
     public function active($i){
+        $this->session_check();
+
         $data = array(
             "status_kelas" => 0
         );
@@ -124,6 +148,8 @@ class Kelas extends CI_Controller{
     }
     
     public function editKelas($i){
+        $this->session_check();
+
         $this->load->model(array("Mduser","Mdkelas"));
         $where = array(
             "id_kelas" => $i
