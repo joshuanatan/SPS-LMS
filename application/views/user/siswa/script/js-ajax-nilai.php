@@ -90,12 +90,16 @@ function ambilnilai(){
                     type: "POST",
                     dataType:"JSON",
                     success:function(respon){
-                        var result = respon.split(",");
+                        var result = respon.split("=");
+                        console.log(result[0]);
                         var nilai = [];
                         var nama = [];
+                        var abc = [];
                         for(var a = 0; a<result.length-1 ; a++){
-                            nilai[a] = result[a][0];
-                            nama[a] = result[a][1];
+                            abc[a] = result[a].split("-");
+                            nilai[a] = abc[a][0];
+                            nama[a] = abc[a][1];
+                            console.log("nilai "+nilai[a]+" & "+nama[a]);
                         }
                         ( function ( $ ) {
                             var ctx = document.getElementById( "lineChart2" );
@@ -107,9 +111,10 @@ function ambilnilai(){
                                     datasets: [
                                         {
                                             label: "Rata-rata Nilai Mata Pelajaran",
-                                            borderColor: "rgba(0,0,0,.09)",
+                                            borderColor: "rgba(0, 194, 146, 0.9)",
                                             borderWidth: "1",
-                                            backgroundColor: "rgba(0,0,0,.07)",
+                                            backgroundColor: "rgba(0, 194, 146, 0.5)",
+                                            pointHighlightStroke: "rgba(26,179,148,1)",
                                             data: nilai},
                                         {
                                             label: "Scale",

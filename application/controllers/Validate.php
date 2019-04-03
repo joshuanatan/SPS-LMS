@@ -202,7 +202,7 @@ class Validate extends CI_Controller{
         $result = $this->Mdpenilaian->rataratasemua($id_matpel)->result();
         $i = "";
         foreach($result as $a){
-            $i .= $a->a."-".$a->nama_matpel.",";
+            $i .= $a->a."-".$a->nama_matpel."=";
             
         }       
         echo json_encode($i);
