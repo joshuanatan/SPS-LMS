@@ -1,13 +1,14 @@
 
 <script src="<?php echo base_url();?>assets/js/lib/chart-js/Chart.bundle.js"></script>
 <Script>
+/*
 ( function ( $ ) {
     var ctx = document.getElementById( "lineChart" );
     ctx.height = 150;
     var myChart = new Chart( ctx, {
         type: 'line',
         data: {
-            labels: [ "January", "February", "March", "April", "May", "June", "July" ],
+            labels: [ "Juli","Agustus","September","Oktober","November","Desember","Janari","Februari","Maret","April","Mei","Juni" ],
             datasets: [
                 {
                     label: "Nilai Siswa",
@@ -79,4 +80,5 @@
         }
     } );
 } )( jQuery );
+*/
 </Script>

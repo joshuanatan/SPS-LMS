@@ -142,6 +142,71 @@ class Validate extends CI_Controller{
         }        
         echo json_encode($i);
     }
+    public function nilaiulanganuntukchart(){
+        $id_matpel = $this->input->post("id_matpel");
+        $this->load->model("Mdpenilaian");
+        $this->load->model("Mdsiswaangkatan");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $result = $this->Mdsiswaangkatan->select($where);
+        foreach($result->result() as $a){
+            $this->session->id_siswa = $a->id_siswa_angkatan;
+        }
+        $result = $this->Mdpenilaian->kkm($id_matpel)->result();
+        $kkm = array();
+        $b = 0;
+        foreach($result as $a){
+            $kkm[$b] = $a->a;
+            $b++;
+        }       
+        $result = $this->Mdpenilaian->laporannilai($id_matpel)->result();
+        $i = "";
+        $b=0;
+        foreach($result as $a){
+            $i .= $a->materi_mingguan."-".($a->nilai)."-".$kkm[$b].",";
+            $b++;
+            
+        }       
+        echo json_encode($i);
+    }
+    public function datanilaiulangansiswa(){
+        $id_matpel = $this->input->post("id_matpel");
+        $this->load->model("Mdpenilaian");
+        $result = $this->Mdpenilaian->laporannilai($id_matpel)->result();
+        $i = "";
+        foreach($result as $a){
+            $i .= "<tr><td>".$a->materi_mingguan."</td><td>".$a->tgl_kelas."</td><td>".$a->nilai."</td><td>ULANGAN HARIAN</td>";
+            
+        }
+        $this->load->model("Mdnilaiquiz");
+        $result = $this->Mdnilaiquiz->laporannilai($id_matpel)->result();
+        foreach($result as $a){
+            
+            $i .= "<tr><td>".$a->materi_mingguan."</td><td>".$a->tgl_kelas."</td><td>".(($a->nilai_quiz)*10)."</td><td>QUIZ</td>";
+            
+        }        
+        echo json_encode($i);
+    }
+    public function nilairataratauntukchart(){
+        $id_matpel = $this->input->post("id_matpel");
+        $this->load->model("Mdpenilaian");
+        $this->load->model("Mdsiswaangkatan");
+        $where = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $result = $this->Mdsiswaangkatan->select($where);
+        foreach($result->result() as $a){
+            $this->session->id_siswa = $a->id_siswa_angkatan;
+        }   
+        $result = $this->Mdpenilaian->rataratasemua($id_matpel)->result();
+        $i = "";
+        foreach($result as $a){
+            $i .= $a->a."-".$a->nama_matpel.",";
+            
+        }       
+        echo json_encode($i);
+    }
     public function nilaiulangansiswa(){
         $id_matpel = $this->input->post("id_matpel");
         $this->load->model("Mdpenilaian");

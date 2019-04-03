@@ -48,17 +48,37 @@ class Mdpenilaian extends CI_Model{
         $this->db->delete("penilaian",$where);
     }
     public function laporannilai($id_matpel){
+        //bugnya disini adalah kalua ada 2 guru yang mengajar mata pelajaran sama
         $this->db->join("aktivitas_mingguan","aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas","inner");
         $this->db->join("jadwal","jadwal.id_jadwal = aktivitas_mingguan.id_jadwal","inner");
         $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan");
         $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru");
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel");
-        $this->db->where("id_siswa",$this->session->id_siswa);
+        $this->db->where("ulangan_harian.id_siswa",$this->session->id_siswa);
         $this->db->where("guru.id_matpel",$id_matpel);
         return $this->db->get("ulangan_harian");
         /*
         query = SELECT * FROM ulangan_harian inner join aktivitas_mingguan on aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas inner join jadwal on jadwal.id_jadwal = aktivitas_mingguan.id_jadwal inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru.id_guru = guru_tahunan.id_guru inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel where id_siswa = 5 and guru.id_matpel = 1
         */
+    }
+    public function kkm($id_matpel){
+        $this->db->select("*,avg(nilai) as 'a'");
+        $this->db->join("aktivitas_mingguan","aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas","inner");
+        $this->db->join("jadwal","jadwal.id_jadwal = aktivitas_mingguan.id_jadwal","inner");
+        $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan");
+        $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru");
+        $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel");
+        $this->db->where("guru.id_matpel",$id_matpel);
+        $this->db->where("jadwal.id_gurutahunan in (select penugasan_guru.id_gurutahunan from penugasan_guru where jadwal.id_kelas = (select kelas_siswa.id_kelas from kelas_siswa where kelas_siswa.id_siswa_angkatan = ".$this->session->id_siswa."))",NULL,FALSE);
+        $this->db->group_by("materi_mingguan");
+        return $this->db->get("ulangan_harian");
+        /*
+        query = SELECT * FROM ulangan_harian inner join aktivitas_mingguan on aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas inner join jadwal on jadwal.id_jadwal = aktivitas_mingguan.id_jadwal inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru.id_guru = guru_tahunan.id_guru inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel where id_siswa = 5 and guru.id_matpel = 1
+        */
+    }
+    public function rataratasemua(){
+        $query = 'select *,AVG(ulangan_harian.nilai) as "a" FROM ulangan_harian inner join aktivitas_mingguan on aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas inner join jadwal on jadwal.id_jadwal = aktivitas_mingguan.id_jadwal inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru.id_guru = guru_tahunan.id_guru inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel where id_siswa = '.$this->session->id_siswa.' group by guru.id_matpel';
+        return $this->db->query($query);
     }
     public function laporannilaiutama($id_matpel){
         $this->db->join("penugasan_guru","penugasan_guru.id_penugasan = penilaian.id_penugasan","inner");

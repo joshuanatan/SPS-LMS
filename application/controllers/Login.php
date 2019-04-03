@@ -90,6 +90,6 @@ class Login extends CI_Controller{
     }
     public function signout(){
         $this->session->sess_destroy();
-        redirect("login/orangtua");
+        redirect("login");
     }
 }
