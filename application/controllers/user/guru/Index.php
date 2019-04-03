@@ -7,7 +7,8 @@ class Index extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->req();
-        $this->load->model(array("Mduser","Mdmatapelajaran"));
+        $this->load->model(array("Mduser","Mdmatapelajaran","Mdjadwal"));
+        $this->load->library('pdf');
     }
     public function req(){
         $this->load->view("req/html-open");
@@ -109,8 +110,7 @@ class Index extends CI_Controller{
         $this->close();
         $this->load->view("script/js-calender");
         $this->load->view("script/js-datatable");
-    }
-    
+    }    
     public function inputnilai(){
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
@@ -162,5 +162,111 @@ class Index extends CI_Controller{
         $this->load->view("script/js-datatable");
     }
     
+    public function jadwalpdf(){
+        
+        
+        $this->load->model("Mdjadwal");
+        $this->load->model("Mdjadwalpdf");
+        
+        $where3 = array(
+            "user.id_user" => $this->session->id_user
+        );
+        $data = array(
+            "jadwal" => $this->Mdjadwalpdf->selectjadwalguru($where3)->result(),
+            "user" => $this->Mduser->select($where3)->result(),
+            "matpel" => $this->Mdjadwalpdf->matpelpdf($this->session->id_user)->result(),
+            "thajaran" => $this->Mdjadwalpdf->thajaran($this->session->id_user)->result(),
+            
+        );
+        
+               
+
+$i = 0;
+$hari = 0;
+
+for($hari = 0; $hari < 5; $hari++){
+    for($jampel = 0; $jampel < 9; $jampel++){
+        $data[$hari][$jampel] = "-";
+    }
 }
-?>
+foreach($data['jadwal'] as $a){
+    switch($a->hari){
+        case "SENIN" : $hari = 0;
+            break;
+        case "SELASA":$hari = 1;
+            break;
+        case "RABU" :$hari = 2;
+            break;
+        case "KAMIS":$hari = 3;
+            break;
+        case "JUMAT":$hari = 4;
+            break;
+    }
+    $data[$hari][($a->jam_pelajaran-1)] = $a->kelas." ".$a->jurusan." ".$a->urutan;
+    $i++;
+}
+
+
+foreach($data['user'] as $nm){
+    $nama = $nm->nama_depan.' '.$nm->nama_belakang;
+}
+        
+foreach($data['matpel'] as $mp){
+    $matpel = $mp->nama_matpel;
+}
+        
+        
+ foreach($data['thajaran'] as $th){
+    $thajaran = $th->tahun_awal.'-'.$th->tahun_akhir;
+}       
+        
+        $pdf = new FPDF ('l','mm','A4');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B','18');
+        $pdf->Cell(0,15,'Jadwal Mingguan',0,1,'C');
+       
+        $pdf->SetFont('Arial','B',12);
+        $pdf->Cell(0,6,$nama.' - '.$matpel.' - '.$thajaran,0,1,'C');
+        
+        $pdf->Cell(10,7,'',0,1);
+        $pdf->SetFont('Arial','B','10');
+        $pdf->Cell(55,7,'Senin',1,0,'C');
+        $pdf->Cell(55,7,'Selasa',1,0,'C');
+        $pdf->Cell(55,7,'Rabu',1,0,'C');
+        $pdf->Cell(55,7,'Kamis',1,0,'C');
+        $pdf->Cell(55,7,'Jumat',1,1,'C');
+        $pdf->SetFont('Arial','','10');
+        
+        
+        
+        
+        for($jampel = 0; $jampel < 9; $jampel++){ 
+            
+                        
+             for($hari = 0; $hari < 5; $hari++){
+                 if($hari != 4)
+                $pdf->Cell(55,15,$data[$hari][$jampel],1,0,'C');
+                 else
+                     $pdf->Cell(55,15,$data[$hari][$jampel],1,1,'C');
+             }
+            
+        
+        
+            
+        }
+        $filename='tes.pdf';
+        
+        $pdf->Output($filename,'F');
+        
+        $pdf->Output();
+
+
+        
+        
+        
+    
+        
+        
+    }
+    
+}
