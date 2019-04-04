@@ -64,17 +64,17 @@ class Index extends CI_Controller{
         $this->load->view("user/guru/script/js-ajax-nilai");
     }
     public function detailnilaisiswa($i){
+        $this->session->id_siswa = $i;
+        $this->load->model("Mdmatapelajaran");
+        $data = array(
+            "matpel" => $this->Mdmatapelajaran->matapelajaransiswa()
+        );
          //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         $this->load->model("Mdmatapelajaran");
         $this->session->id_siswa = $i;
         /* disini custom contentnya pake apapun yang dibutuhkan */
-        $where = array(
-            "id_siswa_angkatan" => $i
-        );
-        $data = array(
-            "matpel" => $this->Mdmatapelajaran->matpel()
-        );
+        
         $this->load->view("user/guru/detailnilaisiswa",$data);
         /* endnya disini */
         $this->load->view("req/close-content");

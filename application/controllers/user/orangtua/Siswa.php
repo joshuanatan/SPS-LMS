@@ -48,12 +48,12 @@ class Siswa extends CI_Controller{
         $this->load->view("user/orangtua/script/js-ajax-siswa");
     }
     public function absen($i){
+        $this->session->id_siswa = $i;
         $this->load->model("Mdmatapelajaran");
         
         $data = array(
             "matpel" => $this->Mdmatapelajaran->matapelajaransiswa()
         );
-        $this->session->id_siswa = $i;
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
@@ -69,11 +69,12 @@ class Siswa extends CI_Controller{
         $this->load->view("user/orangtua/script/js-ajax-absen");
     }
     public function nilai($i){
+        
+        $this->session->id_siswa = $i;
         $this->load->model("Mdmatapelajaran");
         $data = array(
             "matpel" => $this->Mdmatapelajaran->matapelajaransiswa()
         );
-        $this->session->id_siswa = $i;
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
