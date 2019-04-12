@@ -14,7 +14,6 @@
                         <td><a href = "<?php echo base_url();?>user/walikelas/index/detailnilaisiswa/<?php echo $a->id_siswa_angkatan;?>"><button class = "btn btn-success col-lg-12" style = "margin-bottom:10px">Lihat Detail Nilai</button></a></td>
                         <td><a href = "<?php echo base_url();?>user/walikelas/index/detailabsensiswa/<?php echo $a->id_siswa_angkatan;?>"><button class = "btn btn-warning col-lg-12" style = "margin-bottom:10px">Lihat Detail Absen</button></a></td>
                         <td><a href = "<?php echo base_url();?>user/walikelas/index/raporpdf/<?php echo $a->id_siswa_angkatan;?>"><button class = "btn btn-warning col-lg-12" style = "margin-bottom:10px">Cetak Rapor</button></a></td>
-                        <td><a href = "<?php echo base_url();?>user/walikelas/index/emailrapor/<?php echo $a->id_siswa_angkatan;?>"><button class = "btn btn-success col-lg-12" style = "margin-bottom:10px">Email Rapor</button></a></td>
                     </tr>
                     <?php } ?>
                 </table>
