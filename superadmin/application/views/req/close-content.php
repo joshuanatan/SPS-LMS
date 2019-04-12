@@ -1,0 +1,2 @@
+    </div><!-- .animated -->
+</div><!-- .content -->
