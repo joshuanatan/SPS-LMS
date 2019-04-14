@@ -17,6 +17,8 @@
                         <td><button class ="btn btn-success col-lg-12">Kirim Rapot</button></td>
                         <td><select class = "form-control" id = "statusNaik"><option value = "0" >Naik Kelas</option><option value = "0" >Tinggal Kelas</option></select></td>
                         <td><a href = "<?php echo base_url();?>walikelas/index/selesai/<?php echo $a->id_siswa_angkatan; ?>"><button class = "btn btn-success col-lg-12">Selesai</button></a></td>
+                        
+                        <td><a href = "<?php echo base_url();?>user/walikelas/index/emailrapor/<?php echo $a->id_siswa_angkatan;?>"><button class = "btn btn-success col-lg-12" style = "margin-bottom:10px">Email Rapor</button></a></td>
                     </tr>
                     <?php } ?>
                 </table>
