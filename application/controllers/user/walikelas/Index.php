@@ -277,6 +277,36 @@ class Index extends CI_Controller{
         $this->load->view("user/guru/script/js-ajax-absen");
     }
     public function selesai($i){
+        //nonaktifkan yang ini
+        //tambahin di kelas berikutnya
+        $where = array(
+            "id_siswa_angkatan" => $i
+        );
+        $data = array(
+            "status_siswa_angkatan" => 1
+        );
+        $this->load->model("Mdsiswaangkatan");
+        $this->load->model("Mdsetting");
+        $this->Mdsiswaangkatan->update($data,$where);
+        $result = $this->Mdsiswaangkatan->select($where);
+        $where2 = array(
+            "status" => 0
+        );
+        $tahunajaran = $this->Mdsetting->select($where2);
+        foreach($tahunajaran->result() as $a){
+            $tahunajaranbaru = $a->id_next_tahun_ajaran;
+        }
+        foreach($result->result() as $a){    
+            $data = array(
+                "id_tahun_ajaran" => $tahunajaranbaru,
+                "id_siswa" => $a->id_siswa,
+                "kelas" => $a->kelas + $this->input->post("status_naik"),
+                "status_siswa_angkatan" => 0,
+                "tgl_submit_siswa_angkatan" => date("Y-m-d")  
+            );
+            $this->Mdsiswaangkatan->insert($data);
+        }
+        redirect("user/walikelas/index");
     }
     
     public function emailrapor($i){
