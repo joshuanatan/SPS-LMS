@@ -56,7 +56,7 @@ class Kelassiswa extends CI_Controller{
         /* disini custom contentnya pake apapun yang dibutuhkan */
         $where = array(
             "status_kelas" =>0,
-            //"id_tahun_ajaran" => $this->session->tahunajaran
+            "id_tahun_ajaran" => $this->session->tahunajaran
         );  
         $where2 = array(
             //"jurusan" => $this->session->pilihanjurusan

@@ -152,8 +152,34 @@ class Siswa extends CI_Controller{
             );
             $this->Mdorangtua->insert($data);
         }
+        $config = array(
+            "protocol" => "smtp",
+            "smtp_host" => "ssl://smtp.googlemail.com",
+            "smtp_port" => 587,
+            "smtp_user" => "findworksuph@gmail.com",
+            "smtp_pass" => "f1ndw0rk5",
+            "mailtype" => "html",
+            "charset" => "iso-8859-1",
+            "wordwrap" => true
+        );
+        $this->load->library("email", $config);
+        $this->email->from("findworksuph@gmail.com","System");
+        $this->email->to($this->input->post("email"));
+        $this->email->subject("WELCOME MESSAGE");
+        $this->email->message("ID SISWA ".$iduser."<BR/>PASS SISWA".md5($iduser));
+        $this->email->set_newline("\r\n");
+
+        if($this->email->send()){
+            $this->email->print_debugger();
+            echo "hai";
+        }
+        else{
+            $this->email->print_debugger();
+            echo "fail";
+        }
         
-        redirect("master/siswa");
+        
+        //redirect("master/siswa");
     }
     public function remove($i){
         $this->session_check();

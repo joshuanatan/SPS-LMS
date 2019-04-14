@@ -50,7 +50,6 @@ class Kelas extends CI_Controller{
     
     public function index(){
         $this->session_check();
-
         $this->load->model("Mdkelas");
         $this->load->model("Mdgurutahunan");
         //$this->load->view("namapage/breadcrumb");
@@ -62,7 +61,7 @@ class Kelas extends CI_Controller{
         );
         $data = array(
             "kelas" => $this->Mdkelas->select($where2)->result(),
-            "walikelas" => $this->Mdgurutahunan->select($where2)->result(),
+            "walikelas" => $this->Mdgurutahunan->select2($where2)->result(),
             //"stockwalikelas" => $this->Mdgurutahunan->nonwalikelas()->result()
         );
         $this->load->view("user/akademik/kelas",$data);
@@ -79,7 +78,8 @@ class Kelas extends CI_Controller{
         $this->load->model(array("Mduser","Mdkelas"));
         $where2 = array(
             "kelas" => $this->input->post("kelas"),
-            "jurusan" => $this->input->post("jurusan")
+            "jurusan" => $this->input->post("jurusan"),
+            "id_tahun_ajaran" => $this->session->tahunajaran
         );
         $jumlah = $this->Mdkelas->select($where2)->num_rows();
         $data = array(
@@ -165,6 +165,17 @@ class Kelas extends CI_Controller{
         );
         $this->Mdkelas->update($data,$where);
         
+        redirect("master/kelas");
+    }
+    public function updateWalikelas($i){
+        $where = array(
+            "id_kelas" => $i
+        );
+        $data = array(
+            "id_gurutahunan" => $this->input->post("id_guru")
+        );
+        $this->load->model("Mdkelas");
+        $this->Mdkelas->update($data,$where);
         redirect("master/kelas");
     }
 }

@@ -28,14 +28,15 @@
                                 <td><?php echo $a->jurusan;?></td>    
                                 <td><?php echo $a->urutan;?></td>    
                                 <td>
-                                    <form action = "<?php echo base_url();?>master/kelas/updateWalikelas" method = "post">
+                                    <form action = "<?php echo base_url();?>master/kelas/updateWalikelas/<?php echo $a->id_kelas; ?>" method = "post">
                                         <select class = "form-control col-lg-12" name = "id_guru">
                                             <?php foreach($walikelas as $b){ ?>
                                             
                                             <option value = "<?php echo $b->id_guru?>" <?php if($b->id_guru == $a->id_guru) echo "selected";?>><?php echo $b->nama_depan." ".$b->nama_belakang;?></option>
                                             
                                             <?php } ?>
-                                        </select>
+                                        </select><Br/>
+                                        <input type = "submit" class = "Form-control">
                                     </form>
                                 </td>  
                                 <td><?php if($a->status_kelas == 0) echo "AKTIF"; else echo "TIDAK AKTIF";?></td>  

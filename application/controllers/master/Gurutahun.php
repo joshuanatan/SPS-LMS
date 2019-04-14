@@ -62,7 +62,7 @@ class Gurutahun extends CI_Controller{
         );
         $data = array(
             "gurutahun" => $this->Mdgurutahunan->select2($where)->result(),
-            "guru" => $this->Mdguru->select($where2)->result()
+            "guru" => $this->Mdguru->selectuntukgurutahunan($where2)->result()
         );
         $this->load->view("user/akademik/gurutahun",$data);
         /* endnya disini */

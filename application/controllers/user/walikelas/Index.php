@@ -235,5 +235,7 @@ class Index extends CI_Controller{
         $this->load->view("user/guru/script/js-datatable");
         $this->load->view("user/guru/script/js-ajax-absen");
     }
+    public function selesai($i){
+    }
     
 }

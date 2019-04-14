@@ -21,7 +21,7 @@ class Tahunajaran extends CI_Controller{
         $this->load->model("Mdtahunajaran");
     }
     public function insertTahunAjaran(){
-        $this->session_check();
+        //$this->session_check();
 
         $data = array(
             "tahun_awal" => $this->input->post("awal"),

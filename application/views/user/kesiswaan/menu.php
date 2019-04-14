@@ -14,6 +14,9 @@
                 <li>
                     <a href="<?php echo base_url();?>master/orangtua"> <i class="menu-icon fa fa-male"></i>Orang Tua</a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url();?>master/setting"> <i class="menu-icon fa fa-male"></i>Global Setting</a>
+                </li>
                 <?php } ?>
             </ul>
         </div><!-- /.navbar-collapse -->

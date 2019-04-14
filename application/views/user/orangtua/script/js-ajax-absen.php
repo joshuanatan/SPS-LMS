@@ -6,7 +6,7 @@ function ambilabsen(){
         var idmatapelajaran = $("#matapelajaran").val();
         var idbulan = $("#bulan").val();
         $.ajax({
-            url:"<?php echo base_url();?>validate/ambilabsensiswa",
+            url:"<?php echo base_url();?>validate/ambilabsensiswa2",
             data:{matapelajaran:idmatapelajaran, bulan:idbulan},
             type:"POST",
             dataType:"JSON",

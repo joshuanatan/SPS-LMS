@@ -72,7 +72,7 @@ class Gurumatpel extends CI_Controller{
         
         if($this->session->idgurupilihkelas == "") {
             $data = array(
-                "guru" => $this->Mdgurutahunan->select($where3)->result(),
+                "guru" => $this->Mdgurutahunan->select2($where3)->result(),
                 "assigned" => $this->Mdgurumatapelajaran->assigned2($where2)->result(),
                 "notassigned" => $this->Mdgurumatapelajaran->status2($where)->result()
             );
@@ -80,7 +80,7 @@ class Gurumatpel extends CI_Controller{
         
         else { 
             $data = array(
-                "guru" => $this->Mdgurutahunan->select($where3)->result(),
+                "guru" => $this->Mdgurutahunan->select2($where3)->result(),
                 "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
                 "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
             );
@@ -102,7 +102,7 @@ class Gurumatpel extends CI_Controller{
         $where = array(
             "guru_tahunan.id_gurutahunan" => $this->input->post("guru")
         );
-        $data = $this->Mdgurutahunan->select($where)->result();
+        $data = $this->Mdgurutahunan->select2($where)->result();
         foreach($data as $a){
             $jenisjurusan = $a->jenis_matpel;
         }
@@ -154,7 +154,7 @@ class Gurumatpel extends CI_Controller{
         
         
         $data = array(
-            "guru" => $this->Mdgurutahunan->select($where3)->result(),
+            "guru" => $this->Mdgurutahunan->select2($where3)->result(),
             "assigned" => $this->Mdgurumatapelajaran->assigned($where2)->result(),
             "notassigned" => $this->Mdgurumatapelajaran->status($where)->result()
         );
