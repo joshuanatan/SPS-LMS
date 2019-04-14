@@ -5,6 +5,7 @@ class Mdkelas extends CI_Model{
     public function select($where){
         $this->db->join("guru","guru.id_guru = kelas.id_gurutahunan","inner");
         $this->db->join("user","guru.id_user = user.id_user","inner");
+        $this->db->where("kelas.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where setting.status = 0)",NULL,FALSE);
         return $this->db->get_where("kelas",$where);
     }
     public function insert($data){

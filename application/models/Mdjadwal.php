@@ -72,6 +72,9 @@ class Mdjadwal extends CI_Model{
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
         $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
         return $this->db->get("jadwal");
+        /*
+        query = SELECT * FROM JADWAL inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru_tahunan.id_guru = guru.id_guru inner join user on guru.id_user = user.id_user inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel inner join kelas on kelas.id_kelas = jadwal.id_kelas where kelas.id_kelas = 24
+        */
     }
     public function selection($where){
         $this->db->where($where);
