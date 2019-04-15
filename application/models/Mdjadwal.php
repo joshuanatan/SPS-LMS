@@ -53,6 +53,7 @@ class Mdjadwal extends CI_Model{
         $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
         $this->db->join("user","guru.id_user = user.id_user","inner");
         $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         return $this->db->get("jadwal");
     }
     public function selectjadwalgurudistinct($where){
@@ -62,6 +63,7 @@ class Mdjadwal extends CI_Model{
         $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
         $this->db->join("user","guru.id_user = user.id_user","inner");
         $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         return $this->db->get("jadwal");
     }
     public function selectjadwalsiswa($where){
@@ -71,6 +73,7 @@ class Mdjadwal extends CI_Model{
         $this->db->join("user","guru.id_user = user.id_user","inner");
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
         $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         return $this->db->get("jadwal");
         /*
         query = SELECT * FROM JADWAL inner join guru_tahunan on guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan inner join guru on guru_tahunan.id_guru = guru.id_guru inner join user on guru.id_user = user.id_user inner join matapelajaran on matapelajaran.id_matpel = guru.id_matpel inner join kelas on kelas.id_kelas = jadwal.id_kelas where kelas.id_kelas = 24
@@ -83,6 +86,7 @@ class Mdjadwal extends CI_Model{
         $this->db->join("penugasan_guru","penugasan_guru.id_gurutahunan = guru_tahunan.id_gurutahunan","inner");
         $this->db->group_by("guru_tahunan.id_gurutahunan");
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         $this->db->where("guru_tahunan.id_gurutahunan not in (select jadwal.id_gurutahunan from jadwal where jadwal.hari = '".$this->session->ajaxhari."' and jadwal.jam_pelajaran = '".$this->session->ajaxjam."' )");
         $result = $this->db->get_where("guru_tahunan",$where)->result();
         $output ="<option value = '0'>-</option>";
@@ -90,6 +94,7 @@ class Mdjadwal extends CI_Model{
             $output .= "<option value = '".$a->id_gurutahunan."'>".$a->nama_depan." ".$a->nama_belakang." - ".$a->nama_matpel."</option>";
         }
         $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
         $this->db->join("user","user.id_user = guru.id_user","inner");
         $this->db->join("penugasan_guru","penugasan_guru.id_gurutahunan = guru_tahunan.id_gurutahunan","inner");
