@@ -17,6 +17,7 @@ class Mdgurumatapelajaran extends CI_Model{
         $this->db->join("kelas","kelas.id_kelas = penugasan_guru.id_kelas","inner");
         $this->db->join("user","guru.id_user = user.id_user","inner");
         $this->db->join("matapelajaran","guru.id_matpel = matapelajaran.id_matpel","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         //$this->db->where("penugasan_guru.id_penugasan not in (select id_penugasan from jadwal)")
         return $this->db->get("penugasan_guru");
     }

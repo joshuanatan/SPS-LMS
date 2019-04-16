@@ -11,7 +11,8 @@
                     <table class="table table-stripped" id = "bootstrap-data-table-export">
                         <thead>
                             <tr>
-                                <th>ID Guru</th>
+                                <th>ID User</th>
+                                <th>ID Guru Tahunan</th>
                                 <th>Nama Guru</th>
                                 <th>Mata Pelajaran</th>
                                 <th>Aksi</th>
@@ -20,6 +21,7 @@
                         <tbody>
                             <?php foreach($gurutahun as $a){ ?> 
                             <tr>
+                                <td><?php echo $a->id_user;?></td>
                                 <td><?php echo $a->id_gurutahunan;?></td>
                                 <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                                 <td><?php echo $a->nama_matpel;?></td>
