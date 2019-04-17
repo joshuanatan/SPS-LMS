@@ -6,11 +6,13 @@
                 <h4 class="box-title">List Kelas</h4>
             </div>
             <div class="card-body">
-                <form class = "form-inline">
-                    <select class = "form-control col-lg-12">
-                        <option value = "#">10 IPA 1</option>
-                        <option value = "#">10 IPA 2</option> <!-- waktu milih, langsung keseleksi yang siswa dikelas itu + yang belum terassign -->
+                <form class = "form-inline" action = "<?php echo base_url();?>master/orangtua/kelas" method="post">
+                    <select class = "form-control col-lg-8" name = "kelas">
+                        <?php foreach($kelas as $a){ ?> 
+                        <option value = "<?php echo $a->id_kelas;?>" <?php if($this->session->pilihkelas != null) if($this->session->pilihkelas == $a->id_kelas) echo "selected";?>><?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></option>
+                        <?php } ?>
                     </select>
+                    <input type = "submit" class = "form-control col-lg-3" style = "margin-left:20px">
                 </form>
             </div>
         </div> <!-- /.card -->
@@ -30,22 +32,21 @@
                                 <th>ID Siswa</th>
                                 <th>Nama Siswa</th>
                                 <th>Nama Orangtua</th>
-                                <th>Peran Orangtua</th>
                                 <th>No HP Orangtua</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($orangtua->result() as $a){ ?> 
                             <tr>
-                                <td>1</td>
-                                <td>Joshua Natan</td>
-                                <td>Papasaya</td>
-                                <td>Ayah</td>
-                                <td>089612938122</td>
+                                <td><?php echo $a->id_user;?></td>
+                                <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
+                                <td><?php echo $a->nama_orangtua; ?></td>
+                                <td><?php echo $a->nomor_telpon;?></td>
                             </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div> <!-- /.table-stats -->
-            <input type = "submit" class = "btn btn-success"> 
             </div>
         </div> <!-- /.card -->
     </div>  <!-- /.col-lg-8 -->

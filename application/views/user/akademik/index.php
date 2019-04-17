@@ -1,42 +1,3 @@
-
-<div class = "row">
-    <div class="col-lg-3 col-md-6"> <!-- ganti ukuran sesuai yang diinginkan -->
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="fa fa-book"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib"> 
-                            <div class="stat-text"><span class="count">0</span></div>
-                            <div class="stat-heading">Jumlah Guru</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6"> <!-- ganti ukuran sesuai yang diinginkan -->
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="fa fa-book"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib"> 
-                            <div class="stat-text"><span class="count">0</span></div>
-                            <div class="stat-heading">Mata Pelajaran</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- kalau mau nambah widget lainnya -->
-</div>
 <div class="row">
     <div class="col-xl-12"> 
         <div class="card">
@@ -70,7 +31,7 @@
                             <tr>
                                 <th>ID Mata Pelajaran</th>
                                 <th>Nama Mata Pelajaran</th>
-                                <th>Status</th>
+                                <!--<th>Status</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -78,9 +39,9 @@
                             <tr>
                                 <td><?php echo $a->id_matpel;?></td>
                                 <td><?php echo $a->nama_matpel;?></td>
-                                <td>
+                                <!--<td>
                                     <?php if($a->status_matpel == 1) echo "TIDAK AKTIF"; else echo "AKTIF";?>
-                                </td>
+                                </td>-->
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -105,7 +66,7 @@
                                 <th>ID Guru</th>
                                 <th>Nama Guru</th>
                                 <th>Expertise Guru</th>
-                                <th>Status</th>
+                                <!--<th>Status</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -114,7 +75,7 @@
                                 <td><?php echo $a->id_guru;?></td>
                                 <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                                 <td><?php echo $a->nama_matpel;?></td>
-                                <td><?php if($a->status == 0) echo "AKTIF"; else echo "TIDAK AKTIF";?></td>
+                                <!--<td><?php if($a->status == 0) echo "AKTIF"; else echo "TIDAK AKTIF";?></td>-->
                             </tr> 
                             <?php } ?>
                         </tbody>

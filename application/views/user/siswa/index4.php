@@ -5,7 +5,7 @@
                 <strong class="card-title">Mata Pelajaran</strong>
             </div>
             <div class="card-body">
-                <select class="form-control" tabindex="1" id = "matapelajaran" onchange ="active()" >
+                <select class="form-control" tabindex="1" id = "matapelajaran" >
                     <option value="0" label="default">Pilih Mata Pelajaran</option>
                     <?php foreach($matpel->result() as $a){ ?>
                     <option value = "<?php echo $a->id_matpel;?>"><?php echo $a->nama_matpel;?></option>

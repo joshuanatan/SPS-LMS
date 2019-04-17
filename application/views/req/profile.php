@@ -6,9 +6,7 @@
     <div class="user-menu dropdown-menu" style = "width: auto">
         <a class="nav-link" href="#"><i class="fa fa-user"></i><?php echo $this->session->username;?></a>
 
-        <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
-
-        <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
+<?php if($this->session->role == "kesiswaan"){ ?><a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a> <?php } ?>
 
         <a class="nav-link" href="<?php echo base_url();?>login/signout"><i class="fa fa-power-off"></i>Logout</a>
     </div>

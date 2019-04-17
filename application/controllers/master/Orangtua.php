@@ -7,9 +7,6 @@ class Orangtua extends CI_Controller{
             redirect("login");
 
         }
-        if($this->session->tahunajaran == ""){
-            redirect("user/".$this->session->role."/index");
-        }
         /*
         $this->session_check();
         */
@@ -51,8 +48,46 @@ class Orangtua extends CI_Controller{
         //$this->load->view("namapage/breadcrumb");
         $this->load->view("req/open-content");
         /* disini custom contentnya pake apapun yang dibutuhkan */
-       
-        $this->load->view("user/kesiswaan/orangtua");
+        $this->load->model("Mdkelas");
+        $where2 = array(
+            "status_kelas" => 0,
+            "id_tahun_ajaran" => $this->session->tahunajaran
+        );
+        $where = array(
+            "user.status" => 0
+        );
+        $this->load->model("Mdorangtua");
+        $data = array(
+            "orangtua" => $this->Mdorangtua->select2($where),
+            
+            "kelas" => $this->Mdkelas->select($where2)->result(),
+        );
+        $this->load->view("user/kesiswaan/orangtua",$data);
+        /* endnya disini */
+        $this->load->view("req/close-content");
+        $this->load->view("req/space");
+        $this->close();
+        $this->load->view("script/js-calender");
+        $this->load->view("script/js-datatable");
+    }
+    public function kelas(){
+        $this->session_check();
+        $this->session->pilihkelas = $this->input->post("kelas");
+        $this->load->model("Mdkelas");
+        $where2 = array(
+            "status_kelas" => 0,
+            "id_tahun_ajaran" => $this->session->tahunajaran
+        );
+        //$this->load->view("namapage/breadcrumb");
+        $this->load->view("req/open-content");
+        /* disini custom contentnya pake apapun yang dibutuhkan */
+        $where = array();
+        $this->load->model("Mdorangtua");
+        $data = array(
+            "orangtua" => $this->Mdorangtua->select($where),
+            "kelas" => $this->Mdkelas->select($where2)->result(),
+        );
+        $this->load->view("user/kesiswaan/orangtua",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
         $this->load->view("req/space");

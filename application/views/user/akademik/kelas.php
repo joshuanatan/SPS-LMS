@@ -11,6 +11,7 @@
                     <table class="table table-stripped" id = "bootstrap-data-table-export">
                         <thead>
                             <tr>
+                                <th>ID User WK</th>
                                 <th>ID Kelas</th>
                                 <th>Kelas</th>
                                 <th>Jurusan</th>
@@ -23,6 +24,7 @@
                         <tbody>
                             <?php foreach($kelas as $a){ ?> 
                             <tr>
+                                <td><?php echo $a->id_user;?></td>
                                 <td><?php echo $a->id_kelas;?></td>    
                                 <td><?php echo $a->kelas;?></td>    
                                 <td><?php echo $a->jurusan;?></td>    

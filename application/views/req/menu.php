@@ -6,14 +6,14 @@
                 <li>
                     <a href="<?php echo base_url()?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
-                <li class="menu-title">Interface Kesiswaan</li><!-- /.menu-title -->
+                <li class="menu-title">Wakasek Kesiswaan</li><!-- /.menu-title -->
                 <li>
                     <a href="<?php echo base_url();?>siswa"> <i class="menu-icon fa fa-male"></i>Siswa</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url();?>guru"> <i class="menu-icon fa fa-male"></i>Guru</a>
                 </li>
-                <li class="menu-title">Interface Akademik</li><!-- /.menu-title -->
+                <li class="menu-title">Wakasek Akademik</li><!-- /.menu-title -->
                 <li>
                     <a href="<?php echo base_url();?>kelas"> <i class="menu-icon fa fa-male"></i>Kelas</a>
                 </li>
@@ -31,7 +31,7 @@
                     </ul>
                 </li>-->
 
-                <li class="menu-title">Interface Siswa</li><!-- /.menu-title -->
+                <li class="menu-title">Siswa</li><!-- /.menu-title -->
                 <li>
                     <!--<a href="<?php echo base_url();?>welcome/assignment"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>-->
                     <a href="#"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>
@@ -48,7 +48,7 @@
                     <!--<a href="<?php echo base_url();?>welcome/announcement"> <i class="menu-icon fa fa-th"></i>Announcement</a>-->
                     <a href="#"> <i class="menu-icon fa fa-th"></i>Announcement</a>
                 </li>
-                <li class="menu-title">Interface Guru</li><!-- /.menu-title -->
+                <li class="menu-title">Guru</li><!-- /.menu-title -->
                 <li>
                     <!--<a href="<?php echo base_url();?>welcome/assignmentguru"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>-->
                     <a href="#"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>

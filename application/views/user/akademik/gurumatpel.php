@@ -37,6 +37,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <?php if($this->session->idgurupilihkelas != ""){ ?> 
                             <?php foreach($assigned as $b){ ?> 
                             <tr>
                                 <td><?php echo $b->kelas;?></td>
@@ -57,6 +59,7 @@
                                 
                                 <td><a href = "<?php echo base_url();?>master/gurumatpel/assign/<?php echo $b->id_kelas;?>" class = "btn btn-success col-lg-12">AKTIFKAN</a></td>
                             </tr>
+                            <?php } ?>
                             <?php } ?>
                         </tbody>
                     </table>

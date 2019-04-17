@@ -47,7 +47,7 @@ class Mdkelassiswa extends CI_Model{
         return $this->db->get_where("kelas_siswa",$where);
     }
     public function selectsiswawalikelas($where){
-        $this->db->where($where);
+        /*$this->db->where($where);
         $this->db->join("siswa_angkatan","kelas_siswa.id_siswa_angkatan = siswa_angkatan.id_siswa_angkatan","inner");
         $this->db->join("siswa","siswa_angkatan.id_siswa = siswa.id_siswa","inner");
         $this->db->join("user","user.id_user = siswa.id_user");
@@ -55,6 +55,10 @@ class Mdkelassiswa extends CI_Model{
         $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = kelas.id_gurutahunan");
         $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru");
         $this->db->where("siswa_angkatan.id_tahun_ajaran in (SELECT setting.id_tahun_ajaran FROM setting WHERE status = 0)",NULL,FALSE);
-        return $this->db->get("kelas_siswa");
+        return $this->db->get("kelas_siswa");*/
+        return $this->db->query("select * FROM `kelas_siswa` inner join siswa_angkatan on kelas_siswa.id_siswa_angkatan = siswa_angkatan.id_siswa_angkatan inner join siswa on siswa_angkatan.id_siswa = siswa.id_siswa inner join user on user.id_user = siswa.id_user inner join kelas on kelas.id_kelas = kelas_siswa.id_kelas inner join guru on kelas.id_gurutahunan = guru.id_guru where siswa_angkatan.id_tahun_ajaran in (SELECT setting.id_tahun_ajaran FROM setting WHERE status = 0) and guru.id_user = ".$this->session->id_user);
+        /* 
+        query = SELECT * FROM `kelas_siswa` inner join siswa_angkatan on kelas_siswa.id_siswa_angkatan = siswa_angkatan.id_siswa_angkatan inner join siswa on siswa_angkatan.id_siswa = siswa.id_siswa inner join user on user.id_user = siswa.id_user inner join kelas on kelas.id_kelas = kelas_siswa.id_kelas inner join guru on kelas.id_gurutahunan = guru.id_guru where siswa_angkatan.id_tahun_ajaran in (SELECT setting.id_tahun_ajaran FROM setting WHERE status = 0) and guru.id_user = 36
+        */
     }
 }

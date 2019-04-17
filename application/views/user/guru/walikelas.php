@@ -4,7 +4,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">LIST SISWA</strong>
+                <?php foreach($siswakelas->result() as $a){ ?> 
+                <strong class="card-title">LIST SISWA - <?php echo $a->kelas." ".$a->jurusan." ".$a->urutan;?></strong>
+                <?php break;} ?>
             </div>
             <div class="card-body">
                 <table class = "table table-bordered">

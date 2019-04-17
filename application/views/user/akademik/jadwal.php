@@ -70,8 +70,8 @@ foreach($jumat as $a){
                             <tr>
                                 <?php for($b = 0; $b<count($hari); $b++){ ?> 
                                 <td>
-                                    <select class = "form-control" name = "<?php echo $hari[$b];?>[]" onmouseover = "abc('<?php echo $hari[$b]; ?>','<?php echo ($c+1);?>','<?php echo $hari[$b].$c;?>')" id = "<?php echo $hari[$b].$c;?>">
-                                        <option value = "0">-</option>
+                                    <select <?php if($this->session->pilihkelas == "") echo "disabled"; ?> class = "form-control" name = "<?php echo $hari[$b];?>[]" onmouseover = "abc('<?php echo $hari[$b]; ?>','<?php echo ($c+1);?>','<?php echo $hari[$b].$c;?>')" id = "<?php echo $hari[$b].$c;?>">
+                                        <option value = "0" >-</option>
                                         <?php foreach($guru as $a){ ?> 
 
                                         <option value = "<?php echo $a->id_gurutahunan?>" <?php if($idmatpel[$b][$c] == $a->id_gurutahunan) echo "selected";?>><?php echo $a->nama_matpel." - ".$a->nama_depan." ".$a->nama_belakang;?></option>

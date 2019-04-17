@@ -7,9 +7,6 @@ class Siswa extends CI_Controller{
             redirect("login");
 
         }
-        if($this->session->tahunajaran == ""){
-            redirect("user/".$this->session->role."/index");
-        }
         /*
         $this->session_check();
         */
@@ -140,7 +137,7 @@ class Siswa extends CI_Controller{
             "email_orangtua" => $this->input->post("email"),
             "status_orangtua" => 0
         );
-        $result = $this->Mdorangtua->select($where);
+        $result = $this->Mdorangtua->selectortulast($where);
         if($result->num_rows() == 0 ){
             $data = array(
                 "nama_orangtua" => $this->input->post("namaortu"),
@@ -162,7 +159,7 @@ class Siswa extends CI_Controller{
             "charset" => "iso-8859-1",
             "wordwrap" => true
         );
-        $this->load->library("email", $config);
+        /*$this->load->library("email", $config);
         $this->email->from("findworksuph@gmail.com","System");
         $this->email->to($this->input->post("email"));
         $this->email->subject("WELCOME MESSAGE");
@@ -177,9 +174,9 @@ class Siswa extends CI_Controller{
             $this->email->print_debugger();
             echo "fail";
         }
+        */
         
-        
-        //redirect("master/siswa");
+        redirect("master/siswa");
     }
     public function remove($i){
         $this->session_check();

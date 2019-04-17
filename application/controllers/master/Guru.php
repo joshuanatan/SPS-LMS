@@ -9,9 +9,6 @@ class Guru extends CI_Controller{
             redirect("login");
 
         }
-        if($this->session->tahunajaran == ""){
-            redirect("user/".$this->session->role."/index");
-        }
         /*
         $this->session_check();
         */
