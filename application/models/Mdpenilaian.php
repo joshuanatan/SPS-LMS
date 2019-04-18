@@ -38,6 +38,7 @@ class Mdpenilaian extends CI_Model{
         $this->db->join("siswa","siswa.id_siswa = siswa_angkatan.id_siswa","inner");
         $this->db->join("user","user.id_user = siswa.id_user","inner");
         $this->db->join("ulangan_harian","ulangan_harian.id_siswa = siswa_angkatan.id_siswa_angkatan","inner");
+        $this->db->join("aktivitas_mingguan","aktivitas_mingguan.id_mingguan = ulangan_harian.id_aktivitas","inner");
         $this->db->join("penilaian","penilaian.id_siswa_angkatan = siswa_angkatan.id_siswa_angkatan","left outer");
         //$this->db->join("")
         $this->db->where($where);

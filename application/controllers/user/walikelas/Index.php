@@ -151,6 +151,10 @@ class Index extends CI_Controller{
             $pdf->Cell(43,6,' ','LR',1,1);
             
             $pdf->Cell(57,6,$mp->nama_matpel,'LBR',0,'C',0);
+
+
+
+            
             $pdf->Cell(13,6,$mp->kkm,'LBR',0,'C',0);
             
             $wheremp = array(
@@ -199,7 +203,7 @@ class Index extends CI_Controller{
         $result = $this->Mdraporpdf->quiz($mp->id_matpel)->result();
         $total = 0; $jumlah = 0;
         foreach($result as $a){
-            $total += ($a->nilai_quiz);
+            $total += (($a->nilai_quiz)*10);
             $jumlah++;
         } 
                 if(round($total/$jumlah,2) < $mp->kkm){
@@ -272,7 +276,6 @@ class Index extends CI_Controller{
         $this->load->view("req/space");
         $this->close();
         $this->load->view("script/js-calender");
-        $this->load->view("script/js-piechart");
         $this->load->view("user/guru/script/js-datatable");
         $this->load->view("user/guru/script/js-ajax-absen");
     }
