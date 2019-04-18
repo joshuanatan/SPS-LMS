@@ -11,6 +11,7 @@ class Mdorangtua extends CI_Model{
         */
     }
     public function selectortulast($where){
+        
         return $this->db->get_where("orangtua",$where);
     }
     public function login($where){

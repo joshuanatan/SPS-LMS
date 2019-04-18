@@ -98,3 +98,38 @@
     </div>  <!-- /.col-lg-8 -->
         <?php } ?> 
 </div>
+<div class="modal fade" id="mediumModal2" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">PENAMBAHAN TAHUN AJARAN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action = "<?php echo base_url();?>master/tahunajaran/insertTahunAjaran2" method="post">
+                <div class="modal-body">
+                        <div class = "form-group col-lg-12">
+                            <label>AWAL TAHUN AJARAN</label>
+                            <input type = "number" class = "form-control"  name = "awal" id = "awal">
+                        </div>
+                        <div class = "form-group col-lg-12">
+                            <label>AKHIR TAHUN AJARAN</label>
+                            <input type = "number" class = "form-control" onclick = "abc()" name = "akhir" id = "akhir" readonly placeholder="Tekan disini" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function abc(){
+        var angka = parseInt(document.getElementById("awal").value)+1;
+        //alert(angka);
+        document.getElementById("akhir").value = angka;
+    }
+</script>

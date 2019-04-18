@@ -36,7 +36,6 @@
                             </tbody>
                         </table>
                     </div> <!-- /.table-stats -->
-                <input type = "submit" class = "btn btn-success"> 
             </div>
             </form>
         </div> <!-- /.card -->

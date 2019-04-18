@@ -32,6 +32,18 @@ class Tahunajaran extends CI_Controller{
         $this->Mdtahunajaran->insert($data);
         redirect("user/akademik/index");
     }
+    public function insertTahunAjaran2(){
+        //$this->session_check();
+
+        $data = array(
+            "tahun_awal" => $this->input->post("awal"),
+            "tahun_akhir" => $this->input->post("akhir"),
+            "status_tahun_ajaran" => 0,
+            "tgl_submit_tahunajaran" => date('Y-m-d')
+        );
+        $this->Mdtahunajaran->insert($data);
+        redirect("user/kesiswaan/index");
+    }
     public function editTahunAjaran($i){
         $this->session_check();
 
