@@ -18,13 +18,19 @@ class Orangtua extends CI_Controller{
     }
     public function req(){
         $this->session_check();
-
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+            "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
         $this->load->view("req/html-open");
-        $this->load->view("req/head");
+        $this->load->view("req/head",$data);
         $this->load->view("user/kesiswaan/menu");
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
-        $this->load->view("req/logo");
+        $this->load->view("req/logo",$data);
         $this->load->view("req/header-widget-open");
         $this->load->view("req/search");
         $this->load->view("req/message");

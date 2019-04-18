@@ -15,8 +15,15 @@ class Login extends CI_Controller{
         $abc = array(
             "def" => 0
         );
-        $this->load->view("login/main/logo");
-        $this->load->view("login/main/form");
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+            "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
+        $this->load->view("login/main/logo",$data);
+        $this->load->view("login/main/form",$data);
     }
     private function close(){
         $this->load->view("login/req/content-close");

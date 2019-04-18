@@ -17,6 +17,13 @@ class Index extends CI_Controller{
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+            "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
 
         $this->load->model("Mdsiswaangkatan");
         $where = array(
@@ -27,11 +34,11 @@ class Index extends CI_Controller{
             "siswa" => $this->Mdsiswaangkatan->select($where)->result()
         );
         $this->load->view("req/html-open");
-        $this->load->view("req/head");
+        $this->load->view("req/head",$data);
         $this->load->view("user/orangtua/menu",$data);
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
-        $this->load->view("req/logo");
+        $this->load->view("req/logo",$data);
         $this->load->view("req/header-widget-open");
         $this->load->view("req/search");
         $this->load->view("req/message");

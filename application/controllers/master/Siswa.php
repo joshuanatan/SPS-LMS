@@ -17,12 +17,19 @@ class Siswa extends CI_Controller{
         $this->load->model(array("Mduser","Mdmatapelajaran"));
     }
     public function req(){
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+        "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
         $this->load->view("req/html-open");
-        $this->load->view("req/head");
+        $this->load->view("req/head",$data);
         $this->load->view("user/kesiswaan/menu");
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
-        $this->load->view("req/logo");
+        $this->load->view("req/logo",$data);
         $this->load->view("req/header-widget-open");
         $this->load->view("req/search");
         $this->load->view("req/message");
@@ -179,7 +186,7 @@ class Siswa extends CI_Controller{
             $this->email->to($this->input->post("emailortu")); 
 
 
-            $this->email->subject('Laporan Rapor Siswa');
+            $this->email->subject('Penambahan Siswa');
 
             $this->email->message("Selamat datang di Sistem Akademik Sekolah kami. Untuk menambahkan account anak anda ke account anda untuk pemantauan, anda dapat memasukan id anak anda dan password anak anda. Id anak anda :".$iduser." & Password: ".md5($iduser));  
             $this->email->send();

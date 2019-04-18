@@ -24,13 +24,19 @@ class Kelas extends CI_Controller{
     }
     public function req(){
         $this->session_check();
-
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+            "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
         $this->load->view("req/html-open");
-        $this->load->view("req/head");
+        $this->load->view("req/head",$data);
         $this->load->view("user/akademik/menu");
         $this->load->view("req/content-container-open");
         $this->load->view("req/header-open");
-        $this->load->view("req/logo");
+        $this->load->view("req/logo",$data);
         $this->load->view("req/header-widget-open");
         $this->load->view("req/search");
         $this->load->view("req/message");
@@ -93,6 +99,15 @@ class Kelas extends CI_Controller{
         );
         $this->Mdkelas->insert($data);
         $where = array(
+            "guru.id_guru" => $this->input->post("walikelas")
+        );
+        $this->load->model("Mdgurutahunan");
+        $data_guru = $this->Mdgurutahunan->select($where)->result();
+        $email_guru = "";
+        foreach($data_guru as $a){
+            $email_guru = $a->email;
+        }
+        $where = array(
             "kelas" => $this->input->post("kelas"),
             "jurusan" => $this->input->post("jurusan"),
             "urutan" => $jumlah+1,
@@ -100,6 +115,40 @@ class Kelas extends CI_Controller{
         $result = $this->Mdkelas->select($where)->result();
         foreach($result as $a){
             $idkelas = $a->id_kelas;
+
+            $this->load->library('email');
+
+            $config['protocol']    = 'smtp';
+
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+
+            $config['smtp_port']    = '465';
+
+            $config['smtp_timeout'] = '7';
+
+            $config['smtp_user']    = 'eeducation.is.1@gmail.com';
+
+            $config['smtp_pass']    = 'iSupport123';
+
+            $config['charset']    = 'utf-8';
+
+            $config['newline']    = "\r\n";
+
+            $config['mailtype'] = 'text'; // or html
+
+            $config['validation'] = TRUE; // bool whether to validate email or not      
+
+            $this->email->initialize($config);
+
+
+            $this->email->from('eeducation.is.1@gmail.com', 'iSupport Team');
+            $this->email->to($email_guru); 
+
+
+            $this->email->subject('Penugasan Walikelas');
+
+            $this->email->message("Anda ditugaskan untuk menjadi walikelas di kelas ". $a->kelas." ".$a->jurusan." ".$a->urutan);  
+            $this->email->send();
         }
         $this->load->model("Mdjadwal");
         $hari = ["SENIN","SELASA","RABU","KAMIS","JUMAT"];

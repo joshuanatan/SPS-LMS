@@ -1,13 +1,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ela Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    
+    <?php foreach($profile->result() as $a){ ?> 
+    <title><?php echo $a->nama_sekolah;?></title>
+    <meta name="description" content="<?php echo $a->nama_sekolah.' '.$a->nama_sistem_sekolah;?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="apple-touch-icon" href="<?php echo base_url();?>assets/img/favicon.png">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/favicon.png">
     
+    <?php } ?>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/normalize.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
