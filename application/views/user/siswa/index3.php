@@ -20,7 +20,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3">Line Chart </h4>
+                <h4 class="mb-3">Nilai Siswa Berdasarkan Rata-Rata Kelas</h4>
                 <canvas id="lineChart"></canvas>
             </div>
         </div>
@@ -28,7 +28,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h4 class="mb-3">Line Chart </h4>
+                <h4 class="mb-3">Rata-Rata Nilai Siswa Setiap Mata Pelajaran</h4>
                 <canvas id="lineChart2"></canvas>
             </div>
         </div>

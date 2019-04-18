@@ -4,7 +4,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 
-                <li class="menu-title">Interface Siswa</li><!-- /.menu-title -->
+                <li class="menu-title">Siswa</li><!-- /.menu-title -->
                 <li>
                     <a href="<?php echo base_url();?>user/siswa/assignment"> <i class="menu-icon fa fa-cogs"></i>Assignments</a>
                 </li>

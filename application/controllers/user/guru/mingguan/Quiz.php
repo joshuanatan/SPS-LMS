@@ -139,7 +139,7 @@ class Quiz extends CI_Controller{
             $data = array(
                 "pertanyaan" => $pertanyaan[$i],
                 "opsi1" => $opsi1[$i],
-                "opsi2" => $opsi3[$i],
+                "opsi2" => $opsi2[$i],
                 "opsi3" => $opsi3[$i],
                 "opsi4" => $opsi4[$i],
                 "jawaban" => $jawaban[$i],

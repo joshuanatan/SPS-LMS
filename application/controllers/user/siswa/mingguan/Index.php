@@ -157,7 +157,7 @@ class Index extends CI_Controller{
         $data = array(
             "id_siswa" => $id_siswa_angkatan ,//id siswa tahun ajaran
             "id_quiz" => $i,
-            "nilai_quiz" => $nilai,
+            "nilai_quiz" => ($nilai/$urutansoal)*10,
             "status_nilai" => 0,
             "tgl_submit_nilai" => date("Y-m-d")
         );

@@ -13,23 +13,6 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="stat-widget-five">
-                    <div class="stat-icon dib flat-color-1">
-                        <i class="fa fa-book"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="text-left dib"> 
-                            <div class="stat-text">$<span class="count">0</span></div>
-                            <div class="stat-heading">Persentase Kehadiran</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="row">
 <?php $i = 1;foreach($aktivitas as $a){?> 
