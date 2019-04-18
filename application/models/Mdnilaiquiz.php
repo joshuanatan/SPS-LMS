@@ -10,6 +10,7 @@ class Mdnilaiquiz extends CI_Model{
         $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
         $this->db->join("guru","guru.id_guru = guru_tahunan.id_guru","inner");
         $this->db->join("matapelajaran","matapelajaran.id_matpel = guru.id_matpel","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0)",NULL,FALSE);
         $this->db->where("nilai_quiz.id_siswa",$this->session->id_siswa);
         $this->db->where("guru.id_matpel",$id_matpel);
         return $this->db->get("nilai_quiz");

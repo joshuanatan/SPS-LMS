@@ -224,7 +224,7 @@ class Grade extends CI_Controller{
                 "id_aktivitas" => $mingguan
             );
             $data = array(
-                "nilai" => $this->input->post("nilai".$i)
+                "nilai" => $this->input->post("nilai".$i) //bukannya ini harusnya rata2 ya ?
             );
             $this->Mdpenilaian->updateharian($data,$where);
         }

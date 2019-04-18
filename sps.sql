@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2019 at 11:35 AM
+-- Generation Time: Apr 18, 2019 at 04:59 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -33,7 +33,7 @@ CREATE TABLE `absen` (
   `id_mingguan` int(11) NOT NULL,
   `id_siswaangkatan` int(11) NOT NULL,
   `status_absen` int(11) NOT NULL,
-  `tgl_submit_absen` int(11) NOT NULL
+  `tgl_submit_absen` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -41,26 +41,27 @@ CREATE TABLE `absen` (
 --
 
 INSERT INTO `absen` (`id_absen`, `id_mingguan`, `id_siswaangkatan`, `status_absen`, `tgl_submit_absen`) VALUES
-(9, 6, 5, 0, 2019),
-(10, 6, 8, 0, 2019),
-(11, 6, 11, 0, 2019),
-(12, 6, 12, 0, 2019),
-(13, 6, 13, 0, 2019),
-(14, 6, 9, 0, 2019),
-(15, 6, 20, 0, 2019),
-(16, 10, 5, 0, 2019),
-(17, 10, 8, 0, 2019),
-(18, 10, 11, 0, 2019),
-(19, 10, 12, 0, 2019),
-(20, 10, 13, 0, 2019),
-(21, 10, 7, 0, 2019),
-(22, 10, 9, 0, 2019),
-(23, 10, 20, 0, 2019),
-(24, 11, 8, 0, 2019),
-(25, 11, 11, 0, 2019),
-(26, 11, 13, 0, 2019),
-(27, 11, 7, 0, 2019),
-(28, 11, 20, 0, 2019);
+(9, 6, 5, 0, '0000-00-00'),
+(10, 6, 8, 0, '0000-00-00'),
+(11, 6, 11, 0, '0000-00-00'),
+(12, 6, 12, 0, '0000-00-00'),
+(13, 6, 13, 0, '0000-00-00'),
+(14, 6, 9, 0, '0000-00-00'),
+(15, 6, 20, 0, '0000-00-00'),
+(16, 10, 5, 0, '0000-00-00'),
+(17, 10, 8, 0, '0000-00-00'),
+(18, 10, 11, 0, '0000-00-00'),
+(19, 10, 12, 0, '0000-00-00'),
+(20, 10, 13, 0, '0000-00-00'),
+(21, 10, 7, 0, '0000-00-00'),
+(22, 10, 9, 0, '0000-00-00'),
+(23, 10, 20, 0, '0000-00-00'),
+(24, 11, 8, 0, '0000-00-00'),
+(25, 11, 11, 0, '0000-00-00'),
+(26, 11, 13, 0, '0000-00-00'),
+(27, 11, 7, 0, '0000-00-00'),
+(28, 11, 20, 0, '0000-00-00'),
+(29, 15, 87, 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,9 @@ INSERT INTO `aktivitas_mingguan` (`id_mingguan`, `id_jadwal`, `tgl_kelas`, `mate
 (10, 541, '2019-03-21', 'Bryan Liming', 'mantap', 0, 1),
 (11, 541, '2019-03-30', ' Distribusi Normal', '-', 0, 1),
 (12, 542, '2019-04-27', 'test', '-', 0, 1),
-(13, 542, '2019-05-04', 'mantap', '-', 0, 1);
+(13, 542, '2019-05-04', 'mantap', '-', 0, 1),
+(14, 631, '2019-04-27', 'asdf', '-', 0, 0),
+(16, 1081, '2019-04-26', 'testlgi yoik', '-', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +136,10 @@ INSERT INTO `dokumen` (`id_dokumen`, `id_mingguan`, `status_dokumen`, `tgl_submi
 (1, 6, 1, '2019-03-20', 'User_Requirement1.pptx', 'MATERI', 'woi', 36),
 (2, 6, 0, '2019-03-20', 'Gantt_Chart_Final.pdf', 'MATERI', 'tes', 36),
 (3, 6, 1, '2019-03-21', 'Functional_Document_Final.docx', 'MATERI', 'yo', 36),
-(4, 6, 0, '2019-03-25', 'PBIK-Tionghoa.jpg', 'MATERI', 'test', 36);
+(4, 6, 0, '2019-03-25', 'PBIK-Tionghoa.jpg', 'MATERI', 'test', 36),
+(5, 14, 0, '2019-04-17', 'uas_arduino.ino', 'TUGAS', 'yo', 34),
+(6, 15, 0, '2019-04-18', 'uas_arduino1.ino', 'MATERI', 'coa dites', 34),
+(7, 16, 0, '2019-04-18', 'uas_arduino2.ino', 'MATERI', 'hrrhr', 34);
 
 -- --------------------------------------------------------
 
@@ -708,7 +714,52 @@ INSERT INTO `jadwal` (`id_jadwal`, `id_gurutahunan`, `id_kelas`, `hari`, `jam_pe
 (1077, 0, 24, 'JUMAT', 6, 0, '2019-04-12'),
 (1078, 0, 24, 'JUMAT', 7, 0, '2019-04-12'),
 (1079, 0, 24, 'JUMAT', 8, 0, '2019-04-12'),
-(1080, 0, 24, 'JUMAT', 9, 0, '2019-04-12');
+(1080, 0, 24, 'JUMAT', 9, 0, '2019-04-12'),
+(1081, 8, 25, 'SENIN', 1, 0, '2019-04-17'),
+(1082, 0, 25, 'SENIN', 2, 0, '2019-04-17'),
+(1083, 0, 25, 'SENIN', 3, 0, '2019-04-17'),
+(1084, 0, 25, 'SENIN', 4, 0, '2019-04-17'),
+(1085, 0, 25, 'SENIN', 5, 0, '2019-04-17'),
+(1086, 0, 25, 'SENIN', 6, 0, '2019-04-17'),
+(1087, 0, 25, 'SENIN', 7, 0, '2019-04-17'),
+(1088, 0, 25, 'SENIN', 8, 0, '2019-04-17'),
+(1089, 0, 25, 'SENIN', 9, 0, '2019-04-17'),
+(1090, 0, 25, 'SELASA', 1, 0, '2019-04-17'),
+(1091, 8, 25, 'SELASA', 2, 0, '2019-04-17'),
+(1092, 0, 25, 'SELASA', 3, 0, '2019-04-17'),
+(1093, 0, 25, 'SELASA', 4, 0, '2019-04-17'),
+(1094, 0, 25, 'SELASA', 5, 0, '2019-04-17'),
+(1095, 0, 25, 'SELASA', 6, 0, '2019-04-17'),
+(1096, 0, 25, 'SELASA', 7, 0, '2019-04-17'),
+(1097, 0, 25, 'SELASA', 8, 0, '2019-04-17'),
+(1098, 0, 25, 'SELASA', 9, 0, '2019-04-17'),
+(1099, 0, 25, 'RABU', 1, 0, '2019-04-17'),
+(1100, 0, 25, 'RABU', 2, 0, '2019-04-17'),
+(1101, 0, 25, 'RABU', 3, 0, '2019-04-17'),
+(1102, 0, 25, 'RABU', 4, 0, '2019-04-17'),
+(1103, 0, 25, 'RABU', 5, 0, '2019-04-17'),
+(1104, 0, 25, 'RABU', 6, 0, '2019-04-17'),
+(1105, 0, 25, 'RABU', 7, 0, '2019-04-17'),
+(1106, 0, 25, 'RABU', 8, 0, '2019-04-17'),
+(1107, 0, 25, 'RABU', 9, 0, '2019-04-17'),
+(1108, 0, 25, 'KAMIS', 1, 0, '2019-04-17'),
+(1109, 0, 25, 'KAMIS', 2, 0, '2019-04-17'),
+(1110, 0, 25, 'KAMIS', 3, 0, '2019-04-17'),
+(1111, 0, 25, 'KAMIS', 4, 0, '2019-04-17'),
+(1112, 0, 25, 'KAMIS', 5, 0, '2019-04-17'),
+(1113, 0, 25, 'KAMIS', 6, 0, '2019-04-17'),
+(1114, 0, 25, 'KAMIS', 7, 0, '2019-04-17'),
+(1115, 0, 25, 'KAMIS', 8, 0, '2019-04-17'),
+(1116, 0, 25, 'KAMIS', 9, 0, '2019-04-17'),
+(1117, 0, 25, 'JUMAT', 1, 0, '2019-04-17'),
+(1118, 0, 25, 'JUMAT', 2, 0, '2019-04-17'),
+(1119, 0, 25, 'JUMAT', 3, 0, '2019-04-17'),
+(1120, 0, 25, 'JUMAT', 4, 0, '2019-04-17'),
+(1121, 0, 25, 'JUMAT', 5, 0, '2019-04-17'),
+(1122, 0, 25, 'JUMAT', 6, 0, '2019-04-17'),
+(1123, 0, 25, 'JUMAT', 7, 0, '2019-04-17'),
+(1124, 0, 25, 'JUMAT', 8, 0, '2019-04-17'),
+(1125, 0, 25, 'JUMAT', 9, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -748,7 +799,17 @@ INSERT INTO `jawaban_quiz` (`id_jawaban`, `id_soal`, `id_user`, `jawaban_quiz`, 
 (80, 83, 47, '2', 0, '2019-03-26'),
 (81, 84, 47, '3', 0, '2019-03-26'),
 (82, 85, 47, '2', 0, '2019-03-26'),
-(83, 86, 47, '2', 0, '2019-03-26');
+(83, 86, 47, '2', 0, '2019-03-26'),
+(94, 101, 125, '2', 0, '2019-04-18'),
+(95, 102, 125, '2', 0, '2019-04-18'),
+(96, 103, 125, '3', 0, '2019-04-18'),
+(97, 104, 125, '1', 0, '2019-04-18'),
+(98, 105, 125, '4', 0, '2019-04-18'),
+(99, 106, 125, '1', 0, '2019-04-18'),
+(100, 107, 125, '2', 0, '2019-04-18'),
+(101, 108, 125, '4', 0, '2019-04-18'),
+(102, 109, 125, '3', 0, '2019-04-18'),
+(103, 110, 125, '4', 0, '2019-04-18');
 
 -- --------------------------------------------------------
 
@@ -792,8 +853,9 @@ INSERT INTO `kelas` (`id_kelas`, `kelas`, `jurusan`, `urutan`, `id_gurutahunan`,
 (16, 11, 'IPS', 1, '9', 1, 0, '2019-03-19'),
 (17, 10, 'IPA', 3, '13', 1, 0, '2019-03-24'),
 (18, 10, 'IPS', 2, '10', 1, 0, '2019-03-25'),
-(23, 11, 'IPA', 1, '1', 2, 0, '2019-04-12'),
-(24, 11, 'IPA', 1, '1', 1, 0, '2019-04-12');
+(23, 11, 'IPA', 1, '8', 2, 0, '2019-04-12'),
+(24, 11, 'IPA', 1, '1', 1, 0, '2019-04-12'),
+(25, 10, 'IPS', 1, '1', 2, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -867,7 +929,9 @@ INSERT INTO `kelas_siswa` (`id_kelas_siswa`, `id_siswa_angkatan`, `id_kelas`, `s
 (55, 62, 18, 0, '2019-03-25'),
 (56, 63, 18, 0, '2019-03-25'),
 (57, 64, 18, 0, '2019-03-25'),
-(59, 82, 23, 0, '2019-04-14');
+(59, 82, 23, 0, '2019-04-14'),
+(60, 83, 25, 0, '2019-04-17'),
+(61, 87, 25, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -909,7 +973,8 @@ INSERT INTO `matapelajaran` (`id_matpel`, `nama_matpel`, `jenis_matpel`, `kkm`, 
 (12, 'Akuntansi', 'IPS', 0, 0, 0, 0, 0, 0, 0, 0, '2019-03-16'),
 (13, 'Sosiologi', 'IPS', 0, 0, 0, 0, 0, 0, 0, 0, '2019-03-16'),
 (14, 'Pendidikan Agama', 'UMUM', 0, 0, 0, 0, 0, 0, 0, 0, '2019-03-16'),
-(15, 'Fisika', 'UMUM', 75, 10, 0, 20, 20, 40, 10, 0, '2019-03-25');
+(15, 'Fisika', 'UMUM', 75, 10, 0, 20, 20, 40, 10, 0, '2019-03-25'),
+(16, 'Tataboga', 'UMUM', 70, 10, 10, 10, 20, 25, 25, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -932,7 +997,9 @@ CREATE TABLE `nilai_quiz` (
 
 INSERT INTO `nilai_quiz` (`id_nilai_quiz`, `id_siswa`, `id_quiz`, `nilai_quiz`, `status_nilai`, `tgl_submit_nilai`) VALUES
 (1, 5, 1, '2', 0, '2019-03-25'),
-(2, 5, 4, '1', 0, '2019-03-26');
+(2, 5, 4, '1', 0, '2019-03-26'),
+(5, 87, 5, '4', 0, '2019-04-18'),
+(6, 87, 6, '4', 0, '2019-04-18');
 
 -- --------------------------------------------------------
 
@@ -963,7 +1030,10 @@ INSERT INTO `orangtua` (`id_orangtua`, `nama_orangtua`, `nomor_telpon`, `email_o
 (6, 'awfawef', '1342432', 'joshuanatan.jn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-10'),
 (7, 'awfawef', '1342432', 'joshuanatan.jn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-10'),
 (8, 'awfawef', '1342432', 'joshuanatan.jn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-10'),
-(9, 'awfawef', '1342432', 'joshuanatan.jn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-10');
+(9, 'awfawef', '1342432', 'joshuanatan.jn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-10'),
+(10, 'bapanya anak ips', '1234', 'bapaknyaanakips@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-17'),
+(11, 'bapanya anak ips', '1234', 'bapaknyaanakips@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-17'),
+(12, 'YO', '039430984', 'ajfeowijiof@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -989,7 +1059,8 @@ INSERT INTO `pengumuman` (`id_pengumuman`, `id_user`, `topik`, `konten`, `dateli
 (1, 36, 'adsljkafd', 'alwekfjawelkf\r\n', '1998-03-13', 0, '2019-03-27'),
 (2, 36, 'ldsklajsdfadsf', 'lklkjfalsdkasdf', '2019-04-06', 1, '2019-03-27'),
 (3, 37, 'ujian temen', 'akan menguji teman sendiri', '2019-03-31', 0, '2019-03-28'),
-(4, 36, 'ujian dosen', 'menguji dosen', '2019-04-01', 0, '2019-03-28');
+(4, 36, 'ujian dosen', 'menguji dosen', '2019-04-01', 0, '2019-03-28'),
+(5, 34, 'asdf', 'aef', '2019-04-19', 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -1028,7 +1099,9 @@ INSERT INTO `penilaian` (`id_siswa_angkatan`, `id_penugasan`, `nilai_tugas`, `ni
 (17, 44, 0, 0, 75, 0, 0, '2019-03-24'),
 (18, 44, 0, 0, 75, 0, 0, '2019-03-24'),
 (19, 44, 0, 0, 75, 0, 0, '2019-03-24'),
-(20, 43, 0, 0, 90, 0, 0, '2019-03-24');
+(20, 43, 0, 0, 90, 0, 0, '2019-03-24'),
+(83, 64, 20, 0, 90, 30, 0, '2019-04-18'),
+(87, 64, 70, 0, 100, 60, 0, '2019-04-18');
 
 -- --------------------------------------------------------
 
@@ -1104,7 +1177,10 @@ INSERT INTO `penugasan_guru` (`id_penugasan`, `id_gurutahunan`, `id_kelas`, `sta
 (58, 7, 18, 0, '2019-03-25'),
 (59, 3, 18, 0, '2019-03-25'),
 (60, 9, 23, 0, '2019-04-12'),
-(61, 10, 23, 0, '2019-04-12');
+(61, 10, 23, 0, '2019-04-12'),
+(62, 3, 24, 0, '2019-04-17'),
+(63, 11, 23, 0, '2019-04-17'),
+(64, 8, 25, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1202,9 @@ CREATE TABLE `quiz` (
 INSERT INTO `quiz` (`id_quiz`, `id_mingguan`, `status_quiz`, `tgl_submit_quiz`) VALUES
 (1, 6, 0, '2019-03-21'),
 (3, 4, 0, '2019-03-21'),
-(4, 11, 0, '2019-03-25');
+(4, 11, 0, '2019-03-25'),
+(5, 15, 0, '2019-04-18'),
+(6, 16, 0, '2019-04-18');
 
 -- --------------------------------------------------------
 
@@ -1146,8 +1224,8 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id_setting`, `id_tahun_ajaran`, `id_next_tahun_ajaran`, `status`) VALUES
-(1, 1, 2, 0),
-(3, 2, 3, 1),
+(1, 1, 2, 1),
+(3, 2, 3, 0),
 (4, 5, 4, 1);
 
 -- --------------------------------------------------------
@@ -1241,7 +1319,18 @@ INSERT INTO `siswa` (`id_siswa`, `id_user`, `jurusan`, `id_orangtua`, `status_si
 (111, 117, 'IPA', 0, 0, '2019-04-10'),
 (112, 118, 'IPA', 0, 0, '2019-04-10'),
 (113, 119, 'IPA', 0, 0, '2019-04-10'),
-(114, 120, 'IPA', 0, 0, '2019-04-10');
+(114, 120, 'IPA', 0, 0, '2019-04-10'),
+(115, 121, 'IPS', 0, 0, '2019-04-17'),
+(116, 121, 'IPS', 0, 0, '2019-04-17'),
+(117, 122, 'IPS', 0, 0, '2019-04-17'),
+(118, 121, 'IPS', 0, 0, '2019-04-17'),
+(119, 122, 'IPS', 0, 0, '2019-04-17'),
+(120, 123, 'IPS', 0, 0, '2019-04-17'),
+(121, 121, 'IPS', 0, 0, '2019-04-17'),
+(122, 122, 'IPS', 0, 0, '2019-04-17'),
+(123, 123, 'IPS', 0, 0, '2019-04-17'),
+(124, 124, 'IPS', 0, 0, '2019-04-17'),
+(125, 125, 'IPS', 0, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -1336,7 +1425,12 @@ INSERT INTO `siswa_angkatan` (`id_siswa_angkatan`, `id_tahun_ajaran`, `id_siswa`
 (75, 1, 105, 10, 0, '2019-04-10'),
 (76, 1, 109, 10, 0, '2019-04-10'),
 (77, 1, 114, 10, 0, '2019-04-10'),
-(82, 2, 6, 11, 0, '2019-04-14');
+(82, 2, 6, 11, 0, '2019-04-14'),
+(83, 2, 115, 10, 0, '2019-04-17'),
+(84, 2, 117, 10, 0, '2019-04-17'),
+(85, 2, 120, 10, 0, '2019-04-17'),
+(86, 2, 124, 10, 0, '2019-04-17'),
+(87, 2, 125, 10, 0, '2019-04-17');
 
 -- --------------------------------------------------------
 
@@ -1385,7 +1479,17 @@ INSERT INTO `soal` (`id_soal`, `pertanyaan`, `opsi1`, `opsi2`, `opsi3`, `opsi4`,
 (97, 'c', 'h', 'j', 'j', 'k', '1', '1', 0, '2019-03-25'),
 (98, 'c', 'l', 'j', 'j', 'h', '1', '1', 0, '2019-03-25'),
 (99, 'c', 'm', 'b', 'b', 'v', '2', '1', 0, '2019-03-25'),
-(100, 'c', 'i', 'p', 'p', 'u', '2', '1', 0, '2019-03-25');
+(100, 'c', 'i', 'p', 'p', 'u', '2', '1', 0, '2019-03-25'),
+(101, 'test', 'a', 'c', 'c', 'd', '1', '5', 0, '2019-04-18'),
+(102, 'test2', 'a', 'c', 'c', 'd', '2', '5', 0, '2019-04-18'),
+(103, 'test3', 'a', 'c', 'c', 'd', '3', '5', 0, '2019-04-18'),
+(104, 'test4', 'a', 'c', 'c', 'd', '4', '5', 0, '2019-04-18'),
+(105, 'test5', 'a', 'c', 'c', 'd', '1', '5', 0, '2019-04-18'),
+(106, 'a', 'a', 'b', 'c', 'd', '1', '6', 0, '2019-04-18'),
+(107, 'b', 'a', 'b', 'c', 'd', '2', '6', 0, '2019-04-18'),
+(108, 'c', 'a', 'b', 'c', 'd', '3', '6', 0, '2019-04-18'),
+(109, 'd', 'a', 'b', 'c', 'd', '4', '6', 0, '2019-04-18'),
+(110, 'a', 'b', 'c', 'd', 'e', '1', '6', 0, '2019-04-18');
 
 -- --------------------------------------------------------
 
@@ -1485,7 +1589,11 @@ INSERT INTO `ulangan_harian` (`id_aktivitas`, `id_siswa`, `nilai`) VALUES
 (13, 11, 0),
 (13, 12, 0),
 (13, 13, 0),
-(13, 20, 0);
+(13, 20, 0),
+(15, 83, 90),
+(15, 87, 100),
+(16, 83, 100),
+(16, 87, 80);
 
 -- --------------------------------------------------------
 
@@ -1595,7 +1703,9 @@ INSERT INTO `user` (`id_user`, `nama_depan`, `nama_belakang`, `tanggal_lahir`, `
 (117, 'fefe', 'wefwe', '2019-04-19', '3242', '4awfe@gmail.com', 'aewfawef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-10', 4, 0, 1),
 (118, 'fefe', 'wefwe', '2019-04-19', '3242', '4awfe@gmail.com', 'aewfawef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-10', 4, 0, 1),
 (119, 'fefe', 'wefwe', '2019-04-19', '3242', '4awfe@gmail.com', 'aewfawef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-10', 4, 0, 1),
-(120, 'fefe', 'wefwe', '2019-04-19', '3242', '4awfe@gmail.com', 'aewfawef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-10', 4, 0, 1);
+(120, 'fefe', 'wefwe', '2019-04-19', '3242', '4awfe@gmail.com', 'aewfawef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-10', 4, 0, 1),
+(121, 'anak', 'ips', '1111-11-11', '123123', 'askfdj@gmail.com', 'awkefkljkawe', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-17', 4, 0, 1),
+(125, 'anak ips ', 'dua', '1111-11-11', '11111', 'klfsj@gmail.com', 'kweajfakjef', 'e10adc3949ba59abbe56e057f20f883e', '2019-04-17', 4, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -1747,19 +1857,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `aktivitas_mingguan`
 --
 ALTER TABLE `aktivitas_mingguan`
-  MODIFY `id_mingguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_mingguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `guru`
@@ -1777,67 +1887,67 @@ ALTER TABLE `guru_tahunan`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1081;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1126;
 
 --
 -- AUTO_INCREMENT for table `jawaban_quiz`
 --
 ALTER TABLE `jawaban_quiz`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `kelas_siswa`
 --
 ALTER TABLE `kelas_siswa`
-  MODIFY `id_kelas_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_kelas_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `matapelajaran`
 --
 ALTER TABLE `matapelajaran`
-  MODIFY `id_matpel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_matpel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `nilai_quiz`
 --
 ALTER TABLE `nilai_quiz`
-  MODIFY `id_nilai_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nilai_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orangtua`
 --
 ALTER TABLE `orangtua`
-  MODIFY `id_orangtua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_orangtua` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `penugasan_guru`
 --
 ALTER TABLE `penugasan_guru`
-  MODIFY `id_penugasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id_penugasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -1849,19 +1959,19 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `siswa_angkatan`
 --
 ALTER TABLE `siswa_angkatan`
-  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_siswa_angkatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `soal`
 --
 ALTER TABLE `soal`
-  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id_soal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `tahun_ajaran`
@@ -1873,7 +1983,7 @@ ALTER TABLE `tahun_ajaran`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
