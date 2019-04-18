@@ -201,15 +201,19 @@ class Index extends CI_Controller{
                 
         
         $result = $this->Mdraporpdf->quiz($mp->id_matpel)->result();
-        $total = 0; $jumlah = 0;
-        foreach($result as $a){
-            $total += (($a->nilai_quiz)*10);
-            $jumlah++;
-        } 
-                if(round($total/$jumlah,2) < $mp->kkm){
+        $total = 0; $jumlah = 0; $nilai = "-";
+                if($result != NULL){
+                    foreach($result as $a){
+                        $total += (($a->nilai_quiz)*10);
+                        $jumlah++;
+                    }
+                    $nilai = round($total/$jumlah,2); 
+                    if($nilai < $mp->kkm){
                     $pdf->SetTextColor(255,0,0);
                 }
-            $pdf->Cell(13,6,round($total/$jumlah,2),1,0,'C');
+                }
+                
+            $pdf->Cell(13,6,$nilai,1,0,'C');
                 $pdf->SetTextColor(0,0,0);
                 
                 if($nl->nilai_lab < $mp->kkm){
@@ -225,15 +229,26 @@ class Index extends CI_Controller{
                 
                 $pdf->SetTextColor(0,0,0);
                 
-                if(($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)+round($total/$jumlah,2)*($mp->quiz/100)) < $mp->kkm){
+                if($result != NULL){
+                    if(($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)+$nilai*($mp->quiz/100)) < $mp->kkm){
                     $pdf->SetTextColor(255,0,0);
                 }
-            $pdf->Cell(43,6,($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)+round($total/$jumlah,2)*($mp->quiz/100)),'LBR',1,'C',0);
+                    $pdf->Cell(43,6,($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)+$nilai*($mp->quiz/100)),'LBR',1,'C',0);
+                }
+                else{
+                    if(($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)) < $mp->kkm){
+                    $pdf->SetTextColor(255,0,0);
+                }
+                    $pdf->Cell(43,6,($nl->nilai_tugas*($mp->tugas/100)+$nl->nilai_lab*($mp->lab/100)+$nl->nilai_uh*($mp->uh/100)+$nl->nilai_uts*($mp->uts/100)+$nl->nilai_uas*($mp->uas/100)),'LBR',1,'C',0);
+                }
+                }
+                
+                
                 
             $pdf->SetTextColor(0,0,0);
             
             }
-            }
+            
             else{
             $pdf->Cell(13,6,'-',1,0,'C');
             $pdf->Cell(13,6,'-',1,0,'C');
