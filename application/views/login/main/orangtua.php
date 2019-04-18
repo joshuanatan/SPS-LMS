@@ -24,6 +24,11 @@
             Login
         </button>
     </div>
+    <div class="container-login100-form-btn">
+        <button type = "button" onclick = 'window.location.href="<?php echo base_url();?>login/"' class="login100-form-btn">
+            USER
+        </button>
+    </div>
 
     <div class="text-center p-t-12">
         <span class="txt1">

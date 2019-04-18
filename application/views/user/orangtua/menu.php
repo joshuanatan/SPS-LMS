@@ -14,7 +14,10 @@
                     </ul>
                 </li>
                 <?php } ?>
-                <li><button class = "btn btn-success col-lg-12" data-toggle="modal" data-target="#mediumModal">TAMBAH SISWA</button></li>
+                <li>
+                    <a style = "text-align:center;width:100%" href = "#" class = "col-lg-12" data-toggle="modal" data-target="#mediumModal">TAMBAH SISWA</a>
+                    <hr/>
+                </li>
                
             </ul>
             <hr/>
