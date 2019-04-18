@@ -3,14 +3,19 @@ defined("BASEPATH") OR exit("No Direct Script");
 
 class Mdjadwalpdf extends CI_Model{
     
-     public function selectjadwalguru($where){
+     
+    
+    public function selectjadwalguru($where){
         $this->db->where($where);
         $this->db->join("guru_tahunan","guru_tahunan.id_gurutahunan = jadwal.id_gurutahunan","inner");
         $this->db->join("guru","guru_tahunan.id_guru = guru.id_guru","inner");
         $this->db->join("user","guru.id_user = user.id_user","inner");
         $this->db->join("kelas","kelas.id_kelas = jadwal.id_kelas","inner");
+        $this->db->where("guru_tahunan.id_tahun_ajaran in (select setting.id_tahun_ajaran from setting where status = 0 ) ",NULL,FALSE);
         return $this->db->get("jadwal");
     }
+    
+    
     public function matpelpdf($where3){
         $this->db->select('*')
             ->from('matapelajaran')
