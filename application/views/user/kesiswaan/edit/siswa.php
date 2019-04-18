@@ -43,15 +43,15 @@
                     <hr>
                     <div class = "form-group col-lg-12">
                         <label>Nama Orang Tua</label>
-                        <input type = "text" class = "form-control col-lg-12" value = "<?php echo $nama_ortu;?>">
+                        <input type = "text" class = "form-control col-lg-12" name = "nama_ortu" value = "<?php echo $nama_ortu;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Nomor Telpon</label>
-                        <input type = "number" class = "form-control col-lg-12" value = "<?php echo $nohp_ortu;?>">
+                        <input type = "number" class = "form-control col-lg-12" name = "nohp_ortu" value = "<?php echo $nohp_ortu;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Email</label>
-                        <input type = "email" class = "form-control col-lg-12" value = "<?php echo $email_ortu;?>">
+                        <input type = "email" class = "form-control col-lg-12" name = "email_ortu" value = "<?php echo $email_ortu;?>">
                     </div>
                 </div>
                 <div class="modal-footer">

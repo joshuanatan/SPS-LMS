@@ -252,10 +252,28 @@ class Siswa extends CI_Controller{
 
         $datas = array(
             "jurusan" => $this->input->post("jurusan"),
-            "id_orangtua" => "papasaya",
             "tgl_submit_siswa" => date('Y-m-d'),
         );
         $this->Mdsiswa->update($datas,$where);
+        $where = array(
+            "user.id_user" => $i
+        );
+        $this->load->model("Mdorangtua");
+        $result = $this->Mdsiswa->select($where);
+        $id_ortu = "";
+        foreach($result->result() as $a){
+            $id_ortu = $a->id_orangtua;
+        }
+        echo $i;
+        $where = array(
+            "id_orangtua" => $id_ortu
+        );
+        $data = array(
+            "nama_orangtua" => $this->input->post("nama_ortu"),
+            "nomor_telpon_ortu" => $this->input->post("nohp_ortu"),
+            "email_orangtua" => $this->input->post("email_ortu") 
+        );
+        $this->Mdorangtua->update($data,$where);
         redirect("master/siswa");
     }
     
