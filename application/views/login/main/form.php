@@ -24,6 +24,11 @@
             Login
         </button>
     </div>
+    <div class="container-login100-form-btn">
+        <button type = "button" onclick = 'window.location.href="<?php echo base_url();?>login/orangtua"' class="login100-form-btn">
+            ORANG TUA
+        </button>
+    </div>
 
     <div class="text-center p-t-12">
         <span class="txt1">

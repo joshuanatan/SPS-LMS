@@ -41,7 +41,7 @@
                                 <td><?php echo $a->id_user;?></td>
                                 <td><?php echo $a->nama_depan." ".$a->nama_belakang;?></td>
                                 <td><?php echo $a->nama_orangtua; ?></td>
-                                <td><?php echo $a->nomor_telpon;?></td>
+                                <td><?php echo $a->nomor_telpon_ortu;?></td>
                             </tr>
                             <?php } ?>
                         </tbody>

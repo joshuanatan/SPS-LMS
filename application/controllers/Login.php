@@ -77,7 +77,7 @@ class Login extends CI_Controller{
             "email_orangtua" => $username,
             "password" => $password
         );
-        $result = $this->Mdorangtua->select($where)->result();
+        $result = $this->Mdorangtua->login($where)->result();
         foreach($result as $a){
             $this->session->id_user = $a->id_orangtua;
             $this->session->username = ucwords($a->nama_orangtua);

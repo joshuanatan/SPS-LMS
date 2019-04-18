@@ -30,29 +30,7 @@
     </div>
 </div>
 <br/>
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="mb-3">Grade Quiz Kelas 1</h4>
-                <canvas id="lineChart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="mb-3">Grade Quiz Kelas 1</h4>
-                <canvas id="lineChart2"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
+
 <?php } ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-      $('#bootstrap-data-table').DataTable();
-  } );
-</script>
 
                 

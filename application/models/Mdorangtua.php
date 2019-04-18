@@ -13,6 +13,9 @@ class Mdorangtua extends CI_Model{
     public function selectortulast($where){
         return $this->db->get_where("orangtua",$where);
     }
+    public function login($where){
+        return $this->db->get_where("orangtua",$where);
+    }
     public function select($where){
         return $this->db->query("select * from orangtua inner join siswa on siswa.id_orangtua = orangtua.id_orangtua inner join user on user.id_user = siswa.id_user where siswa.id_siswa in (select siswa_angkatan.id_siswa from siswa_angkatan where siswa_angkatan.id_siswa_angkatan in ( select kelas_siswa.id_siswa_angkatan from kelas_siswa where kelas_siswa.id_kelas = ".$this->session->pilihkelas.") and siswa_angkatan.id_tahun_ajaran = ".$this->session->tahunajaran.")");
         /*

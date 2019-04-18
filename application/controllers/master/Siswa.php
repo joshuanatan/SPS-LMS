@@ -93,6 +93,7 @@ class Siswa extends CI_Controller{
             "id_role"=> 1,
         );
         $last = $this->Mduser->select($where)->result();
+        //$last_user = $last;
         $flag = 0;
         //end cari user terakhir
         //ngeload user terakhir & input ke siswa
@@ -134,14 +135,14 @@ class Siswa extends CI_Controller{
         
         $this->load->model("Mdorangtua");
         $where = array(
-            "email_orangtua" => $this->input->post("email"),
+            "email_orangtua" => $this->input->post("emailortu"),
             "status_orangtua" => 0
         );
         $result = $this->Mdorangtua->selectortulast($where);
         if($result->num_rows() == 0 ){
             $data = array(
                 "nama_orangtua" => $this->input->post("namaortu"),
-                "nomor_telpon" => $this->input->post("nohportu"),
+                "nomor_telpon_ortu" => $this->input->post("nohportu"),
                 "email_orangtua" => $this->input->post("emailortu"),
                 "status_orangtua" => 0,
                 "password" => md5($this->input->post("passwordortu")),
@@ -149,32 +150,39 @@ class Siswa extends CI_Controller{
             );
             $this->Mdorangtua->insert($data);
         }
-        $config = array(
-            "protocol" => "smtp",
-            "smtp_host" => "ssl://smtp.googlemail.com",
-            "smtp_port" => 587,
-            "smtp_user" => "findworksuph@gmail.com",
-            "smtp_pass" => "f1ndw0rk5",
-            "mailtype" => "html",
-            "charset" => "iso-8859-1",
-            "wordwrap" => true
-        );
-        /*$this->load->library("email", $config);
-        $this->email->from("findworksuph@gmail.com","System");
-        $this->email->to($this->input->post("email"));
-        $this->email->subject("WELCOME MESSAGE");
-        $this->email->message("ID SISWA ".$iduser."<BR/>PASS SISWA".md5($iduser));
-        $this->email->set_newline("\r\n");
+        $this->load->library('email');
 
-        if($this->email->send()){
-            $this->email->print_debugger();
-            echo "hai";
-        }
-        else{
-            $this->email->print_debugger();
-            echo "fail";
-        }
-        */
+            $config['protocol']    = 'smtp';
+
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+
+            $config['smtp_port']    = '465';
+
+            $config['smtp_timeout'] = '7';
+
+            $config['smtp_user']    = 'eeducation.is.1@gmail.com';
+
+            $config['smtp_pass']    = 'iSupport123';
+
+            $config['charset']    = 'utf-8';
+
+            $config['newline']    = "\r\n";
+
+            $config['mailtype'] = 'text'; // or html
+
+            $config['validation'] = TRUE; // bool whether to validate email or not      
+
+            $this->email->initialize($config);
+
+
+            $this->email->from('eeducation.is.1@gmail.com', 'iSupport Team');
+            $this->email->to($this->input->post("emailortu")); 
+
+
+            $this->email->subject('Laporan Rapor Siswa');
+
+            $this->email->message("Selamat datang di Sistem Akademik Sekolah kami. Untuk menambahkan account anak anda ke account anda untuk pemantauan, anda dapat memasukan id anak anda dan password anak anda. Id anak anda :".$iduser." & Password: ".md5($iduser));  
+            $this->email->send();
         
         redirect("master/siswa");
     }
