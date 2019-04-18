@@ -43,23 +43,15 @@
                     <hr>
                     <div class = "form-group col-lg-12">
                         <label>Nama Orang Tua</label>
-                        <input type = "text" class = "form-control col-lg-12" value = "Papasaya">
+                        <input type = "text" class = "form-control col-lg-12" value = "<?php echo $nama_ortu;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Nomor Telpon</label>
-                        <input type = "number" class = "form-control col-lg-12" value = "089653967707">
+                        <input type = "number" class = "form-control col-lg-12" value = "<?php echo $nohp_ortu;?>">
                     </div>
                     <div class = "form-group col-lg-12">
                         <label>Email</label>
-                        <input type = "email" class = "form-control col-lg-12" value = "lewayndi@gmail.com">
-                    </div>
-                    <div class = "form-group col-lg-12">
-                        <label>Alamat</label>
-                        <textarea class = "form-control col-lg-12">Kembang molek ix</textarea>
-                    </div>
-                    <div class = "form-group col-lg-12">
-                        <label>Password</label>
-                        <input type = "password" class = "form-control col-lg-12" value = "1234">
+                        <input type = "email" class = "form-control col-lg-12" value = "<?php echo $email_ortu;?>">
                     </div>
                 </div>
                 <div class="modal-footer">

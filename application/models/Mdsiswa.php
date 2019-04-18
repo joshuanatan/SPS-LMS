@@ -13,6 +13,13 @@ class Mdsiswa extends CI_Model{
     public function update($data,$where){
         $this->db->update("siswa",$data,$where);
     }
+    public function selectsiswaortu($where){
+        $this->db->join("user","siswa.id_user = user.id_user","inner");
+        $this->db->join("orangtua","orangtua.id_orangtua = siswa.id_orangtua","left outer");
+        //$this->db->join("siswa_angkatan","siswa_angkatan.id_siswa = siswa.id_siswa","inner");
+        return $this->db->get_where("siswa",$where);
+    
+    }
     public function assigned($where){
         /*$this->db->where($where); // id kelas yang dipilih
         $this->db->select("kelas_siswa.id_kelas_siswa,user.nama_depan, user.nama_belakang, siswa_angkatan.id_siswa_angkatan");

@@ -18,11 +18,8 @@ class Siswa extends CI_Controller{
     }
     public function req(){
         $this->load->model("Mdsistemprofile");
-        $where = array(
+        $where2 = array(
             "status_profile" => 0
-        );
-        $data = array(
-            "profile" => $this->Mdsistemprofile->select($where)
         );
         $this->load->model("Mdsiswaangkatan");
         $where = array(
@@ -30,7 +27,8 @@ class Siswa extends CI_Controller{
             "siswa_angkatan.status_siswa_angkatan" => 0
         );
         $data = array(
-            "siswa" => $this->Mdsiswaangkatan->select($where)->result()
+            "siswa" => $this->Mdsiswaangkatan->select($where)->result(),
+            "profile" => $this->Mdsistemprofile->select($where2)
         );
         $this->load->view("req/html-open");
         $this->load->view("req/head",$data);

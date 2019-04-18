@@ -55,6 +55,24 @@
                                 </td>
                             </tr>
                             <?php 
+                                                        if($a->nama_orangtua == ""){
+                                                            $namaortu = "-";
+                                                        }
+                                                        else {
+                                                            $namaortu = $a->nama_orangtua;
+                                                        }
+                                                        if($a->nomor_telpon_ortu == ""){
+                                                            $nohportu = "-";
+                                                        }
+                                                        else {
+                                                            $nohportu = $a->nomor_telpon_ortu;
+                                                        }
+                                                        if($a->email_orangtua == ""){
+                                                            $emailortu = "-";
+                                                        }
+                                                        else {
+                                                            $emailortu = $a->email_orangtua;
+                                                        }
                                                         $data = array(
                                                             "id_user" => $a->id_user,
                                                             "nama_depan" => $a->nama_depan,
@@ -64,6 +82,9 @@
                                                             "email" => $a->email,
                                                             "alamat" => $a->alamat,
                                                             "jurusan" => $a->jurusan,
+                                                            "nama_ortu" => $namaortu,
+                                                            "nohp_ortu" => $nohportu,
+                                                            "email_ortu" => $emailortu
                                                         );
                                                         $this->load->view("user/kesiswaan/edit/siswa",$data);
                             ?>

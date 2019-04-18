@@ -46,7 +46,7 @@ class Index extends CI_Controller{
         );
         $data = array(
             "tahunajaran" => $this->Mdtahunajaran->select($where)->result(),
-            "siswa" => $this->Mdsiswa->select($where)->result()
+            "siswa" => $this->Mdsiswa->selectsiswaortu($where)->result()
         );
         $this->load->view("user/kesiswaan/index",$data);
         /* endnya disini */

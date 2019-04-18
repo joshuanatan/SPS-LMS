@@ -73,7 +73,14 @@ class Login extends CI_Controller{
     }
     public function orangtua(){
         
-        $this->load->view("login/main/logo");
+        $this->load->model("Mdsistemprofile");
+        $where = array(
+            "status_profile" => 0
+        );
+        $data = array(
+            "profile" => $this->Mdsistemprofile->select($where)
+        );
+        $this->load->view("login/main/logo",$data);
         $this->load->view("login/main/orangtua");
     }
     public function logorangtua(){

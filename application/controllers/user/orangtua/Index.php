@@ -21,17 +21,16 @@ class Index extends CI_Controller{
         $where = array(
             "status_profile" => 0
         );
-        $data = array(
-            "profile" => $this->Mdsistemprofile->select($where)
-        );
 
         $this->load->model("Mdsiswaangkatan");
-        $where = array(
+        $where2 = array(
             "siswa.id_orangtua" => $this->session->id_user,
+            "monitor_ortu" => 0,
             "siswa_angkatan.status_siswa_angkatan" => 0
         );
         $data = array(
-            "siswa" => $this->Mdsiswaangkatan->select($where)->result()
+            "siswa" => $this->Mdsiswaangkatan->select($where2)->result(),
+            "profile" => $this->Mdsistemprofile->select($where)
         );
         $this->load->view("req/html-open");
         $this->load->view("req/head",$data);
@@ -73,7 +72,7 @@ class Index extends CI_Controller{
     }
     public function tambahanak(){
         $data = array(
-            "siswa.id_orangtua" => $this->session->id_user
+            "monitor_ortu" => 0
         );
         $where = array(
             "siswa.id_user" => $this->input->post("id")

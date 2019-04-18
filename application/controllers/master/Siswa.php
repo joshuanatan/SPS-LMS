@@ -57,7 +57,7 @@ class Siswa extends CI_Controller{
             "user.status" => 0
         );
         $data = array(
-            "siswa" => $this->Mdsiswa->select($where)->result()
+            "siswa" => $this->Mdsiswa->selectsiswaortu($where)->result()
         );
         $this->load->view("user/kesiswaan/siswa",$data);
         /* endnya disini */
@@ -125,9 +125,11 @@ class Siswa extends CI_Controller{
         $flag = 0;
         //end cari siswa
         //insert ke siswa tahunan
+        $idsiswabuatinputortu = "";
         $this->load->model("Mdsiswaangkatan");
         foreach($last as $a){
             $flag = 1;
+            $idsiswabuatinputortu = $a->id_siswa;
             $datas = array(
                 "id_tahun_ajaran" => $this->session->tahunajaran,
                 "id_siswa" =>  $a->id_siswa,
@@ -156,6 +158,16 @@ class Siswa extends CI_Controller{
                 "tgl_submit_orangtua" => date("Y-m-d")
             );
             $this->Mdorangtua->insert($data);
+        }
+        $idortu = $this->Mdorangtua->selectortulast($where)->result();
+        foreach($idortu as $a){
+            $where = array(
+                "id_siswa" => $idsiswabuatinputortu
+            );
+            $data = array(
+                "id_orangtua" => $a->id_orangtua
+            );
+            $this->Mdsiswa->update($data,$where);
         }
         $this->load->library('email');
 
