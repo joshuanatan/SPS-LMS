@@ -105,7 +105,6 @@ class Grade extends CI_Controller{
         foreach($getlab as $a){
             $lab[$i] = $a;
             $i++;
-        
         }
         $i = 0;
         foreach($getuh as $a){
@@ -129,16 +128,30 @@ class Grade extends CI_Controller{
                 "id_penugasan" => $idgurutahun
             );
             $this->Mdpenilaian->delete($where);
-            $data = array(
-                "id_siswa_angkatan" => $id[$i],
-                "id_penugasan" => $idgurutahun,
-                "nilai_tugas" => $tugas[$i],
-                "nilai_lab" => $lab[$i],
-                "nilai_uh" => $uh[$i],
-                "nilai_uts" => $uts[$i],
-                "nilai_uas" => $uas[$i],
-                "tgl_submit_penilaian" => date("Y-m-d")
-            );
+            if($lab[i] != ""){
+                $data = array(
+                    "id_siswa_angkatan" => $id[$i],
+                    "id_penugasan" => $idgurutahun,
+                    "nilai_tugas" => $tugas[$i],
+                    "nilai_lab" => $lab[$i],
+                    "nilai_uh" => $uh[$i],
+                    "nilai_uts" => $uts[$i],
+                    "nilai_uas" => $uas[$i],
+                    "tgl_submit_penilaian" => date("Y-m-d")
+                );
+            }
+            else{
+                $data = array(
+                    "id_siswa_angkatan" => $id[$i],
+                    "id_penugasan" => $idgurutahun,
+                    "nilai_tugas" => $tugas[$i],
+                    "nilai_lab" => 0,
+                    "nilai_uh" => $uh[$i],
+                    "nilai_uts" => $uts[$i],
+                    "nilai_uas" => $uas[$i],
+                    "tgl_submit_penilaian" => date("Y-m-d")
+                );
+            }
             $this->Mdpenilaian->insert($data);
         }
         redirect("user/guru/grade/ujian");
@@ -150,11 +163,15 @@ class Grade extends CI_Controller{
         $where = array(
             "kelas_siswa.id_kelas" => $this->session->idkelas
         );
+        $where123 = array(
+            "id_matpel" => $this->session->id_kelas_guru_login
+        );
         $this->load->model("Mdpenilaian");
         $this->load->model("Mdulanganharian");
         $data = array(
             "siswa" => $this->Mdpenilaian->harianuntukakhir($where)->result(),
-            "ulangan" => $this->Mdulanganharian->averageTiapAnak($where)->result()
+            "ulangan" => $this->Mdulanganharian->averageTiapAnak($where)->result(),
+            "matapelajaran" => $this->Mdmatapelajaran->select($where123)->result()
         );
         $this->load->view("user/guru/inputnilai",$data);
         /* endnya disini */
@@ -215,7 +232,15 @@ class Grade extends CI_Controller{
         redirect("user/guru/grade");
     }
     public function inputharian(){
+        //disini harus ngeload email ortu tiap murid lalu kirimin email
         $mingguan = $this->input->post("aktivitas");
+        $this->load->model("Mdaktivitasmingguan");
+        $where = array("id_mingguan" => $mingguan);
+        $result = $this->Mdaktivitasmingguan->select($where)->result();
+        foreach($result as $a){
+            $namaaktivitas = $a->materi_mingguan;
+            $tanggal = $a->tgl_kelas;
+        }
         /*$nilais = $this->input->post("nilai");
         $idsiswa = $this->input->post("id");
         $nilai = array();
@@ -241,8 +266,34 @@ class Grade extends CI_Controller{
                 "nilai" => $this->input->post("nilai".$i) //bukannya ini harusnya rata2 ya ?
             );
             $this->Mdpenilaian->updateharian($data,$where);
+
+            $this->load->model("Mdorangtua");
+            $result = $this->Mdorangtua->selectortuanak($this->input->post("id".$i))->result();
+            $this->email();
+            foreach($result as $a){
+                $this->email->from('eeducation.is.1@gmail.com', 'iSupport Team');
+                $this->email->to($a->email_orangtua); 
+                $this->email->subject('Nilai Siswa');
+    
+                $this->email->message("Selamat Pagi/Siang/Sore/Malam, berikut saya beritahukan terkait nilai pada materi ulangan ".$namaaktivitas." pada tanggal ".$tanggal.". Anak anda atas nama ".$a->nama_depan." ".$a->nama_belakang." Mendapatkan nilai ulangan sebesar ".$this->input->post("nilai".$i));  
+                $this->email->send();
+            }
         }
         redirect("user/guru/grade/harian");
+    }
+    private function email(){
+        $this->load->library('email');
+        $config['protocol']    = 'smtp';
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_port']    = '465';
+        $config['smtp_timeout'] = '7';
+        $config['smtp_user']    = 'eeducation.is.1@gmail.com';
+        $config['smtp_pass']    = 'iSupport123';
+        $config['charset']    = 'utf-8';
+        $config['newline']    = "\r\n";
+        $config['mailtype'] = 'text'; // or html
+        $config['validation'] = TRUE; // bool whether to validate email or not      
+        $this->email->initialize($config);
     }
     public function detailnilaisiswa(){
          //$this->load->view("namapage/breadcrumb");

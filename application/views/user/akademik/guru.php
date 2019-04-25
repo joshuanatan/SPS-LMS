@@ -10,6 +10,7 @@
                     <table class="table table-stripped" id = "bootstrap-data-table-export">
                         <thead>
                             <tr>
+                                <th>ID User</th>
                                 <th>ID Guru</th>
                                 <th>Nama Guru</th>
                                 <th>Mata Pelajaran Guru</th>
@@ -22,6 +23,7 @@
                         <tbody>
                             <?php foreach($guru as $a){ ?> 
                             <tr>
+                                <td><?php echo $a->id_user;?></td>
                                 <td><?php echo $a->id_guru;?></td>
                                 <td><?php echo ucfirst($a->nama_depan)." ".ucfirst($a->nama_belakang);?></td>
                                 <td>

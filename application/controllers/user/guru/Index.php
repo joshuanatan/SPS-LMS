@@ -50,6 +50,11 @@ class Index extends CI_Controller{
         $data = array(
             "jadwal" => $this->Mdjadwal->selectjadwalguru($where3)->result()
         );
+        $this->load->model("Mdguru");
+        $matapelajaran = $this->Mdguru->select($where3)->result();
+        foreach($matapelajaran as $abc){
+            $this->session->id_kelas_guru_login = $abc->id_matpel;
+        }
         $this->load->view("user/guru/index",$data);
         /* endnya disini */
         $this->load->view("req/close-content");
